@@ -29,12 +29,15 @@ Changes belong in this repository unless the owner separately approves a product
 
 ## Must read before substantial work
 
-1. `README.md`
-2. `docs/ARCHITECTURE.md`
-3. `docs/AUTHORITY_AND_GATES.md`
-4. `docs/CODEX_HANDOFF.md`
-5. `contracts/capability.schema.json`
-6. the relevant file under `skills/`
+1. `CODEX_START_HERE.md`
+2. `README.md`
+3. `docs/ARCHITECTURE.md`
+4. `docs/AUTHORITY_AND_GATES.md`
+5. `docs/CODEX_HANDOFF.md`
+6. `contracts/capability.schema.json`
+7. the relevant file under `skills/`
+
+`CODEX_START_HERE.md` is the definitive launch order for a fresh Codex session and overrides older bootstrap wording if there is any conflict.
 
 ## Default engineering loop
 
