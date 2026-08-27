@@ -35,8 +35,36 @@ Do not copy databases, secrets, personal artifacts, browser state, generated med
 3. copy only code-safe Workshop files into `workshop/`;
 4. preserve the baseline manifest;
 5. run this repo's bootstrap tests;
-6. begin AIOS development beside the Workshop baseline;
-7. integrate one bounded Workshop capability at a time.
+6. run the mandatory bounded Artifact Compass reality sweep;
+7. begin AIOS implementation beside the Workshop baseline;
+8. integrate one bounded Workshop capability at a time.
+
+## Updated Artifact Compass requirement
+
+Before choosing implementation technologies for a successor, read and apply:
+
+- `skills/artifact-compass/SKILL.md`
+- `skills/direct-successor-autopilot/SKILL.md`
+- `skills/no-drift-build/SKILL.md`
+- `skills/no-broadening-audit/SKILL.md`
+- `skills/receipt-trace-certificate/SKILL.md`
+
+For deeper research or broad questions, also use:
+
+- `skills/deep-salvage/SKILL.md`
+- `skills/better-question-rewriter/SKILL.md`
+
+Artifact Compass must be official-source-first, free-first, local-first where practical, legal/open-source-aware, and hardware-measured.
+
+Serious findings are classified:
+
+`KEEP / CUT / TEST / REJECT / DEFER`
+
+Every candidate must have an exact stack position and a reason it affects the current successor.
+
+Salvage mechanisms instead of cloning/importing entire platforms by default.
+
+The sweep ends when another pass is unlikely to change the bounded successor decision. It must not become endless research.
 
 ## First AIOS successor
 
@@ -57,15 +85,31 @@ Required:
 - deterministic fake backend;
 - full unit tests.
 
-Do not begin with Rust, WASM, embeddings, or a giant model.
+Artifact Compass may improve HOW this successor is implemented, but it should not replace the successor with a broader project unless current evidence proves the target itself is wrong.
 
-Those may be evaluated later if evidence shows they solve a real bottleneck.
+Do not begin with Rust, WASM, embeddings/vector DB, a giant model, provider integration, or a framework migration merely because research found them.
+
+Those are `DEFER` by default unless evidence shows they solve a current verified bottleneck.
+
+## Execution discipline
+
+Use:
+
+`Artifact Compass -> Direct Successor Autopilot -> NDBA -> tests/evidence -> No-Broadening Audit -> receipt/trace/certificate`
+
+Fix ordinary candidate defects automatically.
+
+Do not modify the authoritative Workshop.
 
 ## Completion language
 
 Do not say "AIOS is built" when only the kernel scaffold exists.
 
 Use precise status such as:
+
+`PASS — ARTIFACT COMPASS bounded reality sweep complete`
+
+then, when proven:
 
 `PASS — KERNEL V0.2 candidate verified`
 
