@@ -38,6 +38,11 @@ Do this in order:
    - `docs/AUTHORITY_AND_GATES.md`
    - `docs/CODEX_HANDOFF.md`
    - `skills/workshop-baseline/SKILL.md`
+   - `skills/artifact-compass/SKILL.md`
+   - `skills/direct-successor-autopilot/SKILL.md`
+   - `skills/no-drift-build/SKILL.md`
+   - `skills/no-broadening-audit/SKILL.md`
+   - `skills/receipt-trace-certificate/SKILL.md`
 2. Confirm the authoritative Workshop exists at:
    `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS`
 3. Treat that Workshop path as READ-ONLY during this program.
@@ -70,9 +75,34 @@ scripts\test.ps1
 
 11. Record exact evidence and commit ONLY to the AIOS candidate branch.
 
+### PHASE 0.5 — Artifact Compass reality sweep
+
+Before implementing Kernel V0.2, run a bounded Artifact Compass pass against the authenticated Workshop + current Untethered bootstrap.
+
+Use:
+
+- `skills/artifact-compass/SKILL.md`
+- `skills/deep-salvage/SKILL.md` when more than one pass is justified;
+- `skills/better-question-rewriter/SKILL.md` if the technology question is too broad.
+
+The sweep must:
+
+1. map what the Workshop and bootstrap already provide;
+2. identify the exact missing Kernel V0.2 contracts;
+3. inspect current official/primary sources for relevant scheduler, capability-security, process-lifecycle, isolation, event/wake, model-governor, and evidence mechanisms only where they could change implementation;
+4. stay free-first, local-first, legal/open-source-aware, and hardware-measured;
+5. assign serious candidates `KEEP/CUT/TEST/REJECT/DEFER`;
+6. state every candidate's exact stack position;
+7. salvage mechanisms instead of importing platforms by default;
+8. produce the smallest proof experiment for every `TEST`;
+9. explicitly defer Rust/WASM/vector DB/provider work unless evidence shows it is necessary for this successor;
+10. end with one bounded implementation decision and a No-Broadening statement.
+
+Do NOT let Phase 0.5 become endless research. Stop when another pass is unlikely to change the Kernel V0.2 decision.
+
 ### PHASE 1 — KERNEL V0.2
 
-After Phase 0 is verified, continue automatically into the first real AIOS successor.
+After Phase 0 and Phase 0.5 are verified, continue automatically into the first real AIOS successor.
 
 Target:
 
@@ -94,6 +124,13 @@ Required contracts:
 - deterministic fake model/runtime for tests;
 - crash/failure evidence;
 - complete unit tests.
+
+Execute Phase 1 using:
+
+- `skills/direct-successor-autopilot/SKILL.md`
+- `skills/no-drift-build/SKILL.md`
+- `skills/no-broadening-audit/SKILL.md`
+- `skills/receipt-trace-certificate/SKILL.md`
 
 Do NOT begin with:
 
@@ -132,14 +169,17 @@ Existing owner-visible Workshop behavior must remain usable while the AIOS path 
 Proceed automatically through reversible work:
 
 - inspect;
+- Artifact Compass when a technology/successor decision is material;
 - implement;
 - test;
 - fix ordinary candidate defects;
 - rerun tests;
 - create evidence;
 - make manifests;
+- run No-Broadening Audit;
 - simulate rollback;
-- clean candidate state.
+- clean candidate state;
+- update restart packet.
 
 Do not stop for routine permission.
 
@@ -158,6 +198,10 @@ Phase 0:
 
 `PASS — WORKSHOP BASELINE authenticated and imported into Untethered AIOS candidate`
 
+Phase 0.5:
+
+`PASS — ARTIFACT COMPASS bounded reality sweep complete; direct Kernel V0.2 implementation selected`
+
 Kernel successor:
 
 `PASS — KERNEL V0.2 candidate verified`
@@ -168,4 +212,4 @@ Never say the full AIOS is finished when only one kernel successor is verified.
 
 Use this:
 
-> Read `AGENTS.md` and `CODEX_START_HERE.md` completely. This is the new Untethered AIOS repository. The authoritative Workshop is `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS` and must remain read-only. Execute Phase 0 exactly, authenticate/import the current code-safe Workshop baseline into this repo on a candidate branch, run all required verification, then continue automatically into KERNEL V0.2. Do not restart already-deployed Music Loop Deck V1. Fix ordinary candidate defects automatically. Stop only at a real protected/live deployment gate.
+> Read `AGENTS.md` and `CODEX_START_HERE.md` completely. This is the new Untethered AIOS repository. The authoritative Workshop is `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS` and must remain read-only. Execute Phase 0 exactly, authenticate/import the current code-safe Workshop baseline into this repo on a candidate branch, then execute the mandatory Phase 0.5 updated Artifact Compass sweep using the repo skills and classify serious technologies KEEP/CUT/TEST/REJECT/DEFER. Continue automatically into KERNEL V0.2 using Direct Successor Autopilot and the No-Drift Build Algorithm. Do not restart already-deployed Music Loop Deck V1. Fix ordinary candidate defects automatically. Stop only at a real protected/live deployment gate.
