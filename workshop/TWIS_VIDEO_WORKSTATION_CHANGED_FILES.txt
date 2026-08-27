@@ -1,0 +1,45 @@
+TWIS VIDEO V2 PRODUCTION WORKSTATION - EXACT CANDIDATE SCOPE
+
+APPLICATION REPLACEMENTS (15)
+app/assets/app.js
+app/index.html
+app/modules/modules.json
+app/service-worker.js
+companion/server.py
+config/media-capabilities.json
+docs/TWIS_MEDIA_WORKSPACE_CONTRACT_V1.md
+package.json
+tests/local-worker-kit-ui.test.js
+tests/music-studio-ui.test.js
+tests/room-system-ui.test.js
+tests/shell-ui.test.js
+tests/talk-room-ui.test.js
+tests/test_worker_harness_ui.py
+tests/write-room-ui.test.js
+
+APPLICATION ADDITIONS (11)
+TWIS_VIDEO_WORKSTATION_CANDIDATE_MANIFEST.txt
+TWIS_VIDEO_WORKSTATION_CHANGED_FILES.txt
+TWIS_VIDEO_WORKSTATION_RELEASE.md
+TWIS_VIDEO_WORKSTATION_ROLLBACK.md
+TWIS_VIDEO_WORKSTATION_VERIFICATION.md
+app/assets/video-workstation.css
+app/assets/video-workstation.js
+companion/video_workstation.py
+config/ffmpeg-runtime.json
+tests/test_video_workstation.py
+tests/video-workstation-ui.test.js
+
+APPLICATION REMOVALS (0)
+
+ADJACENT RUNTIME ADDITIONS (3; NOT ORDINARY APPLICATION FILES)
+runtime/ffmpeg/9.0.1/bin/ffmpeg.exe
+runtime/ffmpeg/9.0.1/bin/ffprobe.exe
+runtime/ffmpeg/9.0.1/licenses/LICENSE
+
+DATABASE MIGRATION: NONE
+DATABASE REPLACEMENT: NONE
+PROJECT/SOURCE FILE REPLACEMENT: NONE
+LAUNCHER CHANGE: NONE
+PATH CHANGE: NONE
+COMFYUI/MODEL INSTALLATION: NONE

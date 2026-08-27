@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TWIS compass">
+  <rect width="64" height="64" rx="4" fill="#071116"/>
+  <circle cx="32" cy="32" r="25" fill="none" stroke="#c59a52" stroke-width="2"/>
+  <path d="M32 7 38 26 57 32 38 38 32 57 26 38 7 32 26 26Z" fill="#29e5e0" stroke="#8dfbf4" stroke-width="1"/>
+  <circle cx="32" cy="32" r="7" fill="#071116" stroke="#f1d49a" stroke-width="2"/>
+</svg>

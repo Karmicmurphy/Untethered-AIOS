@@ -1,0 +1,2410 @@
+{
+  "format": "twis-untethered-workshop-baseline-v1",
+  "created_at": "2026-08-27T06:01:02.405096+00:00",
+  "source": "C:\\TWIS_FLASHRIVER_REVIEW_READY\\TWIS",
+  "included_file_count": 293,
+  "excluded_file_count": 233,
+  "code_safe_tree_sha256": "a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27",
+  "files": [
+    {
+      "path": ".github/workflows/smoke.yml",
+      "size": 653,
+      "sha256": "88f80528b8a7e715af14896f3b6b50995fcad7c03fff49b1ad616e637c1f2106"
+    },
+    {
+      "path": ".gitignore",
+      "size": 559,
+      "sha256": "46211a934cb46ea5ad378a708d56f47b206c57e158f127ccd3de69f4a6f1d9f8"
+    },
+    {
+      "path": "app/assets/app.js",
+      "size": 23420,
+      "sha256": "7086ed9651bedb3d4f9915cab085ca5ded3293888adb9967caf8e40b51934569"
+    },
+    {
+      "path": "app/assets/builder-workspace.css",
+      "size": 1645,
+      "sha256": "1731fe2ce9614e317ea7bf2b971c2fd548ededccc58d9976a40c5f65dc3b2821"
+    },
+    {
+      "path": "app/assets/builder-workspace.js",
+      "size": 40095,
+      "sha256": "8d2b546a9b161647a130047cd1e701f813329547ec526570c3d87297ce88bfa1"
+    },
+    {
+      "path": "app/assets/capability-bay.css",
+      "size": 6434,
+      "sha256": "a337baeff83ad1ceeb6025fd24e917ea51fd4d2ac9f09a2b259d5c298ac834ed"
+    },
+    {
+      "path": "app/assets/capability-bay.js",
+      "size": 21166,
+      "sha256": "2e45ed5fcd4408a25768bd542fcfc149d98261145ae00c0b611d60d5d82723f3"
+    },
+    {
+      "path": "app/assets/flashriver-import-ui.js",
+      "size": 3339,
+      "sha256": "e45ff7689f3dafe8492983df99ca54c17ae6987386c43dd1587b6bf6ab5af0f5"
+    },
+    {
+      "path": "app/assets/flashriver-review.js",
+      "size": 13064,
+      "sha256": "22cb3e2bbeaeca1dbee2d6497397b11c524b1a0da130986ee2cf0cec1f5475db"
+    },
+    {
+      "path": "app/assets/local-worker-kit.css",
+      "size": 3333,
+      "sha256": "845092a3901980d98c5694db3906f00f07889f4ae69dfc3a1e9e40f6309c348f"
+    },
+    {
+      "path": "app/assets/local-worker-kit.js",
+      "size": 28500,
+      "sha256": "7171b3237a98c9f5a6ff67efcf0948f9f597c373a20643eabc48564ed119bcdb"
+    },
+    {
+      "path": "app/assets/media-workspace.css",
+      "size": 15075,
+      "sha256": "c94720cb71c82d58ad46e2192e4da2c846704d7ac912d467d12e06c51942c9ae"
+    },
+    {
+      "path": "app/assets/media-workspace.js",
+      "size": 47651,
+      "sha256": "696f03e924c80f710f4c7cfc07f3d8bf2238b4c8490eb7e72f9cfdd3fbe93b8f"
+    },
+    {
+      "path": "app/assets/model-bay.css",
+      "size": 1069,
+      "sha256": "bf1ee5fc64a8048f7c204f5c876de21ac9009d65be1e33d1ca0063c55827e71e"
+    },
+    {
+      "path": "app/assets/model-bay.js",
+      "size": 4856,
+      "sha256": "39615d6dd1b1ac4c2d1fcad8c98d72cb86f9c5e0449e4da04770d614a4817a10"
+    },
+    {
+      "path": "app/assets/music-engine.js",
+      "size": 17903,
+      "sha256": "ec3bdfef9e208e80e940847696298dc0d1a0bcf4bf4a70d97ae2a096eb0a1974"
+    },
+    {
+      "path": "app/assets/music-room.js",
+      "size": 35883,
+      "sha256": "faf09222a0ac8a61cfcff8d9b61469f1623900362baddc738f14921e910f7ce7"
+    },
+    {
+      "path": "app/assets/music-studio.css",
+      "size": 7475,
+      "sha256": "17899c08994a5030ec2ac3f7b89cdeb505b2b8cb2a47cf09a5cd8f037f2a8c3f"
+    },
+    {
+      "path": "app/assets/navigation-state.js",
+      "size": 1683,
+      "sha256": "6e6aaa70250276a1b3d6902a25a4d47575d72b5d023d2b102412e71c8edf0753"
+    },
+    {
+      "path": "app/assets/remote-access.css",
+      "size": 1054,
+      "sha256": "60a21206d8a4615a36444f9321aa1ba868f09a437af09984de92ea1c2001ce1f"
+    },
+    {
+      "path": "app/assets/remote-access.js",
+      "size": 7367,
+      "sha256": "f0598b81e8891d0d879b52eefae53f1d65c61a7f0ec1180cb6e58103323ce670"
+    },
+    {
+      "path": "app/assets/room-system.css",
+      "size": 9226,
+      "sha256": "4841f82166d36408cac16dc705697d32aba7ba38460439f2f43583678052d730"
+    },
+    {
+      "path": "app/assets/room-system.js",
+      "size": 3379,
+      "sha256": "0cb5b8fd2b70b60429b9e45d28bb5fd8f6b1362f874cd90ad3dba9c860790837"
+    },
+    {
+      "path": "app/assets/shell-0.14-layout.css",
+      "size": 256,
+      "sha256": "c5d5c10d3ed211782c7e469abb22efe8169c5fa39b0bf9f98ced7d9ec9a30845"
+    },
+    {
+      "path": "app/assets/shell-0.14.css",
+      "size": 9599,
+      "sha256": "606915dc3e367465ee9452138a9b5a84e01fa4e69f214eaece848b546f638a8d"
+    },
+    {
+      "path": "app/assets/shell-0.14.js",
+      "size": 13764,
+      "sha256": "fc71f9c33a606524a63cd403c0fcc114f1c2e6ac2fdee9c6a014a2ac4ecf1b50"
+    },
+    {
+      "path": "app/assets/style.css",
+      "size": 34096,
+      "sha256": "97b7258ac0c7e3c626e858fde9e1b466f0f283aa8587704515faa96f10b7f16a"
+    },
+    {
+      "path": "app/assets/talk-room.js",
+      "size": 43754,
+      "sha256": "81e4006cc19730f44b2af14470c3c98e2837b75b5a42836173b72a6795c87681"
+    },
+    {
+      "path": "app/assets/ui-coherence.css",
+      "size": 17494,
+      "sha256": "221adbefc000d6e6d7cc6dabd43b6658b5ef079f64e39daccda75932654d336c"
+    },
+    {
+      "path": "app/assets/ui-coherence.js",
+      "size": 2882,
+      "sha256": "92da027a58cb0a43eab893091f26241009c1230a5904f7decb645c2ac59e3020"
+    },
+    {
+      "path": "app/assets/video-workstation.css",
+      "size": 9217,
+      "sha256": "adcaf0519cd59868a1ac828bcfa13c0cbdaef213966d1da60c7e38dc6c57611f"
+    },
+    {
+      "path": "app/assets/video-workstation.js",
+      "size": 26150,
+      "sha256": "99d84de2305df8a77839c4936e4ba6ce05a00f81058ba2b15fcf97d4ffa77966"
+    },
+    {
+      "path": "app/assets/worker-harness-view.js",
+      "size": 10695,
+      "sha256": "dfe14637291404d9413bcafb6648f1fda79cfd1f87cf06c135efc2dad565533b"
+    },
+    {
+      "path": "app/assets/worker-harness.js",
+      "size": 31797,
+      "sha256": "41353f4a0da6a263c0cf3e44f6f0edef2f351a97acc86d36db0507a1e06a5f2e"
+    },
+    {
+      "path": "app/assets/write-room.js",
+      "size": 51134,
+      "sha256": "025aca2224a5fe433081e34a97374cc09b71e4a9b9a431c566cc292814897824"
+    },
+    {
+      "path": "app/index.html",
+      "size": 90844,
+      "sha256": "edbc9363df7381d63637a7cef883e02b716e151789a98545e0a618e2da482aee"
+    },
+    {
+      "path": "app/manifest.webmanifest",
+      "size": 197,
+      "sha256": "c82f424a833db17cda9b1497c22aaa4469f6e3df9b65df889c5047d6407ccad2"
+    },
+    {
+      "path": "app/modules/flashriver-source-archive.json",
+      "size": 658,
+      "sha256": "78521e8748236e5e8a738ff62789454ebc3ade3c1aba8a1972760149f1fb8b74"
+    },
+    {
+      "path": "app/modules/modules.json",
+      "size": 6353,
+      "sha256": "2508df9f4082c3220912b7a851585d662a9f5716a0a2a0b682ac99ed70a6f473"
+    },
+    {
+      "path": "app/service-worker.js",
+      "size": 2202,
+      "sha256": "31331950600407cfb823ed549ea24a8b8a20f0e602b92610d90d16da5872ac31"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "size": 1752,
+      "sha256": "bd63c243c1c7c883c8f09dec5f317260d053c3b32c8e2369fd29c390c533a646"
+    },
+    {
+      "path": "BACKGROUND_REMOVAL_INSPECTION_EVIDENCE.json",
+      "size": 2021,
+      "sha256": "94f298010b7fbb5b30cc0984df671edc22c9c0d7f5dbc60626929504fc4ceacf"
+    },
+    {
+      "path": "BACKGROUND_REMOVAL_INSPECTION_REPORT.md",
+      "size": 1985,
+      "sha256": "d7b67b48dd2a70c23a96761cfbf40c993d2b4b0de0afe18361c9833f099c98fd"
+    },
+    {
+      "path": "BACKGROUND_REMOVAL_OWNER_DECISION.json",
+      "size": 1178,
+      "sha256": "6e83586ab6dd029f41d2e2fb9255ff163fdf7018b2b36c085256c0963dc4d328"
+    },
+    {
+      "path": "cloudflare/config.example.yml",
+      "size": 667,
+      "sha256": "b549a36093d9835158b3c45192273a63b4bc3fa14a787a03d7ccf298f982bc1e"
+    },
+    {
+      "path": "cloudflare/README.md",
+      "size": 2051,
+      "sha256": "cc7f287426bb9d9e5d50dd2667274aa8b0f9a7c52178375123f5dbd6a852465d"
+    },
+    {
+      "path": "companion/__init__.py",
+      "size": 41,
+      "sha256": "3ad1b30a9bc42cde7fe83838e3a0d87493c56a7f4e5ffddab00578743b147bbf"
+    },
+    {
+      "path": "companion/background_removal_inspection.py",
+      "size": 17639,
+      "sha256": "b0e055d50a22bec8d088fcf3c71f303706571ead65e61c709657b97bfe2014f3"
+    },
+    {
+      "path": "companion/background_removal_runtime.py",
+      "size": 22325,
+      "sha256": "43d3c3353b93e703c81a83156bee559b1bc5b189ff689680350d23e78565d343"
+    },
+    {
+      "path": "companion/background_removal_worker.py",
+      "size": 6458,
+      "sha256": "9fbbf77889c8b14f27b589390a4b502dbf5f4db686ba8595be5b5c4bd5563e13"
+    },
+    {
+      "path": "companion/builder_output.py",
+      "size": 58673,
+      "sha256": "e7225d8937006ab160c8c55e8773593e14855bcbfb047c4c627ce98a0995f78a"
+    },
+    {
+      "path": "companion/capability_inspection.py",
+      "size": 31422,
+      "sha256": "162904ae3f8c57c26838245db532cff25d20aa9b255e99a59f8d313fa955ac93"
+    },
+    {
+      "path": "companion/capability_registry.py",
+      "size": 32008,
+      "sha256": "eeda6e944a29137c3028f39e3dd8a81b3e8788496819321fdb28a7ea645096fa"
+    },
+    {
+      "path": "companion/flashriver_intake.py",
+      "size": 11469,
+      "sha256": "0f07bfe8163435bf2f37edbcff0254279322444f2ca84cac3fc73ee093787571"
+    },
+    {
+      "path": "companion/foundation/__init__.py",
+      "size": 1240,
+      "sha256": "ccd6321bc6eb46378d9d9ca7551ecf45df5f11ae748fd1990cdd296e7ca283eb"
+    },
+    {
+      "path": "companion/foundation/artifact_compass.py",
+      "size": 16647,
+      "sha256": "84c7ddb0662c21fffc6a6c89772c795ebcec21c0bc07f20e0d4e76abc3248d88"
+    },
+    {
+      "path": "companion/foundation/artifact_inspection_worker.py",
+      "size": 16462,
+      "sha256": "489717e4b04726774edbbda8161a8efa2c7520dd3e817c90b65f10eeb7f9e7e9"
+    },
+    {
+      "path": "companion/foundation/cli.py",
+      "size": 4658,
+      "sha256": "f29e991eebe71528b6204e0d0f0fdf1c0dcb036b955084192e1b497cd7d3fbd9"
+    },
+    {
+      "path": "companion/foundation/path_policy.py",
+      "size": 6191,
+      "sha256": "b0c3a7cf8c296dc351cc3aaf2e5b13e8f2eab048334892f72372ef8b74b5b2d4"
+    },
+    {
+      "path": "companion/foundation/promotion.py",
+      "size": 11514,
+      "sha256": "9096c1cd45a4633e560d2b973d923511b4cb4a992baa06ea1d60d4fbba3ca8fd"
+    },
+    {
+      "path": "companion/foundation/reference_worker.py",
+      "size": 5198,
+      "sha256": "1a6de93b6fee84e1f2980bca2741c104df8b94d17a71f9b42085a0ca0b4c5a92"
+    },
+    {
+      "path": "companion/foundation/transactions.py",
+      "size": 16890,
+      "sha256": "a277a833292b681a75fac6b10618c9431ee1090137c1ae70fa60a7b49f92dbb3"
+    },
+    {
+      "path": "companion/foundation/worker_cards.py",
+      "size": 9030,
+      "sha256": "700957ab4986f251007071f91f14e19952745229d37b4a3f1d14a1c03fe7480c"
+    },
+    {
+      "path": "companion/foundation/worker_harness.py",
+      "size": 101450,
+      "sha256": "7be4a6921f1bd430e81d4b1d0266b374040a51e98eb955df7864ace420f98a04"
+    },
+    {
+      "path": "companion/local_worker_kit.py",
+      "size": 168190,
+      "sha256": "015466319c1e360498aded06f8bb6fc5a2f2bc7cc5408c344c55458bfa78ef94"
+    },
+    {
+      "path": "companion/media_workspace.py",
+      "size": 24386,
+      "sha256": "9eb7737aa0e59aa78d2e72e69e30f0f6b6ffc994690e0a9b2a3919ddede8ee6e"
+    },
+    {
+      "path": "companion/model_bay.py",
+      "size": 40171,
+      "sha256": "3a64d0aa27ad41ad1aec1f010ad2a34a6b5b6a446699c09708432585ecee1af7"
+    },
+    {
+      "path": "companion/remote_access.py",
+      "size": 7201,
+      "sha256": "bea6b69c8acab625798de2cbd6a16fc5516866a77ee3c0e399e0f8002e59fe12"
+    },
+    {
+      "path": "companion/server.py",
+      "size": 129941,
+      "sha256": "10bb4fb6776197d90756e319a2029cfde86b5daf2a0040fbecf4f36ba259baa7"
+    },
+    {
+      "path": "companion/showcase_control.py",
+      "size": 9315,
+      "sha256": "5f6f6ff1bbd0c9704d7d6682689b279c85f42e25010370da49005d02f911adcd"
+    },
+    {
+      "path": "companion/showcase_server.py",
+      "size": 4114,
+      "sha256": "79d56adece355d9f461d5b8e30ad2c40e90036d15071e49193d87497d44720bf"
+    },
+    {
+      "path": "companion/talk_room.py",
+      "size": 77411,
+      "sha256": "bc48636c20cc87cfc04007e837ee7d9a4e14afd7827bbd3ddb722094ed035d05"
+    },
+    {
+      "path": "companion/video_workstation.py",
+      "size": 32112,
+      "sha256": "ae6e602e2353c3f862aa7e484a0f6a43165f1c1e96f3dbdc8ad9148f76a26fc8"
+    },
+    {
+      "path": "companion/visitor_bench.py",
+      "size": 5379,
+      "sha256": "2fe61c0ce2d97c6623b7878d1f836862d684ff991553d25cae17a1a45c6342cd"
+    },
+    {
+      "path": "companion/write_room.py",
+      "size": 54364,
+      "sha256": "f8812c8624d1db468f61e89badcc8d991ecabc500fba72ad8ba9f5630f5c3a1d"
+    },
+    {
+      "path": "config/background-removal-runtime.json",
+      "size": 609,
+      "sha256": "f09ecb40f7b208ec5c02375b94dec56d8cbefe113c0b8cacedc7047d6d46fbc7"
+    },
+    {
+      "path": "config/capability-inspection-sources.json",
+      "size": 11238,
+      "sha256": "5cbd30e3c984c5de3e66d853006410f87b4319496d324c716051f03718309d02"
+    },
+    {
+      "path": "config/capability-registry.json",
+      "size": 46424,
+      "sha256": "476f60fcfd33d8f874a58d39b62bb3d08a888b04664fce852c0ec03727d3d827"
+    },
+    {
+      "path": "config/ffmpeg-runtime.json",
+      "size": 888,
+      "sha256": "8864aef81a97cd1872728189d15e2c80747deb44c73d666463787a15cce7aa30"
+    },
+    {
+      "path": "config/local-ai-models.json",
+      "size": 2255,
+      "sha256": "f20b1654040fdff79e9bd76ae0f1e20483d6e6cf4940e56cb064bb1557f1d36a"
+    },
+    {
+      "path": "config/mcp-catalog.json",
+      "size": 632,
+      "sha256": "ebf3c79e18a20b1966402bca80f7af27f92fa804dd8df30f68a946ee7b7b46b3"
+    },
+    {
+      "path": "config/media-capabilities.json",
+      "size": 6196,
+      "sha256": "42880c2cd51c8a5f2160471c85ac7219b196d81deb33d1f06af7440f6a3cc088"
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "size": 9010,
+      "sha256": "1c70fa3f28da7e623497ee933c5e7560a5698f6efe694939e92e63dc5c9717b7"
+    },
+    {
+      "path": "CURRENT_UPGRADE_PASS_2026-06-18.md",
+      "size": 1076,
+      "sha256": "7f3e45f33807adebbebfb9c31921de930a2888df104b9c8aaa9cdb41145800fb"
+    },
+    {
+      "path": "DECISIONS.md",
+      "size": 3597,
+      "sha256": "974f064cf44d621fefafbe9d9cae9a8c02eb85fe148ad29d8ecfb31c814f7226"
+    },
+    {
+      "path": "desktop-launcher/build-launcher.ps1",
+      "size": 5132,
+      "sha256": "021ffb5364da1c4f7913c139bd4a01fa9ad12e784d3a20a5acf8beb0a366ddcf"
+    },
+    {
+      "path": "desktop-launcher/launcher.manifest",
+      "size": 649,
+      "sha256": "829796e1aeefe4fabfd4c28325a65f8e494cfa7ea499ecaa03307b709808c603"
+    },
+    {
+      "path": "desktop-launcher/README.md",
+      "size": 1497,
+      "sha256": "dd2908422a1b7ad72000012262d371b821d19c7e418c0f06e40415217df679e7"
+    },
+    {
+      "path": "desktop-launcher/twis-holo-workshop.ico",
+      "size": 31602,
+      "sha256": "cefdd899d0d2487eca80ab404b5cfbb1ed29958fee1c5b0e086517bcecf089e8"
+    },
+    {
+      "path": "desktop-launcher/TwisDesktopLauncher.cs",
+      "size": 18826,
+      "sha256": "3e0fa18c158f2c25ffce475045488398a5927a02d5bbf7f7706cc2b34c0b3018"
+    },
+    {
+      "path": "docs/ARTIFACT_COMPASS_FOUNDATION.md",
+      "size": 2317,
+      "sha256": "45542966400a882c293ddd59d0e07f0509bf84869e7f18e38ebaad8804ea3658"
+    },
+    {
+      "path": "docs/ARTIFACT_INSPECTION_WORKER_V0.4.md",
+      "size": 2360,
+      "sha256": "bd0042969ddaa01ca26fad2f721f13c7519f5e7b1150c708ffba95aa411fda84"
+    },
+    {
+      "path": "docs/BUILD_HARNESS.md",
+      "size": 1846,
+      "sha256": "c828cede8d72d24bde4e2786f60cef1fd9c1567489a21f41fd24445501699766"
+    },
+    {
+      "path": "docs/BUILDER_OUTPUT_V1_CONTRACT.md",
+      "size": 8338,
+      "sha256": "c9ec77840cd6addd541b0a035c47940e702ab0a16d1101194b6528ed7c32f705"
+    },
+    {
+      "path": "docs/CODEX_FLASHRIVER_NEXT_PROMPT.md",
+      "size": 311,
+      "sha256": "b48a0987889e0415caaf6eb611a2b300c7541c60b96480030f251dcea5bbcad2"
+    },
+    {
+      "path": "docs/FLASHRIVER_INTAKE_API.md",
+      "size": 674,
+      "sha256": "a1e1d28611da466ea1c8aca0edb260c666c82a4b830d897b670b6cd09fbd6afd"
+    },
+    {
+      "path": "docs/FLASHRIVER_SOURCE_ARCHIVE_INTAKE.md",
+      "size": 397,
+      "sha256": "e62e18c327aa393d7b97f99c732ffdd16c5969b97f63c75e0538ef97d7b6330b"
+    },
+    {
+      "path": "docs/LOCAL_AI_MODEL_BAY_V1.md",
+      "size": 2409,
+      "sha256": "46950957aed86bc88f81e94439deab9723f20975aa5542a917221669193462dd"
+    },
+    {
+      "path": "docs/LOCAL_AI_ROUTING_FUTURE.md",
+      "size": 1989,
+      "sha256": "cb721f870f7e8b5ac27f33fb414c7fa2c31efc1f7a86a872fff7c50e12da0dee"
+    },
+    {
+      "path": "docs/LOCAL_API_WORKER_KIT_0.8_CONTRACT.md",
+      "size": 7595,
+      "sha256": "021544d17a3966307763a73c5cc2454141e4b27b92cd30665a5d4ec124115260"
+    },
+    {
+      "path": "docs/LOCAL_API_WORKER_KIT_0.8_OWNER_GUIDE.md",
+      "size": 3692,
+      "sha256": "e9f1325dd821f20a006007a907dfc38b4b862b17ad9f13bcc1ec9d3e25fe0ebb"
+    },
+    {
+      "path": "docs/PATH_CONTAINMENT.md",
+      "size": 1490,
+      "sha256": "6e7f40a54e4dc3f13eb6bf26cd0fe333d17ab67a71e6e203fc56e09ed8287eb8"
+    },
+    {
+      "path": "docs/PROTOCOL_SECURITY.md",
+      "size": 1261,
+      "sha256": "269a7978a665ca921c8309653636fc051a84361867f7e405ab1d8c8566ae45bc"
+    },
+    {
+      "path": "docs/PUBLIC_REPOSITORY_BOUNDARY.md",
+      "size": 1722,
+      "sha256": "0aa7ddaef0576a30c68a5ffdaa2e9c55c706b18c95f67b708e6bc858d8a70e35"
+    },
+    {
+      "path": "docs/RELEASE_0.10_OWNER_GUIDE.md",
+      "size": 1149,
+      "sha256": "19b93b8d1bed1ae954887225382be248dd9bfa531adb842d6849054d7e68961c"
+    },
+    {
+      "path": "docs/RELEASE_0.11_OWNER_GUIDE.md",
+      "size": 1121,
+      "sha256": "3854b005d5e6f6fb07557b210b51b9afa9f009a7a07066f116ae4fca8c67fc88"
+    },
+    {
+      "path": "docs/RELEASE_0.12_OWNER_GUIDE.md",
+      "size": 1289,
+      "sha256": "2a9fe8bc9dc0465679d64946310c2d0ba11b00f53ed0fbe8d5b56177e3da732b"
+    },
+    {
+      "path": "docs/RELEASE_0.13_OWNER_GUIDE.md",
+      "size": 1175,
+      "sha256": "a2acabf4fe0cbfe38134ea796a1a067002389dcea081d7606107c051f46ac1d9"
+    },
+    {
+      "path": "docs/RELEASE_0.14.2_NEW_IDEA_GUIDE.md",
+      "size": 848,
+      "sha256": "d7ddffb22bd7165a00ab7d17108044ebc177cf43ae39529835de7cb8a6b0a24d"
+    },
+    {
+      "path": "docs/RELEASE_0.14_OWNER_GUIDE.md",
+      "size": 1227,
+      "sha256": "f2cebd818207b20c3e763932bef6b4366e0a43e3e5fbe35b8c969f091778d988"
+    },
+    {
+      "path": "docs/RELEASE_0.14_ROOM_SYSTEM_GUIDE.md",
+      "size": 1019,
+      "sha256": "c4665c2767d789ac063f8c24609554f394ea029bd9699878a477fa8c40b4e1c1"
+    },
+    {
+      "path": "docs/RELEASE_0.15_OWNER_GUIDE.md",
+      "size": 890,
+      "sha256": "1a94c9d29757bfd3f0ace4e1c4176e458dcb85fb977a88ab4a4b30ce36f71902"
+    },
+    {
+      "path": "docs/RELEASE_0.16_OWNER_GUIDE.md",
+      "size": 1749,
+      "sha256": "fe8c9937363f8b0211f399a093afc52317042e56e4aafe5a3dbfe9edc1766f39"
+    },
+    {
+      "path": "docs/RELEASE_0.9_OWNER_GUIDE.md",
+      "size": 1757,
+      "sha256": "cec3faaa1e3ff63b717666b4d9914d41c7cae3c967fd835469fb30553a3b4166"
+    },
+    {
+      "path": "docs/SKILLS.md",
+      "size": 1276,
+      "sha256": "6bbe7ee6134f8acb580aaf772a277b2dd9cd522590d51e95f73c2e443b3e0c6c"
+    },
+    {
+      "path": "docs/TALK_ROOM_0.7_CONTRACT.md",
+      "size": 7351,
+      "sha256": "c5fb5d9a169d6b59f07d3bc07e60ed589ba57989b9789942a1b1dc2b3c86008e"
+    },
+    {
+      "path": "docs/TALK_ROOM_0.7_OWNER_GUIDE.md",
+      "size": 3487,
+      "sha256": "d279e0c652886139f1c2b0c6d53b1307b6f4a55f552f6d608528fa65f09897bf"
+    },
+    {
+      "path": "docs/TRANSACTION_RECOVERY.md",
+      "size": 1825,
+      "sha256": "ed2c63bc7aab22ac56dcb3c71e006ab04009ff1f2cb1303907829593d324bbcc"
+    },
+    {
+      "path": "docs/TWIS_CAPABILITY_CONTRACT_V1.md",
+      "size": 3701,
+      "sha256": "2f96282b7967ffe99ed4c8ddb96afea9bd178db66e990829d717b0a725fae290"
+    },
+    {
+      "path": "docs/TWIS_CAPABILITY_RESEARCH_2026.md",
+      "size": 3231,
+      "sha256": "68306614d6f558cdca68452cf017aeea4b68a728685f79a6938b9208af04220e"
+    },
+    {
+      "path": "docs/TWIS_MEDIA_WORKSPACE_CONTRACT_V1.md",
+      "size": 4635,
+      "sha256": "1e5beffbe369ff0a0c432e23d72735fbee3f28429a95316cbb3685cdb3dab47e"
+    },
+    {
+      "path": "docs/TWIS_MUSIC_STUDIO_ROLLBACK.md",
+      "size": 1029,
+      "sha256": "fdf17fe4fb72bf965e1584058a447dc620c037bdc4683cd36710a459b769121b"
+    },
+    {
+      "path": "docs/TWIS_TALKBOX_MODULE_SPEC.md",
+      "size": 198,
+      "sha256": "5bb876fe540b1e400acb7e9c8cd3e1cdea40034cda39c520d95c06a6999a3326"
+    },
+    {
+      "path": "docs/WORKER_CARD_V0.1.md",
+      "size": 2087,
+      "sha256": "4916920666b34486b6dd0ca9816fb03a747ad5452c12d3a746488629126ed4ee"
+    },
+    {
+      "path": "docs/WORKER_HARNESS_V0.1.md",
+      "size": 4101,
+      "sha256": "12dcd8146a5b0f7da17ce8b58b9808ab5fa39f1d75155bf2bfa0fbfc19ec0229"
+    },
+    {
+      "path": "docs/WORKER_PACKET_0.8_CONTRACT.md",
+      "size": 4029,
+      "sha256": "dd2f3f0ae4d44cc2bad627add6c25b5861a66684a1811d0dd34e368c0a7c622f"
+    },
+    {
+      "path": "docs/WRITE_ROOM_0.6_CONTRACT.md",
+      "size": 5553,
+      "sha256": "466830d20992ea3a60bfc30b0b9b9f4401cf53ff3f3ef58c69f0329aeb831191"
+    },
+    {
+      "path": "docs/WRITE_ROOM_0.6_OWNER_GUIDE.md",
+      "size": 3466,
+      "sha256": "85b6f7be434b8c570f8bcc3f8250e577bd092d1a743b73def656bcc4af07bfda"
+    },
+    {
+      "path": "docs/WRITE_STUDIO_AI_ACTIONS_ROLLBACK.md",
+      "size": 913,
+      "sha256": "6927baf78dd7b0a1a255f9779c2a9d7c127733f986eaaf34528dabe61cd4dec8"
+    },
+    {
+      "path": "examples/artifact-compass-inventory.example.json",
+      "size": 490,
+      "sha256": "baee976180bb5835c21295bb0bed840cfc21cbb7058d3ada1f74ea3fd276cd86"
+    },
+    {
+      "path": "examples/worker_cards/invalid/future-schema.json",
+      "size": 779,
+      "sha256": "0d36f42376f89e3f80553a1fc1c41758e73fb672b3a7c2dc21e238e764e2e07d"
+    },
+    {
+      "path": "examples/worker_cards/invalid/unsafe-shell-worker.json",
+      "size": 811,
+      "sha256": "0583c2a35c06379821e79aeddc6a1b71a9bca6ca79e01a8edd2f2d5a9da69776"
+    },
+    {
+      "path": "examples/worker_cards/valid/bounded-file-worker.json",
+      "size": 938,
+      "sha256": "0a049d61c08b59b62b2bdedb44c7709634cbb463c159f3b5fc5a4260af574e22"
+    },
+    {
+      "path": "examples/worker_cards/valid/flashriver-review-reader.json",
+      "size": 936,
+      "sha256": "e1f873767b1155ff25c843423924760ee1958cb438777ea370566eff0d06e5fd"
+    },
+    {
+      "path": "examples/worker_harness/reference-input.md",
+      "size": 205,
+      "sha256": "750e7b4d7cdfdea3f06850d17bcd65a6c6b8a5f338daacb875035ec78e8dcc72"
+    },
+    {
+      "path": "FLASHRIVER_REVIEW_RELEASE_NOTES_2026-07-16.md",
+      "size": 1067,
+      "sha256": "c4f166b94d6a743177e5b20f4fce595860cdad9ba24db7213ffaae19fc28c17b"
+    },
+    {
+      "path": "FLASHRIVER_UI_RELEASE_NOTES_2026-07-16.md",
+      "size": 1072,
+      "sha256": "086f3700f26e318696446acf962f640992e0884c9e825071af0c664bcbe84d06"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.10.md",
+      "size": 1377,
+      "sha256": "5a768c28f2165c96fe869f6ab73575fc91187938ea85eed749b4824b75b45701"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.11.md",
+      "size": 1277,
+      "sha256": "008939d2e0701adbe6e8ea6530f8c1b230d801236e25989e599a583ddab5db42"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.12.md",
+      "size": 1565,
+      "sha256": "34d2272ac0f89d35e06cae47f5adbe32be9f7b67daf0436da7135527eeee8ddd"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.13.md",
+      "size": 1563,
+      "sha256": "557443ef859dbe7ada031b80e9bf4f36d5934b2152fecbbac176f855635c4f06"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.14.2.md",
+      "size": 1107,
+      "sha256": "8ba6944df9fbedb9341cc12f225ced5a113330247c2b3d6b28beeabf983b2bed"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.14.md",
+      "size": 1554,
+      "sha256": "712e195fd6bf50d5b7007432228c0d3b820f87b2f27f4d9f460dccc52425df1a"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.14_ROOM_SYSTEM.md",
+      "size": 958,
+      "sha256": "ea3c8687114d5ef5fb2f166fcb64e7f67604e60ca2d21ed4a302f6f34ece5e33"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.15.md",
+      "size": 1610,
+      "sha256": "7ede28e81904801675467d7d5125c1034bc6ccc7656ac9ea3f8b1c471586be1c"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.16.md",
+      "size": 1617,
+      "sha256": "354b18cad324e1ed8509690b87e368da83bf6aba3629999aebb153a5564eb7e5"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.17.md",
+      "size": 1109,
+      "sha256": "1addd4bd2e7325bfb61e9fb9b6b1854c631ab1b1c6f3ca8d22d3aea3bafc8cd4"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.2.md",
+      "size": 11945,
+      "sha256": "8b1651cc3c16ea2c793b85b59fadb769a3cc063196468ec0bf905bbc34843ed0"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.3.md",
+      "size": 22899,
+      "sha256": "5fcc4fbe71a59b1e9f017a077959ae96d5e8b705204a1c8fdfc8ed49aea714de"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.4.md",
+      "size": 33588,
+      "sha256": "0e19a4c6e2d6b5741bf1894032a28daf5cc9c1b7b73291fc6593f953eabc7536"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.5.md",
+      "size": 25442,
+      "sha256": "a79d65eacc8dbea318fd0ab55349f16280ddec9325be942df942cf926af2c4e5"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.5_DEPLOYED_VERIFICATION.md",
+      "size": 13521,
+      "sha256": "731852196aa48a8da493785f56a6ca6f8eb6546db025e4429de27ba2923e3b7c"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.6.md",
+      "size": 9405,
+      "sha256": "76ed94c7b7483bd8a35cfbfb20003ac0924df18a61978d939359d1da4133e22a"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.6_ARTIFACT_COMPASS.md",
+      "size": 6120,
+      "sha256": "075f0fae9f05af852af491832ab63419aff404507234acdace37380332f603e7"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.6_DEPLOYED_VERIFICATION.md",
+      "size": 14414,
+      "sha256": "6fab789d85912f6318a05832f17b655a7f640d720b83c34d8c96cb2f4ec6727c"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.7.md",
+      "size": 8331,
+      "sha256": "6205317ff5b4164ebd9c5d6f176d15799a258a795560adf68bcc13fa6bf78c41"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.7_ARTIFACT_COMPASS.md",
+      "size": 6329,
+      "sha256": "69c1eaeaeaa23251d75cd57eeb61319ec33299b9727929af8d52f1c4b22236d5"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.7_DEPLOYED_VERIFICATION.md",
+      "size": 15644,
+      "sha256": "46357e7110faf01f2f8aea7ac6df0eb40f8f5009f134313c1e2a7e4f9fcd2b67"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.8.md",
+      "size": 11240,
+      "sha256": "32dd206a26a8632337b82b04df0f18bf575b9632dd1b5fe6d5f2a067dbfd756b"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.8_ARTIFACT_COMPASS.md",
+      "size": 8377,
+      "sha256": "6b2222d8bd782133d0983462be24d101cb4226a5131384fe93f6a2cbb98831dd"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.8_DEPLOYED_VERIFICATION.md",
+      "size": 23105,
+      "sha256": "27cdefce97c64da533af645e8438a2af950bef1c71b390066ebe1283b05b8d01"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.9.md",
+      "size": 1501,
+      "sha256": "561b3a3a8245cf1b1a7da3254202e7a0fcc49172a3921b610141dd30e1d305c5"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_0.9_DEPLOYED_VERIFICATION.md",
+      "size": 12384,
+      "sha256": "73fcd0f244273f9f931c731cd85974057b4e395bd72c7dd97abbd52582da5c03"
+    },
+    {
+      "path": "FOUNDATION_RELEASE_WRITE_STUDIO_AI_ACTIONS.md",
+      "size": 1967,
+      "sha256": "22e6fa5f16ef65df0b94b87af95914d786143b1f62bebd731549440629ac67e6"
+    },
+    {
+      "path": "FOUNDATION_WRITE_STUDIO_AI_ACTIONS_CANDIDATE_MANIFEST.txt",
+      "size": 2698,
+      "sha256": "d84cc1335aea2c7a65a461a67c5b56a638d97f0926714bf6467a64c728d08707"
+    },
+    {
+      "path": "FOUNDATION_WRITE_STUDIO_AI_ACTIONS_CHANGED_FILES.txt",
+      "size": 966,
+      "sha256": "93c25bc1a43731ed35a1664a6bf5c2dd4d8f3fc711bd2d9fd31709f59d1b6cbb"
+    },
+    {
+      "path": "FOUNDATION_WRITE_STUDIO_AI_ACTIONS_DEPLOYED_MANIFEST.txt",
+      "size": 767,
+      "sha256": "37481e5c46c76742c5421a01010cd2aa04e9ac8f3d55cabb7f9d5260cc60f224"
+    },
+    {
+      "path": "FOUNDATION_WRITE_STUDIO_AI_ACTIONS_VERIFICATION.md",
+      "size": 2429,
+      "sha256": "1c308314cddf802874e8974dc83d161069ab18f5e29b1a53f1b5d0b674cad3f6"
+    },
+    {
+      "path": "GOVERNED_CAPABILITY_INSPECTION_V1.md",
+      "size": 5032,
+      "sha256": "d92bb80b97d82df3b5522a163e69347f6aff5633e1263a9af48452a9d354eff4"
+    },
+    {
+      "path": "LICENSE",
+      "size": 605,
+      "sha256": "f1eacf578f04172c10a5a6e3b98dbc47b349a9a0b7cb386b9c7eb7eea1a64944"
+    },
+    {
+      "path": "OPEN_QUESTIONS.md",
+      "size": 1136,
+      "sha256": "2f713aed1ab96c93df85266cb7ab4a69145a6eb39e63e8d1b2607b4b75f0836e"
+    },
+    {
+      "path": "package.json",
+      "size": 2974,
+      "sha256": "c427f902606d0ef07ab89aad7a8c83982b62e7edd95dc4039cd8f7d76f94db52"
+    },
+    {
+      "path": "PATCH_NOTES.txt",
+      "size": 667,
+      "sha256": "955c5bc76bf46c4728d67bb0b23c3427c6ba68989eae48b25b7d5b2d404903cf"
+    },
+    {
+      "path": "PROJECT_STATE.md",
+      "size": 4029,
+      "sha256": "09b596839e0460439eccd442f686987fb7e4fcee96cf65cba0c3c2f51b2816dc"
+    },
+    {
+      "path": "README.md",
+      "size": 2177,
+      "sha256": "ed2dd3f3257e74771db954f916fb30870ca1eb5dd3755679aadc48a7503164e9"
+    },
+    {
+      "path": "README_FIRST.txt",
+      "size": 738,
+      "sha256": "1830d7130bf3a0166a4a2d1e0e1f2f1258f74a1b6a9033ab9e4aa50dc0a3c5dc"
+    },
+    {
+      "path": "RELEASE_AUDIT.md",
+      "size": 3080,
+      "sha256": "3959c69edd66e4c0790399f4e60cac71bd061c0a1c7795643dac20d5f66ce780"
+    },
+    {
+      "path": "schemas/artifact-inspection-output-v0.4.schema.json",
+      "size": 2378,
+      "sha256": "0f33d31338904893355a01cfb5d42f0964a76d6f010db50fb72b411ecf91d5b0"
+    },
+    {
+      "path": "schemas/artifact.schema.json",
+      "size": 654,
+      "sha256": "0353d45abbd169c54947b9a4cd9971dec904ddd2025f88aececb06487b7bcb4a"
+    },
+    {
+      "path": "schemas/capability-inspection-v1.schema.json",
+      "size": 1572,
+      "sha256": "e6895009047a9114a62e74d7a35fd2491e28f1b9307e59868d57bf66966cedae"
+    },
+    {
+      "path": "schemas/capability-v1.schema.json",
+      "size": 4285,
+      "sha256": "ca2db26aaeb8e4569f4d08b25004392aefbddad7683f4f9e531e6ab71e027ae3"
+    },
+    {
+      "path": "schemas/execution-plan-v0.3.schema.json",
+      "size": 3216,
+      "sha256": "60a835204a992004a5f7c87b25ed96faf10d55d41926ce0a68884849d8ad232e"
+    },
+    {
+      "path": "schemas/execution-plan-v0.4.schema.json",
+      "size": 3996,
+      "sha256": "dabaefa39fcd2c80fbbd1dcfb623a78267f4ff8eb18ef6344c228af9aa9bdc14"
+    },
+    {
+      "path": "schemas/module-manifest.schema.json",
+      "size": 718,
+      "sha256": "70223b21aad4ec8c94f80b7544fd6d20e1f38bc09f5ef29b34bf1969108b0518"
+    },
+    {
+      "path": "schemas/project.schema.json",
+      "size": 490,
+      "sha256": "b8c1298a314013313e3aa20c89ab9d790e27169757d4726282f65c5483b862f5"
+    },
+    {
+      "path": "schemas/promotion-candidate-v0.3.schema.json",
+      "size": 2331,
+      "sha256": "f88f8e56dad61eb0201449c15a7d83e2a2b00cbbda59c7636fa8ec4cb2937c0c"
+    },
+    {
+      "path": "schemas/promotion-candidate-v0.4.schema.json",
+      "size": 3704,
+      "sha256": "985ac844437f2ed38c8a6a0c6d1054cd6d854650044182fe0996974f087f443b"
+    },
+    {
+      "path": "schemas/transaction-manifest-v0.2.schema.json",
+      "size": 1731,
+      "sha256": "fbe43d4cad1ea7b45cdacb8e7b450b92c1f2b4f8641afb4316bf108cf63e95cd"
+    },
+    {
+      "path": "schemas/worker-card-v0.1.schema.json",
+      "size": 3732,
+      "sha256": "ae3c7972d64952382056915cccb73e7c4e26fb79b807d4486ed0484df5fdafb0"
+    },
+    {
+      "path": "SECURITY.md",
+      "size": 1789,
+      "sha256": "3a98893be707bc55e75edb4f3d336bfbb13bff6be99d2dd43a3a86ad9bc98776"
+    },
+    {
+      "path": "showcase/index.html",
+      "size": 8699,
+      "sha256": "301b649dd369261a10ba0c8f89163480739f9a4047e1a5c9ca9d3760efe3284d"
+    },
+    {
+      "path": "showcase/showcase-icon.svg",
+      "size": 435,
+      "sha256": "34608de873304aee89dd9127c2d6b02aea2594bf98770f4a3face9f1a912c4b1"
+    },
+    {
+      "path": "showcase/showcase.css",
+      "size": 7127,
+      "sha256": "2320fb90ec2354cf51aae617184b4ea7f18d3be7e45962f45ea362cf1ad6ecb7"
+    },
+    {
+      "path": "showcase/showcase.js",
+      "size": 1009,
+      "sha256": "c93900f6739aa2c4c636dd7aa0f2dff2ed8da19c320ec6cdb48e5723b4cd1e81"
+    },
+    {
+      "path": "skills/skills.json",
+      "size": 1799,
+      "sha256": "94a430349ab352a966851d92d9dc1c912645ef8c812ff4d769a52a1748778de8"
+    },
+    {
+      "path": "start-workshop.bat",
+      "size": 1644,
+      "sha256": "e50edfa8b151efbbeff401dd771e22c82c4885fd314d4239ad452da5a42cc1c1"
+    },
+    {
+      "path": "START_SHOWCASE.cmd",
+      "size": 254,
+      "sha256": "ae2a90919cddddef1e0d151221adb6f8f128495153017862c9067a7fff29f0f6"
+    },
+    {
+      "path": "START_TWIS.bat",
+      "size": 1162,
+      "sha256": "12af861c9e3ef2a10eb05cf03c0b71738187da935d704af3eb3d6925bf0d437b"
+    },
+    {
+      "path": "STOP_SHOWCASE.cmd",
+      "size": 90,
+      "sha256": "a7f6225e83c6104b0886a328eb52c5925361d7c0b1d9e9e1c5d56de02459639a"
+    },
+    {
+      "path": "tests/builder-workspace-ui.test.js",
+      "size": 8014,
+      "sha256": "f096c6ef78c1b9d9c3a6f49c7fe7d72ac8f64612da29a51cac7adbcb71f2724c"
+    },
+    {
+      "path": "tests/capability-bay-ui.test.js",
+      "size": 4733,
+      "sha256": "ec160db06851e87d698c563c809a736958f9cb7921a4392dce97f6159ee6fc0d"
+    },
+    {
+      "path": "tests/e2e_api_test.py",
+      "size": 4054,
+      "sha256": "803910ecf91ea8df04b2f566f461df7d723b6faa0a679e97777336f2c0814201"
+    },
+    {
+      "path": "tests/flashriver-navigation.test.js",
+      "size": 1822,
+      "sha256": "1894e07ad870fcad6b92e182068d0d203e20aa51471071941670a91bcdb8be5a"
+    },
+    {
+      "path": "tests/local-worker-kit-ui.test.js",
+      "size": 4062,
+      "sha256": "75887855c72adbcc4771641b1ae2d8714e857e4da907022c930d614576cdc1f0"
+    },
+    {
+      "path": "tests/media-workspace-ui.test.js",
+      "size": 4992,
+      "sha256": "08785912f1baa8a3aa03d89f52d751521b082ae2fec63dc307cf75b52b59bd06"
+    },
+    {
+      "path": "tests/model-bay-ui.test.js",
+      "size": 1894,
+      "sha256": "ec9ae64b7b53b5b5315790dee71da9c4949a70fb3ea0ad280a6a3ce044e06fc5"
+    },
+    {
+      "path": "tests/music-studio-ui.test.js",
+      "size": 4226,
+      "sha256": "0c54f464276bc2b7ad1ef17c48a1d7b1364906fbb38eb07c1dcd6a19fd184a7a"
+    },
+    {
+      "path": "tests/remote-access-ui.test.js",
+      "size": 1318,
+      "sha256": "bd5efface2930e303ff6cd59f1f365fbb269078b43bf6f62991e3324dcee3275"
+    },
+    {
+      "path": "tests/room-system-ui.test.js",
+      "size": 5817,
+      "sha256": "1952c85a2c661e5102b64b9015340895cc8b350cb634c2062a5a3d698cf2c393"
+    },
+    {
+      "path": "tests/shell-ui.test.js",
+      "size": 2465,
+      "sha256": "03da7fe333c52cfc88a3c3c29c83462535e767470124498faa2418e62395375f"
+    },
+    {
+      "path": "tests/showcase-ui.test.js",
+      "size": 1374,
+      "sha256": "b0b01045b652134fa60183405ee3719883ff7b800176b6124ce6de459cafef4a"
+    },
+    {
+      "path": "tests/smoke_test.py",
+      "size": 758,
+      "sha256": "c9db8f84027aaa091f88a871c2d7097b3bea48bb1df5718d21ec2aa3f32f63e8"
+    },
+    {
+      "path": "tests/talk-room-ui.test.js",
+      "size": 6327,
+      "sha256": "dc06809d1fa64e050adc7dbd0ff5905a3a20da97cbba2c458ed80664e7c17c2d"
+    },
+    {
+      "path": "tests/test_artifact_compass.py",
+      "size": 5247,
+      "sha256": "1d338be446373e3c1d02b1d5b0a4f6818464afd50a3f795b94bb0d5ea7ce27d8"
+    },
+    {
+      "path": "tests/test_artifact_inspection_api_e2e.py",
+      "size": 9393,
+      "sha256": "7437c978c67a8b4da8e8e9be1e2d6d3be12b557706f40ff8b2a025a55d26133d"
+    },
+    {
+      "path": "tests/test_artifact_inspection_harness.py",
+      "size": 13876,
+      "sha256": "75f38f9315a3f7034038e9313c50c9a0d62997a7aef7570986a31096e5a8f942"
+    },
+    {
+      "path": "tests/test_artifact_inspection_selection.py",
+      "size": 6909,
+      "sha256": "883d510bbaf5324fb0dd42394bf19f4b48187026789ba9680f798af4a065a78b"
+    },
+    {
+      "path": "tests/test_artifact_inspection_worker.py",
+      "size": 4064,
+      "sha256": "a1eb59c81cdb2df0f8b3a7b5d6f0a704fc623a13cd101b53aaafec30c8c3de97"
+    },
+    {
+      "path": "tests/test_background_composition_api.py",
+      "size": 2677,
+      "sha256": "2a9d78cd3ecfd7d3be5fe917fbf58e6cccaf7c7567209a7151a8e636945d9871"
+    },
+    {
+      "path": "tests/test_background_removal_api.py",
+      "size": 4326,
+      "sha256": "8dc7d7f266bf7c835d1dc35a2174f76e029a79e1f6facc9f8fbbd96045c7d6b7"
+    },
+    {
+      "path": "tests/test_background_removal_runtime.py",
+      "size": 8418,
+      "sha256": "6a73d721b956c45c5b01e28a8cde366b95b5e3bcb582368eb053edc701876cbf"
+    },
+    {
+      "path": "tests/test_builder_kit.py",
+      "size": 40920,
+      "sha256": "352f1636e169c6aaf0f91669bb8936564e404c05928fe25a25831798568c30ce"
+    },
+    {
+      "path": "tests/test_capability_api.py",
+      "size": 4913,
+      "sha256": "196b2f5bf3ddfa1c12e87f8c49ce34e31d309e85363915a12ea584b793229135"
+    },
+    {
+      "path": "tests/test_capability_inspection.py",
+      "size": 12277,
+      "sha256": "9e3a9a62f586dfa6188b1bcc7251e9f340ca9634e3bd859bff958f51f34a0de5"
+    },
+    {
+      "path": "tests/test_capability_registry.py",
+      "size": 12820,
+      "sha256": "2e86762df65056863c84e3265fac17e1dcfb45b96450f1b4425a16ede699ff21"
+    },
+    {
+      "path": "tests/test_flashriver_intake.py",
+      "size": 4173,
+      "sha256": "0761534e651ac5e1df9e641803a9bdf44ca1f6189c7379cba72f44bc36b5e897"
+    },
+    {
+      "path": "tests/test_flashriver_recover_ui.py",
+      "size": 2110,
+      "sha256": "ccacf1f8c88f7ae7737ac3c007110f502c12a815a1b107679ff2ac4f26bcf67d"
+    },
+    {
+      "path": "tests/test_flashriver_review_api.py",
+      "size": 4127,
+      "sha256": "f83146d36415837f2709601c18a36fdf767e71857cd2c2f95c4b1a9d529802d5"
+    },
+    {
+      "path": "tests/test_flashriver_review_view.py",
+      "size": 1998,
+      "sha256": "86f21c0420eb0267994171bd5f69688393d9f67c6138e71f240a33a69379463d"
+    },
+    {
+      "path": "tests/test_foundation_cli.py",
+      "size": 1806,
+      "sha256": "57731759ada63176790c6fd2895164d6ecca13694f2ad26c8e92668bef1c820e"
+    },
+    {
+      "path": "tests/test_guarded_promotion.py",
+      "size": 8074,
+      "sha256": "85c4afaf62e1635592b5d47bc9f1f48e815614a8c4bf05f24170e8ee207e9a14"
+    },
+    {
+      "path": "tests/test_local_worker_api.py",
+      "size": 15524,
+      "sha256": "3bbbe944ad8982e47260fe854497cde062f6138d81ba370c7f981ba5222575c1"
+    },
+    {
+      "path": "tests/test_local_worker_kit.py",
+      "size": 22193,
+      "sha256": "3e5b951b679058a7e0fcefeea23bdda389b822bf58f4b2bd9bdabf19e294bf93"
+    },
+    {
+      "path": "tests/test_media_workspace.py",
+      "size": 9266,
+      "sha256": "5be76d9caf7e879d0f0fffdde8b6f58eb67c794772cf55046c09636192a328fc"
+    },
+    {
+      "path": "tests/test_model_bay.py",
+      "size": 18549,
+      "sha256": "0d549a596d190f56d7852931a4dd3afe46121cdda2d6c1cad2787279726d4b04"
+    },
+    {
+      "path": "tests/test_music_loop_deck.py",
+      "size": 1782,
+      "sha256": "84496f683878f2e5af9af8455b25298d9262639ada33833f39bf13196676f584"
+    },
+    {
+      "path": "tests/test_music_studio.py",
+      "size": 1298,
+      "sha256": "a3c5544383f90c8db0948db16aa11d5ae37676ce1044d809eafaf7a3be75c759"
+    },
+    {
+      "path": "tests/test_path_policy.py",
+      "size": 5264,
+      "sha256": "34917aea5bf6aa0beabfbf80c6c51c2b387d82c4cd61a68be82a1f08509af9d0"
+    },
+    {
+      "path": "tests/test_remote_access.py",
+      "size": 5670,
+      "sha256": "288c33c5e99b6e3be4594a1c66aee42ce4bab2d54b29cb38a0dfab1b70a4a0eb"
+    },
+    {
+      "path": "tests/test_showcase_server.py",
+      "size": 3060,
+      "sha256": "e8b1dbd53ac008f5730f1af2098a45dd4c876ebae9b013d6d5147b2c228f8fc9"
+    },
+    {
+      "path": "tests/test_talk_room.py",
+      "size": 14000,
+      "sha256": "606dcd5ce9e8d93369efdc6f64528c46639f7b70e43357904a3d3905120a5837"
+    },
+    {
+      "path": "tests/test_talk_room_api.py",
+      "size": 11105,
+      "sha256": "7a1f0740ac64fc3b8568f890096859d23a6ef9d5df53f20b454989a88a8e533b"
+    },
+    {
+      "path": "tests/test_transactions.py",
+      "size": 7116,
+      "sha256": "a2ac79b61f2b46de7e39c1145acea1245e85228b07484440a96d1df21b6bea98"
+    },
+    {
+      "path": "tests/test_video_workstation.py",
+      "size": 8741,
+      "sha256": "7e88f61d6faa7a144b315ce1f7b403184f42f985e4e1ed58a9246747b0f24568"
+    },
+    {
+      "path": "tests/test_visitor_bench.py",
+      "size": 2063,
+      "sha256": "fe0b71f2d01b7c48833d2ca5dcbdc1cbe13bcb2ee23c227644d45723b156d2ec"
+    },
+    {
+      "path": "tests/test_visitor_bench_api.py",
+      "size": 3403,
+      "sha256": "a6658137881275f19a3d2c01f68d748f4cb7706f344158aaad0d12e6640df409"
+    },
+    {
+      "path": "tests/test_worker_cards.py",
+      "size": 3004,
+      "sha256": "15a43a9f659f9b6f7b8ecca05929698f1a96441dcaeb8350998f034bde7f0bad"
+    },
+    {
+      "path": "tests/test_worker_harness.py",
+      "size": 8063,
+      "sha256": "a244096d9ba0bd30d7307454e9d3e3b09fbe6aa898ed61dff990368501317f9d"
+    },
+    {
+      "path": "tests/test_worker_harness_api_e2e.py",
+      "size": 8424,
+      "sha256": "8c212338244585d87a00f261710c4c0f15ef758c7153a3f41dac2669c075903c"
+    },
+    {
+      "path": "tests/test_worker_harness_schemas.py",
+      "size": 2303,
+      "sha256": "fa570913051cc753553be6cbf64f29fee22b04d1064037ab41b9c4c3e9f4aad4"
+    },
+    {
+      "path": "tests/test_worker_harness_security.py",
+      "size": 9827,
+      "sha256": "c05ad72f35ce11b95df3d6c71c95f292edd04b8fa0a90a29ae1e7162b22ac20e"
+    },
+    {
+      "path": "tests/test_worker_harness_ui.py",
+      "size": 4836,
+      "sha256": "b24f01b5ef503ffd1d5882853c0c3e97f4075c5dfd665a2a95039b47a0f563e8"
+    },
+    {
+      "path": "tests/test_write_room.py",
+      "size": 10001,
+      "sha256": "703b9de86eba117ee46e2c11cb7f6f257bdcc170c7e157c1e60ffe449e4314c5"
+    },
+    {
+      "path": "tests/test_write_room_api.py",
+      "size": 13549,
+      "sha256": "8afa93f6ba36042899ba01fd4220124565926022ff8c9834ef8fd451bab41872"
+    },
+    {
+      "path": "tests/video-workstation-ui.test.js",
+      "size": 2577,
+      "sha256": "dd263f2fe006294cb1c9ba54aeb5896055955c862d86723c86d9be73b8b9a640"
+    },
+    {
+      "path": "tests/worker-harness-view.test.js",
+      "size": 7926,
+      "sha256": "892a9ffde83f63dc1f1527cc2b302a682ffc6cea9ae01447ec203e0967cddccc"
+    },
+    {
+      "path": "tests/write-room-ui.test.js",
+      "size": 4623,
+      "sha256": "982d40f7af1ab1a4e756c8957ae05c775acfcf017edfb2e61c888bcd31684a8a"
+    },
+    {
+      "path": "TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_CHANGED_FILES.txt",
+      "size": 1198,
+      "sha256": "e9dc339cff29d584cd12e86c910cbe7a0f2fdc7f4ba39087a47bb124c9141671"
+    },
+    {
+      "path": "TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_RELEASE.md",
+      "size": 1552,
+      "sha256": "90e04f709a41fa9c43a36df492b08b4ad8cd44bb3a5158bf8e0831487520971a"
+    },
+    {
+      "path": "TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_ROLLBACK.md",
+      "size": 843,
+      "sha256": "0b4691f553be6a78e4b7472faa8374ddb1dd1383ff02dd917f921be7f3a68626"
+    },
+    {
+      "path": "TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_VERIFICATION.md",
+      "size": 1553,
+      "sha256": "f63402315c762c78e7e6e3e413031ee6034d6874e45c28011bf5a1432f1fab39"
+    },
+    {
+      "path": "TWIS_BACKGROUND_REMOVAL_CAPABILITY_ACQUISITION.md",
+      "size": 8044,
+      "sha256": "211af88068c173b3e6b1a337713fb2f6867d91b2d00a9d1c90130e4a7b96c6b5"
+    },
+    {
+      "path": "TWIS_BACKGROUND_REMOVAL_RUNTIME_CHANGED_FILES.txt",
+      "size": 1647,
+      "sha256": "1a78289522c1f7d7638e88c49cbc48141750b1086fe9ed55e45efb3ae8ba44eb"
+    },
+    {
+      "path": "TWIS_BACKGROUND_REMOVAL_RUNTIME_RELEASE.md",
+      "size": 2861,
+      "sha256": "bf63c58ee0031f2f134368a76a3d2e42abd2d300ec463ae4e37c4589b9c45d3b"
+    },
+    {
+      "path": "TWIS_BACKGROUND_REMOVAL_RUNTIME_ROLLBACK.md",
+      "size": 1430,
+      "sha256": "caf8a58d05f9dcb1d3c93f32147c8eada28f030cb0b1b24f308cd80225e61597"
+    },
+    {
+      "path": "TWIS_BACKGROUND_REMOVAL_RUNTIME_VERIFICATION.md",
+      "size": 2403,
+      "sha256": "cdc108fcdf76799240abdf59b332c83bb2db7a5d0deeb2760c9ac9f04d5261fa"
+    },
+    {
+      "path": "TWIS_BEST_ENGINE_PER_ROOM_2026.md",
+      "size": 36054,
+      "sha256": "a2d3029b18762644dd235d6d781176612861f82a348c9604959077847785a72f"
+    },
+    {
+      "path": "TWIS_BUILD_MODULES_V2_CHANGED_FILES.txt",
+      "size": 1158,
+      "sha256": "bd01e4555e7453c818f948dddc44ab6519a3175f29f48788434e10146fda3fef"
+    },
+    {
+      "path": "TWIS_BUILD_MODULES_V2_RELEASE.md",
+      "size": 4518,
+      "sha256": "bed70eac9172f7ab2692c62d2b4bbc78468f6f89c66cbc6a48fc9b3911490fcf"
+    },
+    {
+      "path": "TWIS_BUILD_MODULES_V2_ROLLBACK.md",
+      "size": 1298,
+      "sha256": "226c798f298b92827eb77845fc94fa59d71025891d2ae021e335fdb85e5a62f9"
+    },
+    {
+      "path": "TWIS_BUILD_MODULES_V2_VERIFICATION.md",
+      "size": 3529,
+      "sha256": "96d94e37d643253867471a36cf81dd8d3d98bf66707579b5f5c1a4ed8e324974"
+    },
+    {
+      "path": "TWIS_MEDIA_WORKSPACE_CANDIDATE_MANIFEST.txt",
+      "size": 3978,
+      "sha256": "84cdf810bd004afb32015a75a0483f813386eae09c4de52f62a6e44789a4f74c"
+    },
+    {
+      "path": "TWIS_MEDIA_WORKSPACE_CHANGED_FILES.txt",
+      "size": 1077,
+      "sha256": "ebd4f896a54619090a6d33db90d867b3f278b500f708a76acc57e196aff3afd5"
+    },
+    {
+      "path": "TWIS_MEDIA_WORKSPACE_DEPLOYED_MANIFEST.txt",
+      "size": 3951,
+      "sha256": "77fc907bf2c80ecae9d350cc4a42fdd2913345989c231d2ea9998213b8c4b4e0"
+    },
+    {
+      "path": "TWIS_MEDIA_WORKSPACE_RELEASE.md",
+      "size": 3007,
+      "sha256": "e337852b62c9e207bcb7207d40982006226ee00dd7b8312210cd5d0e953dd4ab"
+    },
+    {
+      "path": "TWIS_MEDIA_WORKSPACE_ROLLBACK.md",
+      "size": 979,
+      "sha256": "aacf50bd3e6f8dba7a92582e2a2d9b414c249a39dcda5bb2e4339f5acae060b2"
+    },
+    {
+      "path": "TWIS_MEDIA_WORKSPACE_VERIFICATION.md",
+      "size": 3544,
+      "sha256": "a12eac9a016838286b562e1c6339fa938e995c67f3a6ec0a2111de11166e7f77"
+    },
+    {
+      "path": "TWIS_MUSIC_LOOP_DECK_V1_CHANGED_FILES.txt",
+      "size": 810,
+      "sha256": "02353bc44c6233aa78adad64462667bd915c6412f1b5cff07e8b81d7969da195"
+    },
+    {
+      "path": "TWIS_MUSIC_LOOP_DECK_V1_RELEASE.md",
+      "size": 2010,
+      "sha256": "93fd8e42d448f358316f707d8c57acec5759df284eee2a4e7239d9e430e44a81"
+    },
+    {
+      "path": "TWIS_MUSIC_LOOP_DECK_V1_ROLLBACK.md",
+      "size": 1128,
+      "sha256": "f2c1035acdb2df72f8594e03f0d2d496ea4fb5102aea6814d2be1b2813b8db7a"
+    },
+    {
+      "path": "TWIS_MUSIC_LOOP_DECK_V1_VERIFICATION.md",
+      "size": 2784,
+      "sha256": "c2135fbaa68a357f7b29b30271cadbd72f2f7dfdf4529627bfefbfaadee6b003"
+    },
+    {
+      "path": "TWIS_MUSIC_STUDIO_CANDIDATE_MANIFEST.txt",
+      "size": 3014,
+      "sha256": "42074391b2e8fc74da06148abd20d3051aae73e44f10c67b892f2de57627fb3f"
+    },
+    {
+      "path": "TWIS_MUSIC_STUDIO_CHANGED_FILES.txt",
+      "size": 978,
+      "sha256": "1ab2e9b2b3641f2e7bd4dde503118bd894d0a4380ca3374334f677cedf068b95"
+    },
+    {
+      "path": "TWIS_MUSIC_STUDIO_DEPLOYED_MANIFEST.txt",
+      "size": 1158,
+      "sha256": "703a221236d8140a29806c0f512d88fe063d0860c64bed2301d7f42196a99758"
+    },
+    {
+      "path": "TWIS_MUSIC_STUDIO_RELEASE.md",
+      "size": 1991,
+      "sha256": "f1a9349f0f55cd1c5fd2a1ef40d3d076291dd52dea4903440842b768cff70547"
+    },
+    {
+      "path": "TWIS_MUSIC_STUDIO_VERIFICATION.md",
+      "size": 2862,
+      "sha256": "ca031492ac2c11f5c457699cc8b8c437b520a22bbe08ec1b26a8cad24fbb323d"
+    },
+    {
+      "path": "TWIS_REAL_ROOM_FUNCTIONALITY_PLAN_2026.md",
+      "size": 30386,
+      "sha256": "b22fc365892ea198e6b3df75c584145bfe2ce2b7c5a561044e764ae85fdc1375"
+    },
+    {
+      "path": "TWIS_VIDEO_WORKSTATION_CANDIDATE_MANIFEST.txt",
+      "size": 3495,
+      "sha256": "e38de27cee50fd8338065b277dc0bed1f4719ca25bd15f2bfb3fb1e969819152"
+    },
+    {
+      "path": "TWIS_VIDEO_WORKSTATION_CHANGED_FILES.txt",
+      "size": 1258,
+      "sha256": "421acdfa4e068d423648c61c83d16779612ca873ea440be897393f91f8d14a0a"
+    },
+    {
+      "path": "TWIS_VIDEO_WORKSTATION_RELEASE.md",
+      "size": 3757,
+      "sha256": "532ef83752c91545bff732c0f695e94e8d833d2181e721826c745183b3c23612"
+    },
+    {
+      "path": "TWIS_VIDEO_WORKSTATION_ROLLBACK.md",
+      "size": 1649,
+      "sha256": "b04dd7a79618608fc410afef5a4971091758cbfe9c8db9066e65ba73385c6964"
+    },
+    {
+      "path": "TWIS_VIDEO_WORKSTATION_VERIFICATION.md",
+      "size": 8965,
+      "sha256": "82e577f6f70025aa141f745adf5a431a753e461a03fd3952ccc84ac7f097ca78"
+    },
+    {
+      "path": "UPLOAD_TO_GITHUB.md",
+      "size": 719,
+      "sha256": "955470bc8cab23acfa3f84b034139b88faa4edbb81e1b226448fe572a4742735"
+    }
+  ],
+  "excluded": [
+    {
+      "path": ".pytest_cache\\.gitignore",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".pytest_cache\\CACHEDIR.TAG",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".pytest_cache\\README.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".pytest_cache\\v\\cache\\nodeids",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\__init__.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\background_removal_inspection.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\background_removal_runtime.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\builder_output.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\capability_inspection.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\capability_registry.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\flashriver_intake.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\local_worker_kit.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\media_hub.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\media_workspace.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\model_bay.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\remote_access.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\server.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\showcase_control.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\showcase_server.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\talk_room.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\video_workstation.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\visitor_bench.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\__pycache__\\write_room.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\__init__.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\artifact_compass.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\artifact_inspection_worker.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\cli.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\path_policy.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\promotion.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\reference_worker.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\transactions.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\worker_cards.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "companion\\foundation\\__pycache__\\worker_harness.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\.gitkeep",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\backups\\.gitkeep",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\cache\\.gitkeep",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\imports\\.gitkeep",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\.gitkeep",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\AGENT.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\agent_files\\AGENT.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\api\\API_PLAN.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\API_PLAN.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\APP_IDEAS_AND_BUILDS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\artifact_compass\\ARTIFACT_COMPASS_20_PASS_SALVAGE.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\ARTIFACT_COMPASS_20_PASS_SALVAGE.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\build_plan\\APP_IDEAS_AND_BUILDS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\build_plan\\BUILD_PLAN.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\build_plan\\PLATFORM_MATRIX.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\build_plan\\POSSIBILITIES.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\build_plan\\PRODUCT_SPEC.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\build_plan\\TOOL_REGISTRY_SCHEMA.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\BUILD_PLAN.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\context\\CONTEXT.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\CONTEXT.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\debug\\DEBUG_RUNS.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\debug\\DEBUG_RUNS_POST_PATCH.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\debug\\FULL_DEBUG_REPORT.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\debug\\FULL_DEBUG_REPORT_POST_PATCH.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\docs\\ENGINEERING.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\docs\\HANDOFF.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\docs\\KNOWN_LIMITS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\ENGINEERING.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\FULL_DEBUG_REPORT.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\FULL_DEBUG_REPORT_POST_PATCH.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\HANDOFF.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\HARNESS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\harnesses\\HARNESS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\KNOWN_LIMITS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\mcp\\MCP_PLAN.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\MCP_PLAN.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\NEXT_PROMPT_FOR_CODEX.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\PLATFORM_MATRIX.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\POSSIBILITIES.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\PRODUCT_SPEC.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\prompts\\NEXT_PROMPT_FOR_CODEX.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\README.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\README_START_HERE.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\receipts\\ARTIFACT_LEDGER.csv",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\receipts\\ARTIFACT_LEDGER.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\receipts\\ARTIFACT_LEDGER.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\security_module\\SECURITY_MODULE.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\SECURITY_MODULE.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\skills\\SKILLS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\SKILLS.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\source_artifacts\\CERT_RIVER_PHASE755_FULL_REPAIR_AND_DEBUG_CLOSE_RECEIPT.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\source_artifacts\\FlashRiver_CERT-RIVER_phases709_to_754_T43_T44_T45_T46_MASTER_BUNDLE_RECEIPT.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\source_artifacts\\TWIS_TALKBOX_BUILD_FOLDER_RECEIPT.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\starter_code\\requirements.txt",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\docs\\TOOL_REGISTRY_SCHEMA.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\FLASHRIVER_INTAKE_MANIFEST.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\private_source_artifacts\\source_artifacts\\CERT_RIVER_PHASE708_HANDOFF_FOLDER.zip",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\private_source_artifacts\\source_artifacts\\CERT_RIVER_PHASE755_FULL_REPAIR_AND_DEBUG_CLOSE.zip",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\private_source_artifacts\\source_artifacts\\FlashRiver_CERT-RIVER_phases709_to_754_T43_T44_T45_T46_MASTER_BUNDLE.zip",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\private_source_artifacts\\source_artifacts\\TWIS_TALKBOX_BUILD_FOLDER.zip",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\visuals\\visuals\\ai_workshop_map_design_schema.png",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\visuals\\visuals\\build_plan_roadmap_from_start_to_finish.png",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\flashriver-source-archive\\sources\\flashriver\\6ef7317722202769\\visuals\\visuals\\futuristic_workshop_dashboard_interface.png",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\ollie-twis-through-the-looking-glass\\project.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\projects\\thousand-year-hangover\\project.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\source_archives\\.gitkeep",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\source_archives\\flashriver\\6ef7317722202769\\FLASHRIVER.zip",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\visitor_bench.sqlite3",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\visitor_bench.sqlite3-shm",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\visitor_bench.sqlite3-wal",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\activation-records\\1104aee4006345339a91c6aa064b3a2c.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\activation-records\\36cba086363f44fd99aff8da424dfc30.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\activation-registry.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\approval-decisions\\1104aee4006345339a91c6aa064b3a2c-approve.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\approval-decisions\\36cba086363f44fd99aff8da424dfc30-approve.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\artifact-compass.sqlite3",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\candidate-outputs\\1104aee4006345339a91c6aa064b3a2c.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\candidate-outputs\\36cba086363f44fd99aff8da424dfc30.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\candidate-outputs\\d905cb7a3bb546b8af12a15a81aab5cf.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\candidates\\1104aee4006345339a91c6aa064b3a2c.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\candidates\\36cba086363f44fd99aff8da424dfc30.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\candidates\\d905cb7a3bb546b8af12a15a81aab5cf.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\plans\\1299ec494c4c4976bc136064c4701066.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\plans\\593ed1f241074321ab558d9ad2ba03b2.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\plans\\bd5f9a77d2984b55a394699361edc4b2.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\plans\\e0a37f66bdc64eb9b526a651766b1bfc.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\plans\\f8984b2d4b28450db6d838d5816c4d38.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\plans\\ff77383f85844893913d05ee57564af0.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\provenance-inventory.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\requests\\2d6aa95e389f49a28cfd22b8d06ecce4.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\requests\\510593b0f8e945d19148534532a41bc7.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\requests\\8dc0e9e2c0084f74bb43522362dc1481.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\rollback-records\\1104aee4006345339a91c6aa064b3a2c.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\rollback-records\\36cba086363f44fd99aff8da424dfc30.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\test-results\\1104aee4006345339a91c6aa064b3a2c.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\test-results\\36cba086363f44fd99aff8da424dfc30.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\test-results\\d905cb7a3bb546b8af12a15a81aab5cf.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\29b578bd80784358bb14115b53028c08.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\2d6aa95e389f49a28cfd22b8d06ecce4.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\443a180a8832450f999066c22980c9ee.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\4a24b0a7968e4fcfb8b4678bc6a9e961.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\510593b0f8e945d19148534532a41bc7.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\5a8cb6984fb2439390ea4960c3f44ddf.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\6403ea9b036e4374ad1dd224875cb8d0.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\8dc0e9e2c0084f74bb43522362dc1481.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\manifests\\9ab21534cf2f4680ad39b3dfce00afe5.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000001-510593b0f8e945d19148534532a41bc7.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000002-4a24b0a7968e4fcfb8b4678bc6a9e961.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000003-29b578bd80784358bb14115b53028c08.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000004-5a8cb6984fb2439390ea4960c3f44ddf.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000005-2d6aa95e389f49a28cfd22b8d06ecce4.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000006-8dc0e9e2c0084f74bb43522362dc1481.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000007-6403ea9b036e4374ad1dd224875cb8d0.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000008-9ab21534cf2f4680ad39b3dfce00afe5.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\receipts\\00000009-443a180a8832450f999066c22980c9ee.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\snapshots\\2d6aa95e389f49a28cfd22b8d06ecce4\\FDF9BF34124DC49F-artifact-inspection-result.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\snapshots\\443a180a8832450f999066c22980c9ee\\85AF98D7082C75D9-artifact-inspection-result.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\snapshots\\510593b0f8e945d19148534532a41bc7\\FDF9BF34124DC49F-artifact-inspection-result.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\snapshots\\5a8cb6984fb2439390ea4960c3f44ddf\\751E030430AD80C0-artifact-inspection-result.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\transactions\\snapshots\\8dc0e9e2c0084f74bb43522362dc1481\\99C77BA9BB05B558-artifact-inspection-result.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\worker-cards\\artifact-compass-inspection-worker.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\worker-cards\\reference-metadata-worker.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\workspace\\input\\reference-input.md",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\workspace\\inspection-output\\artifact-inspection-result.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\workspace\\output\\reference-result.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\worker_harness\\workspace\\state.json",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\workshop.sqlite3",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\workshop.sqlite3-shm",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "data\\workshop.sqlite3-wal",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "desktop-launcher\\TWIS Holo Workshop.exe",
+      "reason": "private/runtime file class"
+    },
+    {
+      "path": "FLASHRIVER.zip",
+      "reason": "private/runtime file class"
+    },
+    {
+      "path": "FLASHRIVER_RECEIPT.json",
+      "reason": "private/runtime file class"
+    },
+    {
+      "path": "tests\\__pycache__\\e2e_api_test.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\e2e_api_test.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\smoke_test.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\smoke_test.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_compass.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_compass.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_api_e2e.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_api_e2e.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_harness.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_harness.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_selection.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_selection.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_worker.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_artifact_inspection_worker.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_background_composition_api.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_background_removal_api.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_background_removal_runtime.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_builder_kit.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_builder_kit.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_capability_api.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_capability_inspection.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_capability_registry.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_intake.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_intake.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_recover_ui.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_recover_ui.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_review_api.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_review_api.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_review_view.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_flashriver_review_view.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_foundation_cli.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_foundation_cli.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_guarded_promotion.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_guarded_promotion.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_local_worker_api.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_local_worker_api.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_local_worker_kit.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_local_worker_kit.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_media_hub.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_media_workspace.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_media_workspace.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_model_bay.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_model_bay.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_music_loop_deck.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_music_loop_deck.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_music_studio.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_music_studio.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_path_policy.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_path_policy.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_remote_access.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_remote_access.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_showcase_server.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_showcase_server.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_talk_room.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_talk_room_api.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_transactions.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_visitor_bench.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_visitor_bench_api.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_worker_cards.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_worker_harness.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_worker_harness_api_e2e.cpython-312-pytest-9.1.1.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_worker_harness_api_e2e.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_worker_harness_schemas.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_worker_harness_security.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_worker_harness_ui.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_write_room.cpython-312.pyc",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "tests\\__pycache__\\test_write_room_api.cpython-312.pyc",
+      "reason": "excluded directory"
+    }
+  ],
+  "warning": "This is a code-safe manifest, not proof that every excluded file is private and not proof of live functional health."
+}

@@ -1,0 +1,16 @@
+TWIS FLASHRIVER PROJECT + REVIEW FIX
+
+Fixed:
+- FlashRiver always imports into its own project: flashriver-source-archive.
+- Import no longer uses whichever project was selected.
+- Review in My Work switches to FlashRiver Source Archive automatically.
+- Review shows all imported FlashRiver records, not only the manifest.
+- Private nested source archives and visuals now receive visible artifact records.
+- Empty runtime data is packaged; old e2e-test leftovers are removed.
+
+Verified:
+- 9 automated tests passed.
+- Python compile passed.
+- JavaScript syntax checks passed.
+- Real FlashRiver package import passed.
+- Expected real import: 59 visible artifacts total.

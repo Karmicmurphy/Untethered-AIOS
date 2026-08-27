@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "twis-capability-inspection-v1",
+  "type": "object",
+  "required": ["inspectionId", "capabilityId", "capabilityVersion", "registryHash", "hardwareProfileHash", "inspectionPlanHash", "traceId", "sourceEvidence", "licenseEvidence", "dependencyEvidence", "permissionEvidence", "hardwareEvidence", "functionalEvidence", "performanceEvidence", "securityObservations", "networkActivity", "filesystemActivity", "inputHashes", "outputHashes", "cleanupResult", "limitations", "finalInspectionVerdict"],
+  "additionalProperties": false,
+  "properties": {
+    "inspectionId": {"type": "string"}, "capabilityId": {"type": "string"}, "capabilityVersion": {"type": "string"},
+    "registryHash": {"type": "string"}, "hardwareProfileHash": {"type": "string"}, "inspectionPlanHash": {"type": "string"}, "traceId": {"type": "string"},
+    "sourceEvidence": {"type": "object"}, "licenseEvidence": {"type": "object"}, "dependencyEvidence": {"type": "object"}, "permissionEvidence": {"type": "object"}, "hardwareEvidence": {"type": "object"}, "functionalEvidence": {"type": "object"}, "performanceEvidence": {"type": "object"},
+    "securityObservations": {"type": "array"}, "networkActivity": {"type": "array"}, "filesystemActivity": {"type": "array"}, "inputHashes": {"type": "array"}, "outputHashes": {"type": "array"}, "cleanupResult": {"type": "object"}, "limitations": {"type": "array"},
+    "finalInspectionVerdict": {"enum": ["VERIFICATION_CANDIDATE", "BLOCKED", "INCOMPATIBLE", "FAILED", "NEEDS_REVIEW"]}
+  }
+}

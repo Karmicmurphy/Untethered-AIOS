@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "twis-background-removal-runtime-config-v1",
+  "runtimeId": "opencv-grabcut-cpu",
+  "capabilityId": "external.opencv-grabcut-cpu-candidate",
+  "version": "4.14.0.94",
+  "relativePath": "background-removal/opencv-grabcut/4.14.0.94",
+  "manifestSha256": "C9E178F183F662209C682222AA8590FA6C8E8A460F26A946F55F39E32EF102DE",
+  "pythonVersion": "3.12",
+  "timeoutSeconds": 120,
+  "maxPixels": 8388608,
+  "networkAfterProvisioning": "none",
+  "persistentProcess": false,
+  "automaticExecution": false,
+  "sourceEvidenceHash": "34C09EEFA97856ED4BC9CDF91EC76F4AFE0E4910006185C5348878AE685FACD0"
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://twis.local/schemas/transaction-manifest-v0.2.schema.json",
+  "title": "Twis Holo Transaction Manifest v0.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "transaction_id", "generation", "state", "actor", "action",
+    "paths", "before_hashes", "after_hashes", "permission_decision", "commands",
+    "tests", "approval", "timestamps", "result", "recovery_point"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.2"},
+    "transaction_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"},
+    "generation": {"type": "integer", "minimum": 1},
+    "state": {"enum": ["prepared", "in_progress", "committed", "failed", "recovery_pending", "recovered"]},
+    "actor": {"type": "string", "minLength": 1},
+    "action": {"type": "string", "minLength": 1},
+    "paths": {"type": "array", "items": {"type": "string"}},
+    "before_hashes": {"$ref": "#/$defs/hashMap"},
+    "after_hashes": {"$ref": "#/$defs/hashMap"},
+    "permission_decision": {"type": "object", "required": ["allowed"], "properties": {"allowed": {"const": true}}},
+    "commands": {"type": "array", "items": {"type": "string"}},
+    "tests": {"type": "array", "items": {"type": "string"}},
+    "approval": {"type": ["object", "null"]},
+    "timestamps": {"type": "object", "required": ["prepared_at", "updated_at"]},
+    "result": {"type": ["object", "null"]},
+    "recovery_point": {"type": ["object", "null"]}
+  },
+  "$defs": {
+    "hashMap": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+          {"type": "null"}
+        ]
+      }
+    }
+  }
+}

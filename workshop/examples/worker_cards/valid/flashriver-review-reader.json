@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "worker_id": "flashriver-review-reader",
+  "version": "0.1.0",
+  "lifecycle_status": "test",
+  "purpose": "Read bounded FlashRiver review records without changing source archives.",
+  "accepted_input_types": ["artifact-id"],
+  "produced_output_types": ["review-record"],
+  "allowed_read_roots": ["C:\\TWIS\\data\\projects\\flashriver-source-archive"],
+  "allowed_write_roots": [],
+  "blocked_roots": ["C:\\TWIS\\data\\source_archives"],
+  "network_allowed": false,
+  "shell_allowed": false,
+  "destructive_actions_allowed": false,
+  "approval_required": true,
+  "timeout_seconds": 30,
+  "test_commands": ["python -m pytest tests/test_worker_cards.py"],
+  "failure_policy": {
+    "on_validation_error": "reject",
+    "on_runtime_error": "fail_closed",
+    "retry_count": 0
+  },
+  "receipt_required": true,
+  "source_provenance": {
+    "kind": "human-authored",
+    "source": "Foundation Release 0.2"
+  }
+}

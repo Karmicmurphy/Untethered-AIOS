@@ -1,0 +1,50 @@
+TWIS BUILD + MODULES V2 — CANDIDATE SCOPE
+Status: NOT DEPLOYED; exact-manifest approval required
+
+REPLACE (16)
+app/assets/builder-workspace.js
+app/index.html
+app/service-worker.js
+companion/builder_output.py
+companion/local_worker_kit.py
+companion/server.py
+CURRENT_STATE.md
+package.json
+tests/local-worker-kit-ui.test.js
+tests/music-studio-ui.test.js
+tests/room-system-ui.test.js
+tests/shell-ui.test.js
+tests/talk-room-ui.test.js
+tests/test_builder_kit.py
+tests/test_worker_harness_ui.py
+tests/write-room-ui.test.js
+
+ADD (15)
+app/assets/capability-bay.css
+app/assets/capability-bay.js
+companion/capability_registry.py
+config/capability-registry.json
+config/mcp-catalog.json
+docs/TWIS_CAPABILITY_CONTRACT_V1.md
+docs/TWIS_CAPABILITY_RESEARCH_2026.md
+schemas/capability-v1.schema.json
+tests/capability-bay-ui.test.js
+tests/test_capability_api.py
+tests/test_capability_registry.py
+TWIS_BUILD_MODULES_V2_RELEASE.md
+TWIS_BUILD_MODULES_V2_VERIFICATION.md
+TWIS_BUILD_MODULES_V2_CHANGED_FILES.txt
+TWIS_BUILD_MODULES_V2_ROLLBACK.md
+
+REMOVE (0)
+
+EXCLUDED
+data/**
+runtime/**
+models/**
+exports/**
+__pycache__/**
+.pytest_cache/**
+node_modules/**
+browser/test profiles
+

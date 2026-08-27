@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071019"><title>Twis Holo Workshop</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23071019'/%3E%3Cpath d='M14 16h36v8H36v26h-8V24H14z' fill='%2362e8ff'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/local-worker-kit.css"><link rel="stylesheet" href="assets/builder-workspace.css"><link rel="stylesheet" href="assets/model-bay.css"><link rel="stylesheet" href="assets/capability-bay.css"><link rel="stylesheet" href="assets/shell-0.14.css"><link rel="stylesheet" href="assets/shell-0.14-layout.css"><link rel="stylesheet" href="assets/room-system.css"><link rel="stylesheet" href="assets/ui-coherence.css">
+</head>
+<body>
+<div class="backdrop"><div class="stars"></div><div class="nebula n1"></div><div class="nebula n2"></div><div class="floor"></div></div>
+<div class="app">
+<aside class="sidebar glass">
+  <div class="brand"><div class="cube">TH</div><div><strong>Twis Holo</strong><small>Workshop</small></div></div>
+  <select id="projectSelect" aria-label="Active project"></select>
+  <nav id="nav">
+    <button class="nav active" data-room="home">Control Room</button><button class="nav" data-room="talk">Talk</button>
+    <button class="nav" data-room="write">Write</button><button class="nav" data-room="music">Music</button>
+    <button class="nav" data-room="image">Images</button><button class="nav" data-room="video">Video</button>
+    <button class="nav" data-room="research">Explore</button><button class="nav" data-room="code">Build</button>
+    <button class="nav" data-room="import">Recover</button><button class="nav" data-room="work">My Work</button>
+    <button class="nav" data-room="modules">Modules</button><button class="nav" data-room="settings">Settings</button>
+  </nav>
+  <div class="side-foot"><button id="exportProject" class="quiet">Export project capsule</button><span id="modeBadge" class="badge">Checking local core…</span></div>
+</aside>
+<main class="workspace">
+<header class="topbar"><div><p id="dateLabel" class="eyebrow"></p><h1 id="title">Good to see you.</h1></div><div><button id="micBtn" class="round" aria-label="Talk voice controls" title="Voice controls are owner-triggered and available only in Talk">🎙</button><button id="newProject" class="primary">New project</button></div></header>
+
+<section class="room room-threshold sanctuary-room" data-panel="sanctuary" aria-labelledby="sanctuaryTitle">
+  <div class="sanctuary-water" aria-hidden="true"></div>
+  <div class="sanctuary-orrery" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="sanctuary-gate">
+    <div class="sanctuary-clock" data-local-clock>
+      <div class="clock-dial" aria-hidden="true"><i class="clock-hour"></i><i class="clock-minute"></i><i class="clock-second"></i><b></b></div>
+      <div class="clock-readout"><span>LOCAL WORKSHOP TIME</span><time id="sanctuaryTime">--:--</time><small id="sanctuaryDate">Local browser time</small></div>
+    </div>
+    <p class="eyebrow">TWIS HOLO WORKSHOP · SAFE THRESHOLD</p><h1 id="sanctuaryTitle">Sanctuary</h1><p>Arrive quietly. Choose the work when you are ready.</p>
+    <nav class="sanctuary-actions" aria-label="Sanctuary actions"><button class="primary" data-room="crossroads">Enter Workshop</button><button id="sanctuaryContinue" class="quiet">Continue Current Project</button><button class="quiet" data-room="new-idea">New Idea</button><button class="quiet" data-room="work">My Work</button><button class="quiet" data-room="import">Recover</button></nav>
+  </div>
+</section>
+
+<section class="room room-threshold crossroads-room" data-panel="crossroads" aria-labelledby="crossroadsTitle">
+  <header class="crossroads-header"><button class="quiet" data-room="sanctuary">← Sanctuary</button><div><p class="eyebrow">WORKSHOP NAVIGATION</p><h1 id="crossroadsTitle">Crossroads</h1><p>Choose a district, then a room.</p></div><div class="crossroads-time"><span>LOCAL TIME</span><time id="crossroadsTime">--:--</time></div></header>
+  <div class="crossroads-map" aria-label="Workshop room map">
+    <div class="crossroads-compass" aria-hidden="true"><span>N</span><b>TWIS</b><small>FIVE DISTRICTS</small></div>
+    <section class="room-district district-create" aria-labelledby="districtCreate"><header><span>01</span><div><b id="districtCreate">Create</b><small>Shape words, light, sound, and motion.</small></div></header><div class="district-doors">
+      <button class="room-marker marker-write" data-room="write"><span>06</span><b>Write</b><i>Draft Workshop</i></button><button class="room-marker marker-images" data-room="image"><span>07</span><b>Images</b><i>Visual Brief</i></button><button class="room-marker marker-music" data-room="music"><span>08</span><b>Music</b><i>Song Brief</i></button><button class="room-marker marker-video" data-room="video"><span>09</span><b>Video</b><i>Production Workstation</i></button>
+    </div></section>
+    <section class="room-district district-make" aria-labelledby="districtMake"><header><span>02</span><div><b id="districtMake">Make</b><small>Plan systems and future machinery.</small></div></header><div class="district-doors">
+      <button class="room-marker marker-build" data-room="code"><span>10</span><b>Build</b><i>Work Orders</i></button><button class="room-marker marker-modules" data-room="modules"><span>13</span><b>Modules</b><i>Capability Bay</i></button>
+    </div></section>
+    <section class="room-district district-discover" aria-labelledby="districtDiscover"><header><span>03</span><div><b id="districtDiscover">Discover</b><small>Start ideas and examine evidence.</small></div></header><div class="district-doors">
+      <button class="room-marker marker-explore" data-room="research"><span>11</span><b>Explore</b><i>Evidence Compare</i></button><button class="room-marker marker-idea" data-room="new-idea"><span>05</span><b>New Idea</b><i>Idea Intake</i></button>
+    </div></section>
+    <section class="room-district district-manage" aria-labelledby="districtManage"><header><span>04</span><div><b id="districtManage">Manage</b><small>Return to work or inspect the system.</small></div></header><div class="district-doors">
+      <button class="room-marker marker-work" data-room="work"><span>04</span><b>My Work</b><i>Archive & drafts</i></button><button class="room-marker marker-control" data-room="control"><span>03</span><b>Control Room</b><i>System deck</i></button>
+    </div></section>
+    <section class="room-district district-recover" aria-labelledby="districtRecover"><header><span>05</span><div><b id="districtRecover">Recover</b><small>Chronology, evidence, and safe return.</small></div></header><div class="district-doors">
+      <button class="room-marker marker-recover" data-room="import"><span>12</span><b>Machine Room</b><i>Recovery & receipts</i></button>
+    </div></section>
+    <button class="crossroads-settings marker-settings" data-room="settings"><span>14</span><b>Settings</b><i>Workshop calibration</i></button>
+  </div>
+</section>
+
+<section class="room room-threshold new-idea-room" data-panel="new-idea" aria-labelledby="newIdeaTitle">
+  <button class="room-return quiet" data-room="crossroads">← Crossroads</button>
+  <div class="idea-station">
+    <header class="idea-station-head"><div><p class="eyebrow">ROOM 05 · IDEA INTAKE</p><h1 id="newIdeaTitle">New Idea</h1><p>Capture a thought without starting a worker, publishing it, or changing its source.</p></div><span>DRAFT · INACTIVE</span></header>
+    <form id="newIdeaForm" class="idea-intake" autocomplete="off">
+      <label for="newIdeaName">Idea title <span aria-hidden="true">*</span><input id="newIdeaName" name="title" maxlength="300" required></label>
+      <label for="newIdeaNote">Quick note<textarea id="newIdeaNote" name="note" rows="8" maxlength="524288" spellcheck="true"></textarea></label>
+      <label for="newIdeaProject">Optional project<select id="newIdeaProject" name="project"><option value="">Unassigned</option></select><small id="newIdeaProjectHelp">Unassigned ideas use the active project only as their Workshop storage scope.</small></label>
+      <div class="idea-authority"><b>SAVE BOUNDARY</b><span>One inactive idea artifact · no execution · no provider · no publication</span></div>
+      <div class="idea-actions"><button id="saveNewIdea" class="primary" type="submit">Save as inactive idea</button><button id="cancelNewIdea" class="quiet" type="button">Cancel</button></div>
+      <p id="newIdeaStatus" class="action-message muted" role="status" aria-live="polite">Nothing has been saved.</p>
+    </form>
+  </div>
+</section>
+
+<section class="room active" data-panel="home">
+  <div class="hero glass">
+    <div><p class="eyebrow">Your creative workshop</p><h2>What do you want to do?</h2><p id="resumeText">Talk, write, make music, work with images and video, explore, build, or recover old work.</p>
+    <div class="row"><button id="continueBtn" class="primary">Continue last session</button><button data-room="work" class="quiet">Open my work</button></div></div>
+    <div class="portal"><i></i><i></i><i></i><b></b></div>
+  </div>
+  <section class="glass panel model-bay-compact" aria-labelledby="controlModelBayTitle"><div><p class="eyebrow">LOCAL INFERENCE</p><h3 id="controlModelBayTitle">Model Bay</h3><p id="controlModelBayDetail" class="muted">Checking the registered localhost runtime.</p></div><div><span id="controlModelBayState" class="status">UNKNOWN</span><button class="quiet" data-room="modules">Open Model Bay</button></div></section>
+  <div class="room-grid">
+    <button data-room="talk"><span class="scene talk"></span><b>Talk</b><small>Normal conversation, memory, planning, creative help.</small></button>
+    <button data-room="write"><span class="scene write"></span><b>Write</b><small>Stories, scripts, lyrics, notes, versions.</small></button>
+    <button data-room="music"><span class="scene music"></span><b>Music</b><small>Drums, melody, playback, WAV export.</small></button>
+    <button data-room="image"><span class="scene image"></span><b>Images</b><small>Open, draw, text, filters, PNG export.</small></button>
+    <button data-room="video"><span class="scene video"></span><b>Video</b><small>Media bin, preview, storyboard, project save.</small></button>
+    <button data-room="research"><span class="scene research"></span><b>Explore</b><small>Mission, findings, sources, questions.</small></button>
+    <button data-room="code"><span class="scene code"></span><b>Build</b><small>Project files and code editor.</small></button>
+    <button data-room="import"><span class="scene recover"></span><b>Recover</b><small>Import old folders into the active project.</small></button>
+  </div>
+  <div class="section-head"><h2>Recent artifacts</h2><button data-room="work" class="link">See all</button></div><div id="recentList" class="list"></div>
+</section>
+
+<section class="room" data-panel="talk">
+  <div class="talk-toolbar glass">
+    <div class="talk-title-block">
+      <label>Open Talk session<select id="talkSessionPicker"><option value="">No Talk sessions yet</option></select></label>
+      <label for="talkTitle" class="visually-hidden">Talk session title</label>
+      <input id="talkTitle" class="title-input" value="Untitled Talk" maxlength="300" autocomplete="off" disabled>
+      <div class="talk-state-line"><button id="saveTalkTitle" class="link" disabled>Save title</button><span id="talkSaveStatus" role="status" aria-live="polite">Open or create a Talk session.</span><span id="talkVersionBadge" class="badge">No saved version</span></div>
+    </div>
+    <div class="talk-primary-actions">
+      <button id="newTalkSession" class="quiet">New Talk session</button>
+      <button id="snapshotTalk" class="quiet" disabled>Named snapshot</button>
+      <button id="rollbackTalkRestore" class="quiet" hidden>Undo last restore</button>
+      <button id="leaveTalk" class="quiet">Leave Talk</button>
+    </div>
+  </div>
+  <div id="talkRecoveryBanner" class="write-recovery" hidden>
+    <div><b>Unsaved Talk draft found</b><p id="talkRecoveryMessage">Review it before adding it to the permanent transcript.</p></div>
+    <div><button id="loadTalkRecovery" class="primary">Load recovery</button><button id="discardTalkRecovery" class="quiet">Discard recovery</button></div>
+  </div>
+  <div class="talk-daily-grid">
+    <div class="talk-main">
+      <div class="glass talk-transcript-shell">
+        <div class="section-head"><div><p class="eyebrow">Durable transcript</p><h2>Talk</h2></div><span id="talkEntryCount" class="badge">0 entries</span></div>
+        <div id="talkTranscript" class="messages talk-transcript" aria-live="polite"><p class="muted">Create a Talk session to begin.</p></div>
+        <form id="talkComposer" class="composer">
+          <label for="talkDraft" class="visually-hidden">New Talk entry</label>
+          <textarea id="talkDraft" rows="5" placeholder="Type or paste a thought, question, idea, note, or code." disabled spellcheck="true"></textarea>
+          <div class="talk-composer-options">
+            <label>Entry type<select id="talkEntryType" disabled><option value="text">Thought</option><option value="question">Question</option><option value="idea">Idea</option><option value="note">Note</option><option value="code">Code</option></select></label>
+            <button id="addTalkEntry" class="primary" disabled>Add to Talk</button>
+          </div>
+        </form>
+      </div>
+      <section id="talkTransferPanel" class="glass panel talk-transfer" hidden aria-live="polite">
+        <div class="section-head"><div><p class="eyebrow">Source-preserving review gate</p><h3>Talk-to-Write proposal</h3></div><span id="talkTransferStatus" class="status">Awaiting approval</span></div>
+        <p>The original Talk remains unchanged. Review the exact text that will be copied into a normal Write document.</p>
+        <label>Write title<input id="talkTransferTitle" maxlength="300" disabled></label>
+        <label>Copy preview<textarea id="talkTransferPreview" rows="12" readonly></textarea></label>
+        <label>Approval note<input id="talkTransferNote" maxlength="500" placeholder="Required for approval"></label>
+        <div class="row"><button id="approveTalkTransfer" class="primary">Approve and create Write document</button><button id="rejectTalkTransfer" class="quiet">Reject</button><button id="rollbackTalkTransfer" class="quiet" hidden>Roll back created document</button></div>
+      </section>
+      <section id="talkInspectionPanel" class="glass panel" hidden>
+        <div class="section-head"><h3>Deterministic code inspection</h3><span class="badge">Local · no execution · no model</span></div>
+        <div id="talkInspectionResult"></div>
+      </section>
+    </div>
+    <aside class="glass panel talk-side">
+      <section>
+        <h3>Voice</h3>
+        <p id="talkVoiceTruth" class="muted">Checking local browser capabilities. Text Talk remains available.</p>
+        <div class="row"><button id="startTalkListening" class="quiet" disabled>Start local dictation</button><button id="stopTalkListening" class="quiet" disabled>Stop listening</button></div>
+        <label>Transcript draft<textarea id="talkVoiceDraft" rows="4" placeholder="Voice results appear here for review." disabled></textarea></label>
+        <button id="acceptTalkVoiceDraft" class="quiet" disabled>Add reviewed voice draft to composer</button>
+        <div class="row"><button id="readTalkAloud" class="quiet" disabled>Read Talk aloud</button><button id="pauseTalkReading" class="quiet" disabled>Pause reading</button><button id="stopTalkReading" class="quiet" disabled>Stop reading</button></div>
+        <p id="talkVoiceStatus" class="muted" role="status" aria-live="polite">Microphone off. Nothing is recording.</p>
+      </section>
+      <section>
+        <div class="section-head"><h3>History</h3><button id="refreshTalkHistory" class="link" disabled>Refresh</button></div>
+        <label>Earlier version<select id="talkCompareLeft" disabled></select></label>
+        <label>Later version<select id="talkCompareRight" disabled></select></label>
+        <button id="compareTalkVersions" class="quiet" disabled>Show what changed</button>
+        <div id="talkVersions" class="write-versions"><p class="muted">No Talk session open.</p></div>
+      </section>
+      <section>
+        <h3>Preserve and inspect</h3>
+        <p class="muted">Select transcript text and mark it, or choose an entry below before inspecting or copying.</p>
+        <button id="markTalkPassage" class="quiet" disabled>Mark selected passage</button>
+        <label>Code filename<input id="talkInspectionFilename" value="pasted-code.txt" maxlength="180" disabled></label>
+        <button id="inspectTalkEntry" class="quiet" disabled>Inspect selected code entry</button>
+        <button id="openApprovedArtifactInspection" class="quiet">Open approved Artifact Inspection</button>
+        <div id="talkPassages" class="talk-passages"><p class="muted">No marked passages.</p></div>
+      </section>
+      <section>
+        <h3>Talk to Write</h3>
+        <label>Copy<select id="talkTransferMode" disabled><option value="complete">Complete transcript</option><option value="entries">Checked entries</option></select></label>
+        <button id="prepareTalkTransfer" class="quiet" disabled>Preview Write document</button>
+      </section>
+      <section class="local-worker-entry">
+        <h3>Supported local workers</h3>
+        <p class="muted">Use the open Talk as the approved source. Selected transcript text is used when you make a note.</p>
+        <button id="talkWorkerRead" class="quiet" disabled>Inspect this approved Talk</button>
+        <button id="talkWorkerStructure" class="quiet" disabled>Show code structure</button>
+        <button id="talkWorkerNote" class="quiet" disabled>Make a note from selected text</button>
+        <button class="quiet" data-builder-open="handoff">Build Handoff</button>
+        <button class="quiet" data-builder-open="prompt">Build Prompt</button>
+      </section>
+      <section>
+        <h3>Export</h3>
+        <label>Format<select id="talkExportFormat" disabled><option value="txt">Plain text</option><option value="md">Markdown</option><option value="json">JSON</option></select></label>
+        <details><summary>Advanced provenance</summary><label class="check"><input id="talkExportProvenance" type="checkbox"> Include internal session, version, hash, and relationship evidence in JSON</label></details>
+        <button id="exportTalkSession" class="quiet" disabled>Export a copy</button>
+        <p id="talkExportResult" class="muted"></p>
+      </section>
+      <section>
+        <h3>Bounded Talk command</h3>
+        <input id="talkCommand" placeholder="For example: Make a snapshot." disabled>
+        <button id="runTalkCommand" class="quiet" disabled>Check command</button>
+        <p id="talkCommandResult" class="muted"></p>
+      </section>
+    </aside>
+  </div>
+  <dialog id="newTalkDialog" class="write-dialog">
+    <form method="dialog">
+      <h3>New Talk session</h3>
+      <p class="muted">This session belongs to the currently selected project and keeps one stable identity.</p>
+      <label>Title<input id="newTalkTitle" value="Untitled Talk" maxlength="300" autocomplete="off"></label>
+      <label>Opening thought (optional)<textarea id="newTalkContent" rows="6"></textarea></label>
+      <div class="dialog-actions"><button value="cancel" class="quiet">Cancel</button><button id="confirmNewTalk" value="default" class="primary">Create Talk</button></div>
+    </form>
+  </dialog>
+  <dialog id="talkSnapshotDialog" class="write-dialog">
+    <form method="dialog">
+      <h3>Name this Talk snapshot</h3>
+      <label>Snapshot name<input id="talkSnapshotLabel" maxlength="200" autocomplete="off"></label>
+      <div class="dialog-actions"><button value="cancel" class="quiet">Cancel</button><button id="confirmTalkSnapshot" value="default" class="primary">Save snapshot</button></div>
+    </form>
+  </dialog>
+  <dialog id="restoreTalkDialog" class="write-dialog">
+    <form method="dialog">
+      <h3>Restore this Talk version?</h3>
+      <p>The Workshop will save the current transcript as a recovery version first.</p>
+      <div class="dialog-actions"><button value="cancel" class="primary" autofocus>Keep current Talk</button><button id="confirmTalkRestore" value="default" class="quiet">Restore version</button></div>
+    </form>
+  </dialog>
+  <dialog id="compareTalkDialog" class="write-dialog write-compare-dialog">
+    <div class="section-head"><h3>Talk comparison</h3><button id="closeTalkCompare" class="quiet">Close</button></div>
+    <div id="talkCompareSummary"></div>
+    <div id="talkCompareDiff" class="write-diff"></div>
+  </dialog>
+</section>
+
+<section class="room music-builder-entry" data-panel="music"><div class="glass panel"><p class="eyebrow">Release 0.13 · Governed Music Room tool</p><h2>Song Production Brief Builder</h2><p class="muted">Prepare a source-bound production brief and manual-use music prompt. No music is generated, played, submitted, or published.</p><button class="primary" data-builder-open="music">Open Song Production Brief Builder</button></div></section>
+
+<section class="room" data-panel="write">
+  <div class="write-toolbar glass">
+    <div class="write-title">
+      <label class="write-project-picker">Open writing project<select id="writeProjectPicker"><option value="">No writing projects yet</option></select></label>
+      <label for="docTitle" class="visually-hidden">Writing project title</label>
+      <input id="docTitle" class="title-input" value="Untitled" maxlength="300" autocomplete="off">
+      <div class="write-state-line"><span id="writeSaveStatus" role="status" aria-live="polite">Open or create a writing project.</span><span id="writeVersionBadge" class="badge">No saved version</span></div>
+    </div>
+    <div class="write-primary-actions">
+      <button id="newDoc" class="quiet">New writing project</button>
+      <button id="snapshotDoc" class="quiet" disabled>Named snapshot</button>
+      <button id="saveDoc" class="primary" disabled>Save now</button>
+      <button id="rollbackWriteRestore" class="quiet" hidden>Undo last restore</button>
+    </div>
+  </div>
+  <div id="writeRecoveryBanner" class="write-recovery" hidden>
+    <div><b>Unsaved recovery draft found</b><p id="writeRecoveryMessage">You can load it or keep the last saved version.</p></div>
+    <div><button id="loadWriteRecovery" class="primary">Load recovery</button><button id="discardWriteRecovery" class="quiet">Discard recovery</button></div>
+  </div>
+  <div class="write-daily-grid">
+    <div class="write-editor-shell glass">
+      <label for="docBody" class="visually-hidden">Writing editor</label>
+      <textarea id="docBody" class="editor" placeholder="Create a writing project to begin." disabled spellcheck="true" autocapitalize="sentences"></textarea>
+      <div class="write-editor-footer"><span id="wordCount">0 words</span><span>Local draft recovery is written as you type.</span></div>
+    </div>
+    <aside class="glass panel write-side">
+      <section>
+        <div class="section-head"><h3>History</h3><button id="refreshWriteHistory" class="link" disabled>Refresh</button></div>
+        <div class="write-compare-controls">
+          <label>Earlier version<select id="compareLeft" disabled></select></label>
+          <label>Later version<select id="compareRight" disabled></select></label>
+          <button id="compareWriteVersions" class="quiet" disabled>Compare</button>
+        </div>
+        <div id="versions" class="write-versions"><p class="muted">No writing project open.</p></div>
+      </section>
+      <section>
+        <h3>Writing actions</h3>
+        <p class="muted">These local actions only prepare a proposal. They never change your writing until you approve it.</p>
+        <label>Action
+          <select id="writeAction" disabled>
+            <option value="inspect">Inspect</option>
+            <option value="summarize">Summarize</option>
+            <option value="clean_formatting">Clean formatting</option>
+            <option value="repeated_passages">Find repeated passages</option>
+            <option value="structure">Show structure</option>
+          </select>
+        </label>
+        <label>Or describe one supported action
+          <input id="writeCommand" placeholder="For example: find repeated passages" disabled>
+        </label>
+        <button id="proposeWriteAction" class="quiet" disabled>Prepare proposal</button>
+      </section>
+      <section class="local-worker-entry">
+        <h3>Supported local workers</h3>
+        <p class="muted">Use this saved Write document as the approved source. Selected editor text is used when you make a note.</p>
+        <button id="writeWorkerRead" class="quiet" disabled>Inspect this approved writing</button>
+        <button id="writeWorkerStructure" class="quiet" disabled>Show code structure</button>
+        <button id="writeWorkerNote" class="quiet" disabled>Make a note from selected text</button>
+        <button class="quiet" data-builder-open="handoff">Build Handoff</button>
+        <button class="quiet" data-builder-open="prompt">Build Prompt</button>
+        <button class="primary" data-builder-open="draft">Open Draft Workshop</button>
+        <button id="openWriteAiStudio" class="primary" disabled>Open Write Studio AI</button>
+      </section>
+      <section>
+        <h3>Export</h3>
+        <div class="write-export-controls">
+          <label>Format<select id="writeExportFormat" disabled><option value="txt">Plain text</option><option value="md">Markdown</option><option value="json">JSON</option></select></label>
+          <details><summary>Advanced provenance</summary><label class="check"><input id="writeExportProvenance" type="checkbox"> Include internal project and version identifiers in JSON</label></details>
+          <button id="exportWriteProject" class="quiet" disabled>Export a copy</button>
+          <p id="writeExportResult" class="muted"></p>
+        </div>
+      </section>
+    </aside>
+  </div>
+  <section id="writeAiStudio" class="write-ai-studio" aria-labelledby="writeAiTitle">
+    <header class="write-ai-head">
+      <div><p class="eyebrow">Local Model Bay · owner-governed proposal desk</p><h2 id="writeAiTitle">Write Studio AI Actions</h2><p>Work on a selection or the whole saved draft. Your original remains authoritative until you explicitly approve and apply a proposal.</p></div>
+      <div class="write-ai-engine"><span id="writeAiEngineState">MODEL STATUS UNKNOWN</span><button id="writeAiStartModel" class="quiet" type="button">Start local model</button></div>
+    </header>
+    <div class="write-ai-controls">
+      <label>Writing action<select id="writeAiAction"></select></label>
+      <label>Inference character<select id="writeAiPreset"><option>Precise</option><option selected>Balanced</option><option>Creative</option></select></label>
+      <label class="wide">Custom instruction (optional)<textarea id="writeAiInstruction" rows="3" maxlength="8000" placeholder="Add a boundary, tone, detail to preserve, or exact creative request."></textarea></label>
+      <div class="write-ai-scope wide"><b id="writeAiScope">Whole draft</b><span id="writeAiScopeDetail">Select text in the editor to target only that passage.</span></div>
+      <details class="write-ai-context wide"><summary>Explicit project context <span id="writeAiContextCount">0 selected</span></summary><p>Choose up to three registered sources. Nothing else in the project is sent to the model.</p><div id="writeAiContextSources"></div></details>
+      <div class="write-ai-command wide"><button id="writeAiCreatePlan" class="primary" type="button">Create source-bound plan</button><button id="writeAiCancel" class="quiet" type="button" disabled>Cancel job</button><span id="writeAiStatus" role="status" aria-live="polite">Ready when a writing project is open.</span></div>
+    </div>
+    <section id="writeAiPlan" class="write-ai-gate" hidden>
+      <div class="section-head"><div><p class="eyebrow">Gate 1 · exact plan</p><h3>Review model request</h3></div><span id="writeAiPlanState" class="status"></span></div>
+      <pre id="writeAiPlanSummary"></pre>
+      <label>Plan approval note<input id="writeAiPlanNote" maxlength="500" value="Approve bounded Write Studio action"></label>
+      <div class="row"><button id="writeAiApprovePlan" class="primary" type="button">Approve plan</button><button id="writeAiRejectPlan" class="quiet" type="button">Reject plan</button><button id="writeAiRun" class="primary" type="button">Run approved plan</button></div>
+    </section>
+    <section id="writeAiResult" class="write-ai-gate" hidden>
+      <div class="section-head"><div><p class="eyebrow">Gate 2 · proposed content</p><h3>Compare original and proposal</h3></div><span id="writeAiResultState" class="status"></span></div>
+      <div class="write-ai-compare"><article><h4>Original target</h4><pre id="writeAiOriginal"></pre></article><article><h4>Local AI proposal</h4><pre id="writeAiProposal"></pre></article></div>
+      <div class="write-ai-speech row"><button id="writeAiReadDraft" class="quiet" type="button">Read current draft aloud</button><button id="writeAiReadProposal" class="quiet" type="button">Read proposal aloud</button><button id="writeAiStopSpeaking" class="quiet" type="button">Stop speaking</button></div>
+      <label>Result approval note<input id="writeAiResultNote" maxlength="500" value="Approve proposed Write Studio result"></label>
+      <div class="row"><button id="writeAiApproveResult" class="primary" type="button">Approve result</button><button id="writeAiRejectResult" class="quiet" type="button">Reject result</button></div>
+      <div id="writeAiApprovedActions" class="write-ai-approved" hidden>
+        <label>Apply method<select id="writeAiApplyMode"><option value="insert">Insert at cursor</option><option value="replace-selection">Replace selected passage</option><option value="replace-whole">Replace whole draft</option></select></label>
+        <div class="row"><button id="writeAiCopy" class="quiet" type="button">Copy proposal</button><button id="writeAiApply" class="quiet" type="button">Apply to editor (unsaved)</button><button id="writeAiSaveVersion" class="primary" type="button">Save as new version</button><button id="writeAiSaveDraft" class="quiet" type="button">Save inactive AI draft</button><button id="writeAiRollbackVersion" class="quiet" type="button" hidden>Roll back AI version</button></div>
+        <p class="muted">Applying changes the editable page only. Saving creates a new Write version; it never changes the selected context sources.</p>
+      </div>
+    </section>
+  </section>
+  <section id="writeProposalPanel" class="glass panel write-proposal" hidden aria-live="polite">
+    <div class="section-head"><div><p class="eyebrow">Source-preserving review gate</p><h3 id="writeProposalTitle">Writing proposal</h3></div><span id="writeProposalStatus" class="status">Awaiting decision</span></div>
+    <div id="writeProposalFindings"></div>
+    <div id="writeProposalDiff" class="write-diff"></div>
+    <label>Decision note (optional)<input id="writeProposalNote" maxlength="500"></label>
+    <div class="row"><button id="approveWriteProposal" class="primary">Approve proposal</button><button id="rejectWriteProposal" class="quiet">Reject proposal</button><button id="rollbackWriteProposal" class="quiet" hidden>Roll back applied proposal</button></div>
+  </section>
+  <dialog id="snapshotDialog" class="write-dialog">
+    <form method="dialog">
+      <h3>Name this snapshot</h3>
+      <p class="muted">The current title and text will become a durable version.</p>
+      <label>Snapshot name<input id="snapshotLabel" maxlength="200" autocomplete="off"></label>
+      <div class="dialog-actions"><button value="cancel" class="quiet">Cancel</button><button id="confirmSnapshot" value="default" class="primary">Save snapshot</button></div>
+    </form>
+  </dialog>
+  <dialog id="newWriteDialog" class="write-dialog">
+    <form method="dialog">
+      <h3>New writing project</h3>
+      <p class="muted">Start blank or add a title and opening text now. You can change both later.</p>
+      <label>Title<input id="newWriteTitle" value="Untitled" maxlength="300" autocomplete="off"></label>
+      <label>Starting text (optional)<textarea id="newWriteContent" rows="8" placeholder="Leave blank to start with an empty page."></textarea></label>
+      <div class="dialog-actions"><button value="cancel" class="quiet">Cancel</button><button id="confirmNewWrite" value="default" class="primary">Create project</button></div>
+    </form>
+  </dialog>
+  <dialog id="restoreWriteDialog" class="write-dialog">
+    <form method="dialog">
+      <h3>Restore this version?</h3>
+      <p id="restoreWriteMessage">The Workshop will first save a recovery version, then restore the selected text.</p>
+      <div class="dialog-actions"><button value="cancel" class="primary" autofocus>Keep current writing</button><button id="confirmWriteRestore" value="default" class="quiet">Restore selected version</button></div>
+    </form>
+  </dialog>
+  <dialog id="compareWriteDialog" class="write-dialog write-compare-dialog">
+    <div class="section-head"><h3>Version comparison</h3><button id="closeWriteCompare" class="quiet">Close</button></div>
+    <div id="writeCompareSummary" class="write-compare-summary"></div>
+    <div id="writeCompareDiff" class="write-diff"></div>
+  </dialog>
+</section>
+
+<section class="room music-studio-room" data-panel="music">
+  <div class="music-studio-shell">
+    <header class="music-studio-header">
+      <div><p class="eyebrow">Music Studio · native Web Audio</p><h2>Groove Bench</h2><p>Play, sequence, arrange, version, and render real local audio. AI ideas remain proposals until you approve and apply them.</p></div>
+      <div class="music-studio-truth"><span id="musicAudioState" class="status">AUDIO READY</span><span id="musicSaveState" class="status">UNSAVED</span></div>
+    </header>
+
+    <section class="music-transport" aria-label="Music transport">
+      <button id="musicPlay" class="primary">Play</button><button id="musicPause" class="quiet">Pause</button><button id="musicStop" class="quiet">Stop</button>
+      <label>BPM <input id="musicBpm" type="number" min="50" max="220" value="92"></label>
+      <label class="check"><input id="musicLoop" type="checkbox" checked> Loop</label>
+      <label>Master <input id="musicMaster" type="range" min="0" max="1" step="0.01" value="0.85"></label>
+      <div class="music-meter" aria-label="Real master audio level"><i id="musicMeterLevel"></i></div><output id="musicTransportState">Stopped</output>
+    </section>
+
+    <section class="music-loop-panel" aria-labelledby="musicLoopDeckTitle">
+      <div class="section-head"><div><p class="eyebrow">Owner audio · governed local sources</p><h3 id="musicLoopDeckTitle">Loop Deck</h3><p>Load real PCM WAV loops, launch them on the beat, stack them, shape them, and capture the performance. Tempo matching changes playback rate and pitch; no hidden time-stretch engine is claimed.</p></div><span class="status">4 LOOP CHANNELS</span></div>
+      <div class="music-loop-import">
+        <label class="file-button primary">Choose WAV<input id="musicLoopFile" type="file" accept="audio/wav,.wav"></label>
+        <label>Target<select id="musicLoopTarget"><option value="0">Loop 1</option><option value="1">Loop 2</option><option value="2">Loop 3</option><option value="3">Loop 4</option></select></label>
+        <label>Source BPM<input id="musicLoopBpm" type="number" min="30" max="300" value="92"></label>
+        <label>Bars<select id="musicLoopBars"><option>1</option><option>2</option><option>4</option><option>8</option></select></label>
+        <button id="musicImportLoop" class="primary">Import inactive loop</button>
+        <label>Loop library<select id="musicLoopLibrary"><option value="">No governed loops yet</option></select></label>
+        <button id="musicLoadLibrary" class="quiet" disabled>Load selected</button>
+      </div>
+      <div class="music-loop-command">
+        <label>Launch timing<select id="musicLoopQuantize"><option value="immediate">Immediately</option><option value="beat">Next beat</option><option value="bar" selected>Next bar</option></select></label>
+        <button id="musicStopAllLoops" class="quiet">Stop all loops</button>
+        <button id="musicCaptureStart" class="record-control">Capture performance</button>
+        <button id="musicCaptureStop" class="quiet" disabled>Stop capture</button>
+        <span id="musicCaptureState" class="status">CAPTURE READY</span><span id="musicCaptureCount" class="status">0 EVENTS</span>
+      </div>
+      <div id="musicLoopDeck" class="music-loop-deck"></div>
+      <p id="musicLoopMessage" class="action-message muted" role="status">No loop is loaded. Imports become inactive, hashed project artifacts; removing a slot never deletes its source.</p>
+    </section>
+
+    <div class="music-work-grid">
+      <section class="music-pad-bank"><div class="section-head"><div><p class="eyebrow">Immediate sound</p><h3>Drum pads</h3></div><small>Pointer or keys 1–5</small></div><div id="musicPads" class="music-pads"></div><div class="music-synth-pad"><div><h3>Synth keys</h3><small>Keys A–K</small></div><div id="musicKeys" class="music-keys"></div></div></section>
+      <section class="music-pattern-bank"><div class="section-head"><div><p class="eyebrow">Four exact patterns</p><h3>Pattern bank</h3></div><span id="musicPatternLabel" class="status">PATTERN A</span></div><div id="musicPatternButtons" class="music-pattern-buttons"></div><div class="row"><label>Copy current to <select id="musicCopyTarget"><option>B</option><option>C</option><option>D</option><option>A</option></select></label><button id="musicCopyPattern" class="quiet">Copy</button><button id="musicClearPattern" class="quiet danger-outline">Clear current</button></div></section>
+    </div>
+
+    <section class="music-sequencer-panel"><div class="section-head"><div><p class="eyebrow">16-step sequencer</p><h3>Pattern editor</h3></div><small>Synth steps cycle through scale notes</small></div><div id="musicSequencer" class="music-sequencer"></div></section>
+    <section class="music-mixer-panel"><div class="section-head"><div><p class="eyebrow">Actual gain graph</p><h3>Track mixer</h3></div><small>Mute and solo affect playback and rendering</small></div><div id="musicMixer" class="music-mixer"></div></section>
+    <section class="music-arrangement-panel"><div class="section-head"><div><p class="eyebrow">Song mode</p><h3>Arrangement</h3></div><label class="check"><input id="musicSongMode" type="checkbox"> Play arrangement</label></div><div id="musicArrangement" class="music-arrangement"></div></section>
+
+    <div class="music-lower-grid">
+      <section class="music-project-panel"><p class="eyebrow">Project artifact</p><h3>Save, reopen, version, rollback</h3><label>Title<input id="musicTitle" maxlength="160" value="Untitled Music Sketch"></label><label>Song / lyric notes<textarea id="musicNotes" rows="5"></textarea></label><div class="row"><button id="musicSave" class="primary">Save new pattern artifact</button><button id="musicSaveVersion" class="quiet">Save version</button><label>Version <select id="musicVersion"></select></label><button id="musicRollback" class="quiet">Restore as new version</button></div><p id="musicProjectStatus" class="action-message muted" role="status">No Music Studio artifact is open.</p></section>
+      <section class="music-render-panel"><p class="eyebrow">Real offline render</p><h3>WAV output</h3><p>Renders the current pattern or arrangement through the same native instrument graph.</p><div class="row"><button id="musicRender" class="primary">Render WAV</button><button id="musicDownload" class="quiet" disabled>Download WAV</button><button id="musicSaveRender" class="quiet" disabled>Save render to My Work</button></div><audio id="musicRenderPreview" controls preload="metadata"></audio><pre id="musicRenderEvidence">No render yet.</pre></section>
+    </div>
+
+    <section class="music-ai-panel"><div class="section-head"><div><p class="eyebrow">Governed local model · optional</p><h3>AI Music Assist</h3><p>Creates a hash-bound proposal. It cannot change the groove until plan approval, inference, result approval, and explicit apply.</p></div><span id="musicAiState" class="status">NO PLAN</span></div><div class="music-ai-controls"><label>Action<select id="musicAiAction"><option>Suggest beat pattern</option><option>Suggest BPM</option><option>Suggest chord progression</option><option>Suggest bassline</option><option>Suggest arrangement</option><option>Suggest song structure</option><option>Suggest instrumentation</option><option>Suggest transition or fill</option><option>Suggest production direction</option><option>Help with lyrics</option></select></label><label>Preset<select id="musicAiPreset"><option>Precise</option><option selected>Balanced</option><option>Creative</option></select></label><label class="wide">Instructions<textarea id="musicAiInstruction" rows="3" placeholder="Optional musical direction"></textarea></label><button id="musicAiCreatePlan" class="primary">Create AI plan</button></div><div id="musicAiPlan" class="music-ai-stage" hidden><pre id="musicAiPlanSummary"></pre><label>Plan approval note<input id="musicAiPlanNote"></label><div class="row"><button id="musicAiApprovePlan" class="primary">Approve plan</button><button id="musicAiRejectPlan" class="quiet">Reject plan</button><button id="musicAiRun" class="primary">Run local model</button></div></div><div id="musicAiResult" class="music-ai-stage" hidden><pre id="musicAiProposal"></pre><label>Result approval note<input id="musicAiResultNote"></label><div class="row"><button id="musicAiApproveResult" class="primary">Approve proposal</button><button id="musicAiRejectResult" class="quiet">Reject proposal</button><button id="musicAiApply" class="primary">Apply approved changes</button></div></div><p id="musicAiMessage" class="action-message muted" role="status">Manual Music Studio remains available with Local AI offline.</p></section>
+  </div>
+</section>
+
+<section class="room twis-image-room" data-panel="image">
+  <header class="media-room-head"><div><p class="eyebrow">Room 07 · Silver-light visual workshop</p><h2>Images</h2><p>Import, mark up, compare, organize, and route real project visuals. Originals stay protected; every saved edit becomes a new inactive asset.</p></div><span id="mediaImageCapability" class="status">CHECKING CAPABILITY</span></header>
+  <section class="media-context-bar" aria-label="Current visual context"><div><small>PROJECT</small><strong id="mediaProjectLabel">No project</strong></div><label><span>ACTIVE SCENE</span><select id="mediaSceneSelect"><option value="">No scene</option></select></label><button id="mediaQuickScene" class="quiet">New scene</button><div><small>IMAGE STATE</small><strong id="mediaSourceState">No image loaded</strong></div></section>
+  <section id="mediaStage" class="media-stage" data-image-drop tabindex="0" role="button" aria-label="Drop an image here or press Enter to choose a local image"><canvas id="imageCanvas" width="1280" height="720" aria-label="Editable image canvas"></canvas><canvas id="backgroundMaskCanvas" width="1280" height="720" aria-label="Foreground selection and keep or remove corrections" hidden></canvas><div id="mediaEmptyState" class="media-empty-state"><strong>DROP IMAGE HERE</strong><span>or choose PNG, JPEG, or WebP · 12 MiB maximum</span></div><div id="mediaDropOverlay" class="media-drop-overlay" hidden>RELEASE TO OPEN ON THE LIGHT TABLE</div><div id="mediaCompare" class="media-compare" hidden><figure><img id="mediaCompareSource" alt="Protected source version"><figcaption>PROTECTED SOURCE</figcaption></figure><figure><img id="mediaCompareCurrent" alt="Current working version"><figcaption>PROPOSED CUTOUT</figcaption></figure></div></section>
+  <div class="media-stage-actions"><label class="file-button primary">Choose image<input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp"></label><button data-media-open-tab="edit" class="quiet">Edit</button><button id="undoImage" class="quiet" disabled>Undo</button><button id="compareImage" class="quiet" disabled>Compare</button><button id="saveImage" class="primary" disabled>Save inactive asset</button><button id="exportPng" class="quiet" disabled>Export PNG</button><p id="mediaCanvasStatus" class="media-stage-status" role="status" aria-live="polite">Ready for a local image.</p></div>
+  <nav class="media-tabs" aria-label="Image workstation views"><button class="active" data-media-tab="work">Work</button><button data-media-tab="edit">Edit</button><button data-media-tab="create">Create</button><button data-media-tab="assets">Assets</button><button data-media-tab="storyboard">Storyboard</button><button data-media-tab="director">Director</button></nav>
+  <div class="media-workspace-panels">
+    <section class="media-view panel" data-media-view="work"><div class="media-work-grid"><div><p class="eyebrow">Current asset</p><label>Asset title<input id="imageTitle" maxlength="180" value="Untitled visual asset"></label><p id="mediaAssetTruth" class="muted">Nothing loaded. Importing is local and does not register the original automatically.</p></div><aside><p class="eyebrow">From Write</p><div id="mediaIncomingRefs"><p class="muted">No writing references routed to Images.</p></div></aside></div></section>
+    <section class="media-view panel" data-media-view="edit" hidden><div class="media-edit-sections"><fieldset><legend>Draw</legend><div class="media-control-row"><button id="drawToggle" class="tool" aria-pressed="false">Draw off</button><label>Brush <input id="brushSize" type="range" min="1" max="80" value="12"></label><label>Color <input id="brushColor" type="color" value="#f3fbff"></label></div><button id="clearImage" class="quiet">Clear working canvas</button></fieldset><fieldset><legend>Text</legend><label>Text<input id="imageText" maxlength="160" placeholder="Owner text"></label><div class="media-control-row"><label>X %<input id="textX" type="number" min="0" max="100" value="8"></label><label>Y %<input id="textY" type="number" min="0" max="100" value="15"></label><label>Size<input id="textSize" type="number" min="12" max="240" value="48"></label><label>Align<select id="textAlign"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select></label><button id="addText" class="tool">Place text</button></div></fieldset><fieldset><legend>Look</legend><div class="media-control-row"><button id="gray" class="tool">Grayscale</button><button id="invert" class="tool">Invert</button><button id="resetImage" class="quiet">Reset to protected source</button></div></fieldset></div><section id="backgroundRemovalPanel" class="background-removal-panel" aria-labelledby="backgroundRemovalTitle"><div class="section-head"><div><p class="eyebrow">Local assisted cutout</p><h3 id="backgroundRemovalTitle">Remove Background</h3><p>Draw around the foreground. Use green Keep or red Remove corrections when needed. OpenCV runs locally; this is not one-click AI.</p></div><span id="backgroundRuntimeState" class="status">CHECKING RUNTIME</span></div><ol class="background-steps"><li>Rectangle</li><li>Correct</li><li>Preview</li><li>Approve</li></ol><div class="background-tools"><button id="backgroundRectangle" class="primary" disabled>Draw foreground rectangle</button><button id="backgroundKeep" class="quiet" disabled>Keep brush</button><button id="backgroundRemove" class="quiet" disabled>Remove brush</button><label>Correction size<input id="backgroundBrushSize" type="range" min="4" max="80" value="24"></label><button id="backgroundReset" class="quiet" disabled>Reset mask</button><button id="backgroundPreview" class="primary" disabled>Preview cutout</button></div><div id="backgroundProposalActions" class="background-proposal-actions" hidden><label>Derived asset title<input id="backgroundResultTitle" maxlength="180"></label><div class="row"><button id="backgroundApprove" class="primary">Approve &amp; save inactive variation</button><button id="backgroundReject" class="danger">Reject proposal</button></div></div><p id="backgroundRemovalStatus" class="action-message muted" role="status" aria-live="polite">Load a registered Images V2 asset to begin.</p><p class="background-limit">Difficult hair, fur, transparency, clutter, and low-contrast edges may need correction. The protected source is never overwritten.</p></section><section id="backgroundCompositionPanel" class="background-composition-panel" aria-labelledby="backgroundCompositionTitle"><div class="section-head"><div><p class="eyebrow">Governed canvas composite</p><h3 id="backgroundCompositionTitle">Compose Background</h3><p>Place the current registered image over a solid color, restrained gradient, or another registered project image. Preview first; saving requires a separate owner approval.</p></div><span class="status">LOCAL CANVAS</span></div><div class="composition-tools"><label>Background<select id="compositeMode"><option value="solid">Solid color</option><option value="gradient">Gradient</option><option value="image">Registered image</option></select></label><label id="compositeColorALabel">Primary color<input id="compositeColorA" type="color" value="#07131b"></label><label id="compositeColorBLabel" hidden>Secondary color<input id="compositeColorB" type="color" value="#236a7a"></label><label id="compositeDirectionLabel" hidden>Direction<select id="compositeDirection"><option value="vertical">Top to bottom</option><option value="horizontal">Left to right</option><option value="diagonal-down">Diagonal down</option><option value="diagonal-up">Diagonal up</option></select></label><label id="compositeImageLabel" hidden>Project image<select id="compositeBackgroundAsset"><option value="">Choose registered image</option></select></label><button id="compositePreview" class="primary" disabled>Preview composite</button><button id="compositeReset" class="quiet" disabled>Clear proposal</button></div><div id="compositeProposalActions" class="background-proposal-actions" hidden><label>Composite title<input id="compositeResultTitle" maxlength="180"></label><div class="row"><button id="compositeApprove" class="primary">Approve &amp; save inactive composite</button><button id="compositeReject" class="danger">Reject proposal</button></div></div><p id="compositeStatus" class="action-message muted" role="status" aria-live="polite">Load a registered image to begin. Transparent cutouts show the selected background most clearly.</p><p class="background-limit">The foreground and any registered backdrop remain unchanged. The approved composite is a new inactive image with source hashes and operation provenance.</p></section></section>
+    <section class="media-view panel media-create-truth" data-media-view="create" hidden><div><p class="eyebrow">Generation capability</p><h3>No image generator is connected</h3><p>TWIS can prepare a governed visual brief and manual-use prompt. It cannot honestly render a new image until a compatible registered worker and its required ComfyUI environment exist.</p><button class="primary" data-builder-open="visual">Open Visual Brief Builder</button></div><aside><strong>COMFYUI</strong><span>NOT INSTALLED · NOT CLAIMED</span><p class="muted">No models, workflows, custom nodes, or runtime were added by this release.</p></aside></section>
+    <section class="media-view panel" data-media-view="assets" hidden><div class="section-head"><div><p class="eyebrow">Project shelf</p><h3>Visual assets</h3></div><button id="mediaRefreshAssets" class="quiet">Refresh</button></div><div id="mediaAssetShelf" class="media-asset-shelf"></div></section>
+    <section class="media-view panel" data-media-view="storyboard" hidden><div class="media-storyboard-tools"><details><summary>Create a scene</summary><div class="media-form"><label>Scene title<input id="mediaSceneTitle" maxlength="180"></label><label>Description<textarea id="mediaSceneDescription" rows="3"></textarea></label><button id="mediaCreateScene" class="primary">Create inactive scene</button></div></details><div><label>Image<select id="mediaImageSelect"></select></label><label>Duration seconds<input id="mediaDuration" type="number" min="0.25" max="3600" step="0.25" value="4"></label><label>Transition note<input id="mediaTransition" maxlength="500" placeholder="Cut, dissolve, or owner direction"></label><button id="mediaCreateStoryboard" class="primary">Add frame to active scene</button></div></div><div id="mediaStoryboardList" class="media-storyboard-list"></div></section>
+    <section class="media-view panel media-director" data-media-view="director" hidden><div><p class="eyebrow">Governed direction</p><h3>Prepare the next visual decision</h3><p>Selected project context can be routed into a Visual Brief proposal. No semantic critique, generation, or source change is claimed without an approved compatible worker.</p><button class="primary" data-builder-open="visual">Prepare visual direction</button></div><pre id="mediaCapabilityEvidence"></pre></section>
+  </div>
+</section>
+
+<section class="room" data-panel="video">
+  <button class="room-return quiet" data-room="crossroads">← Crossroads</button>
+  <div class="video-workstation" id="videoWorkstation">
+    <header class="video-room-head"><div><p class="eyebrow">ROOM 09 · PROJECTION BAY</p><h2>Video Workstation</h2><p>Put the scene together: governed visuals, music, timing, motion, and titles become a real local video.</p></div><div class="video-runtime"><span id="videoRuntimeState" class="status">CHECKING RENDERER</span><small id="videoRuntimeDetail">No generative video. No provider.</small></div></header>
+    <nav class="video-primary-actions" aria-label="Video primary actions">
+      <button id="videoAddStoryboard" class="primary">Add Storyboard</button><button id="videoAddImage">Add Image</button><button id="videoAddMusic">Add Music</button><button id="videoAddTitle">Add Title</button><button id="videoPlay" class="video-play">▶ Play</button><button id="videoStop">■ Stop</button><button id="videoSave">Save</button><button id="videoRender" class="video-render">Render MP4</button>
+    </nav>
+    <section class="video-main-stage">
+      <div class="video-preview-bay" aria-label="Video composition preview">
+        <div id="videoPreviewStage" class="video-preview-stage"><div class="video-projector-idle"><b>PREVIEW</b><span>Add a storyboard or image to begin.</span></div><img id="videoPreviewImage" alt=""><div id="videoPreviewMotion" aria-hidden="true"></div><div id="videoPreviewTitle"></div></div>
+        <div class="video-preview-readout"><span id="videoTimeReadout">00:00.0 / 00:00.0</span><span id="videoPreviewTruth">Browser preview · final render uses FFmpeg</span></div>
+        <audio id="videoPreviewAudio" preload="metadata"></audio>
+        <video id="videoRenderedOutput" controls preload="metadata" hidden></video>
+      </div>
+      <aside class="video-inspector">
+        <label>Composition name<input id="videoCompositionTitle" maxlength="300" value="Untitled video composition"></label>
+        <label>Scene<select id="videoSceneSelect"><option value="">No scene reference</option></select></label>
+        <div id="videoClipInspector" class="video-tool-group"><h3>Selected visual</h3><p class="muted">Select a timeline clip.</p></div>
+        <details id="videoAudioPanel"><summary>Audio settings</summary><label>Volume<input id="videoAudioVolume" type="range" min="0" max="2" step="0.05" value="1"></label><label>Start <input id="videoAudioStart" type="number" min="0" max="300" step="0.1" value="0"></label><label>Fade in <input id="videoAudioFadeIn" type="number" min="0" max="10" step="0.1" value="0"></label><label>Fade out <input id="videoAudioFadeOut" type="number" min="0" max="10" step="0.1" value="0"></label><label class="check"><input id="videoAudioMuted" type="checkbox"> Mute composition audio</label></details>
+        <details><summary>Render settings</summary><label>Size<select id="videoRenderSize"><option value="480p">Draft 480p</option><option value="720p" selected>Standard 720p</option></select></label><label>Quality<select id="videoRenderQuality"><option value="draft">Draft</option><option value="standard" selected>Standard</option><option value="high">High</option></select></label><small>MP4 · H.264 · 30 FPS · AAC when music is attached</small></details>
+      </aside>
+    </section>
+    <section class="video-timeline-bay">
+      <header><div><p class="eyebrow">WHAT HAPPENS WHEN</p><h3>Timeline</h3></div><div><span id="videoClipCount">0 VISUALS</span><span id="videoDuration">0.0 SECONDS</span></div></header>
+      <div class="video-track"><b>VISUAL</b><div id="videoVisualTrack" class="video-track-items"><p class="muted">No visual clips.</p></div></div>
+      <div class="video-track"><b>AUDIO</b><div id="videoAudioTrack" class="video-track-items"><p class="muted">No music selected.</p></div></div>
+      <div class="video-track"><b>TEXT</b><div id="videoTextTrack" class="video-track-items"><p class="muted">No titles.</p></div></div>
+      <div class="video-playhead" id="videoPlayhead" aria-hidden="true"></div>
+    </section>
+    <section class="video-source-bays">
+      <details id="videoStoryboardBay" open><summary>Storyboard frames</summary><div id="videoStoryboardSources" class="video-source-grid"></div></details>
+      <details id="videoImageBay"><summary>Visual assets</summary><div id="videoImageSources" class="video-source-grid"></div></details>
+      <details id="videoMusicBay"><summary>Music renders</summary><div id="videoMusicSources" class="video-source-grid"></div></details>
+      <details id="videoWritingBay"><summary>Writing and routed context</summary><div id="videoWritingSources" class="video-source-grid"></div></details>
+      <details><summary>Saved compositions and outputs</summary><div id="videoSavedWork" class="video-source-grid"></div></details>
+      <details><summary>Video Production Brief Builder</summary><p class="muted">The existing governed brief builder remains available for planning work that is not yet ready for the timeline.</p><button class="quiet" data-builder-open="video">Open Video Production Brief Builder</button></details>
+    </section>
+    <p id="videoStatus" class="video-status" role="status" aria-live="polite">Nothing rendered. Sources remain unchanged.</p>
+  </div>
+</section>
+
+<section class="room" data-panel="research"><div class="two"><div class="glass panel"><h2>Expedition notebook</h2><label>Mission<textarea id="mission" rows="4"></textarea></label><label>Findings<textarea id="findings" rows="11"></textarea></label><label>Sources<textarea id="sources" rows="6"></textarea></label><button id="saveResearch" class="primary">Save expedition</button></div><aside class="glass panel"><h3>Evidence Compare</h3><p class="muted">Compare 2 to 8 registered text sources with exact hashes. Semantic conclusions remain unassessed unless you complete them separately.</p><button class="primary" data-builder-open="compare">Open Evidence Compare</button><hr><h3>Question finder</h3><div id="questionDeck"></div><button id="newQuestions" class="quiet">New questions</button></aside></div></section>
+
+<section class="room" data-panel="code">
+  <section class="glass panel capability-bay" aria-labelledby="buildAdvisorTitle">
+    <div class="section-head capability-bay-head"><div><p class="eyebrow">Room 10 · Blueprint table · free-first decision</p><h2 id="buildAdvisorTitle">What capability do you need?</h2><p class="muted">Describe the result. TWIS checks verified local capability, hardware fit, permissions, cost, and known candidates before proposing a build path. Nothing executes or installs here.</p></div><span class="status">PROPOSAL ONLY</span></div>
+    <div class="capability-advisor">
+      <div><label>Capability request<textarea id="buildCapabilityRequest" rows="5" maxlength="2000" placeholder="For example: remove a background from a selected image without using a paid service"></textarea></label><div class="capability-actions"><button id="capabilityRecommend" class="primary">Check current capability</button><button id="capabilityPrepareBuild" class="quiet" hidden>Prepare governed work order</button><button id="capabilityPrepareModule" class="quiet" hidden>Create our own proposal</button></div></div>
+      <div id="capabilityRecommendation" class="capability-recommendation" role="status" aria-live="polite"><h4>No decision yet</h4><p>TWIS will prefer a verified free fit. An unavailable or merely discovered option is never presented as ready.</p></div>
+    </div>
+  </section>
+  <section class="glass panel"><div class="section-head"><div><h2>Build Work Order Builder</h2><p class="muted">Turn the decision and optional registered sources into a hash-bound work order with separate plan and result approval. No code, shell command, file change, provider submission, or deployment is executed.</p></div><span class="status">ACTIVE TOOL</span></div><button class="primary" data-builder-open="build">Open Build Work Order Builder</button></section>
+  <details class="glass panel"><summary>Existing project file bench</summary><div class="code-layout"><div><div class="section-head"><h2>Project files</h2><button id="refreshTree" class="quiet">Refresh</button></div><div id="fileTree" class="file-tree"></div></div><div><div class="toolbar"><input id="codePath" placeholder="project-id/code/file.txt"><button id="saveCode" class="primary">Save file</button></div><textarea id="codeEditor" class="code-editor" spellcheck="false"></textarea></div></div></details>
+</section>
+
+<section class="room" data-panel="import"><div class="two"><div class="glass panel"><h2>Recover old work</h2><p class="muted">Enter a folder path from this computer. The companion copies it into the active project, hashes safe files, skips secrets/caches/dependencies, and records a receipt.</p><label>Folder path<input id="importPath" placeholder="C:\Users\Owner\Documents\Old Project"></label><button id="importFolder" class="primary">Import folder</button><pre id="importResult"></pre><hr><h2>Import FlashRiver package</h2><p class="muted">Paste the local ZIP path. The raw package and nested source ZIPs stay local. Public-safe docs become searchable Workshop artifacts.</p><label>FlashRiver ZIP path<input id="flashriverPath" placeholder="C:\Users\Owner\Downloads\FLASHRIVER_TWIS_WORKSHOP_AGENT_HANDOFF_PACKAGE.zip"></label><label>Expected SHA-256<input id="flashriverSha" value="6ef7317722202769b08d74a434519871736e055d1864fa5eb6c6fb547cb40108"></label><div class="toolbar"><button id="importFlashriver" class="primary">Import FlashRiver package</button><button id="reviewFlashriver" class="quiet">Review in My Work</button></div><pre id="flashriverResult"></pre></div><aside class="glass panel"><h3>What gets preserved</h3><p class="muted">Original filename, imported path, source location, file size, SHA-256 hash, source authority state, skipped-file list, and a receipt.</p><h3>FlashRiver boundary</h3><p class="muted">The handoff package is local authority. GitHub gets safe code/docs/tests only. Cloudflare is not private source storage.</p></aside></div></section>
+
+<section class="room" data-panel="work">
+  <div class="section-head"><h2>My Work</h2><div><input id="workSearch" placeholder="Search"><select id="workKind"><option value="all">Everything</option><option value="idea">Inactive ideas</option><option value="document">Writing</option><option value="writing-draft">Draft Workshop outputs</option><option value="research-comparison-draft">Evidence Compare outputs</option><option value="visual-brief-draft">Visual Brief outputs</option><option value="conversation">Conversations</option><option value="note">Worker notes</option><option value="music">Music patterns</option><option value="music-loop">Music loops</option><option value="music-render">Music audio renders</option><option value="image">Images</option><option value="video-composition">Video compositions</option><option value="video-render">Rendered videos</option><option value="video">Legacy video notes</option><option value="research">Research</option><option value="flashriver-intake-manifest">FlashRiver manifests</option><option value="flashriver-core-doc">FlashRiver docs</option><option value="flashriver-support-doc">FlashRiver support docs</option><option value="flashriver-private-source">FlashRiver private sources</option><option value="flashriver-visual">FlashRiver visuals</option></select></div></div>
+  <section id="builderWorkspace" class="glass panel builder-workspace" aria-labelledby="builderTitle">
+    <div class="section-head"><div><p class="eyebrow">Release 0.10 · Governed writing tools</p><h2 id="builderTitle">Prepare work for its next destination</h2><p class="muted">Draft Workshop and the Release 0.9 builders share one hash-bound approval flow. Nothing is sent, executed, or applied to a source.</p></div><span id="builderStatus" class="status" role="status">Ready</span></div>
+    <div class="builder-grid">
+      <fieldset><legend>1. Selected sources</legend><p id="builderSourceCount" class="muted">0 selected</p><div id="builderSources" class="builder-sources"><p class="muted">Open My Work to load registered sources.</p></div></fieldset>
+      <div class="builder-controls">
+        <label>2. Builder type<select id="builderType"><option value="handoff">Handoff Builder</option><option value="prompt">Prompt Builder</option><option value="draft">Draft Workshop</option><option value="ai">Local AI Rewrite Assist</option><option value="compare">Evidence Compare</option><option value="visual">Visual Brief Builder</option></select></label>
+        <label>3. Operation or destination<select id="builderProfile"></select></label>
+        <section id="builderAiControls" class="builder-ai-controls" hidden><p class="muted">This explicit action uses only the enabled registered model on 127.0.0.1. The source remains unchanged and the result is proposed content.</p><label>Sampling preset<select id="builderInferencePreset"><option>Precise</option><option selected>Balanced</option><option>Creative</option></select></label><dl class="ai-preset-truth"><div><dt>Precise</dt><dd>temperature 0.1 · top-p 0.85 · max 512</dd></div><div><dt>Balanced</dt><dd>temperature 0.45 · top-p 0.9 · max 768</dd></div><div><dt>Creative</dt><dd>temperature 0.8 · top-p 0.95 · max 1024</dd></div></dl></section>
+        <label id="builderRoughLabel" hidden>Owner-entered rough text (use instead of selecting a source)<textarea id="builderRoughText" rows="8" maxlength="524288" placeholder="Paste rough text here. It remains local and hash-bound."></textarea></label>
+        <section id="builderVisualControls" class="builder-visual-controls" hidden>
+          <label>Owner-entered visual notes<textarea id="builderVisualNotes" rows="5" maxlength="524288" placeholder="Describe the visual idea. Notes are hash-bound temporary input, not a permanent source."></textarea></label>
+          <details open><summary>Core concept</summary><div class="builder-optional-grid">
+            <label>Concept title<input id="visualConceptTitle" maxlength="300"></label><label>Central subject<input id="visualCentralSubject" maxlength="4000"></label>
+            <label>Setting<input id="visualSetting" maxlength="4000"></label><label>Mood and emotion<input id="visualMoodEmotion" maxlength="4000"></label>
+            <label>Visual style<input id="visualStyle" maxlength="4000"></label><label>Realism level<input id="visualRealismLevel" maxlength="4000"></label>
+          </div></details>
+          <details><summary>Composition, light, and color</summary><div class="builder-optional-grid">
+            <label>Composition<input id="visualComposition" maxlength="4000"></label><label>Camera viewpoint<input id="visualCameraViewpoint" maxlength="4000"></label>
+            <label>Lighting<input id="visualLighting" maxlength="4000"></label><label>Color direction<input id="visualColorDirection" maxlength="4000"></label>
+            <label>Aspect ratio<input id="visualAspectRatio" maxlength="4000" placeholder="For example: square 1:1"></label>
+          </div></details>
+          <details><summary>Required and prohibited details</summary><div class="builder-optional-grid">
+            <label>Required text<textarea id="visualRequiredText" rows="3" maxlength="4000"></textarea></label><label>Prohibited text<textarea id="visualProhibitedText" rows="3" maxlength="4000"></textarea></label>
+            <label>Required elements<textarea id="visualRequiredElements" rows="3" maxlength="4000"></textarea></label><label>Prohibited elements<textarea id="visualProhibitedElements" rows="3" maxlength="4000"></textarea></label>
+            <label>Reference-source priority<input id="visualReferenceSourcePriority" maxlength="4000" placeholder="For example: Source 1 controls facts; Source 2 controls tone"></label>
+          </div></details>
+        </section>
+        <label id="builderGoalLabel">4. Goal or continuation instruction<textarea id="builderGoal" rows="6" maxlength="8000" placeholder="Describe the exact continuation or task."></textarea></label>
+        <div class="row"><button id="builderPrepare" class="primary">Prepare hash-bound plan</button><button id="builderCancel" class="quiet" disabled>Cancel</button></div>
+      </div>
+    </div>
+    <section id="builderPlan" class="builder-review" hidden><div class="section-head"><h3>Plan preview</h3><span id="builderPlanState" class="status"></span></div><div id="builderPlanSummary" class="truth-grid"></div><label>Plan approval note<input id="builderPlanNote" maxlength="500" placeholder="Required to approve"></label><div class="row"><button id="builderApprovePlan" class="primary">Approve plan</button><button id="builderRejectPlan" class="quiet">Reject plan</button><button id="builderRun" class="primary" hidden>Generate proposal</button><button id="builderRecover" class="quiet" hidden>Recover interrupted job</button></div></section>
+    <section id="builderResult" class="builder-review" hidden><div class="section-head"><h3>Full proposal</h3><span id="builderValidation" class="status"></span></div><pre id="builderProposal" class="builder-proposal"></pre><label>Result approval note<input id="builderResultNote" maxlength="500" placeholder="Required to approve"></label><div class="row"><button id="builderApproveResult" class="primary">Approve proposal</button><button id="builderRejectResult" class="quiet">Reject proposal</button><button id="builderSave" class="quiet" hidden>Save inactive draft</button><button id="builderExportTxt" class="quiet" hidden>Export plain text</button><button id="builderExportMd" class="quiet" hidden>Export Markdown</button><button id="builderExportJson" class="quiet" hidden>Export JSON</button><button id="builderRollback" class="quiet" hidden>Roll back draft</button></div><p id="builderExportResult" class="muted"></p></section>
+  </section>
+  <section class="glass panel local-worker-kit" aria-labelledby="localWorkerKitTitle">
+    <div class="section-head">
+      <div><p class="eyebrow">Release 0.8 · First nanite crew</p><h2 id="localWorkerKitTitle">Supported local workers</h2><p class="muted">Each worker receives one approved source and the minimum content it needs. Nothing attaches, activates, installs, imports, or runs automatically.</p></div>
+      <span id="localWorkerKitStatus" class="status" role="status" aria-live="polite">Loading local workers</span>
+    </div>
+    <div id="localWorkerCards" class="local-worker-cards"></div>
+    <div class="local-worker-builder">
+      <label>Approved source<select id="localWorkerSource"><option value="">Choose work from this project</option></select></label>
+      <label>Supported action<select id="localWorkerChoice"><option value="">Choose an action</option></select></label>
+      <label class="wide">What you want this worker to do<input id="localWorkerPurpose" maxlength="500" placeholder="For example: show me the structure of this code"></label>
+      <label class="wide" id="localWorkerSelectionLabel" hidden>Selected source text<textarea id="localWorkerSelection" rows="5" readonly></textarea></label>
+      <label id="localWorkerNoteTitleLabel" hidden>Proposed note title<input id="localWorkerNoteTitle" maxlength="300" value="Workshop note"></label>
+      <details id="localWorkerPackageExpectations" class="wide" hidden>
+        <summary>Expected package contents</summary>
+        <p class="muted">Optional. Enter one safe relative path per line. Add <code>=SHA-256</code> when a known hash is available.</p>
+        <textarea id="localWorkerExpectedMembers" rows="6" placeholder="docs/readme.md&#10;src/app.py=ABC123..."></textarea>
+      </details>
+      <div class="wide row"><button id="prepareLocalWorkerPlan" class="primary">Prepare worker plan</button><button id="refreshLocalWorkerKit" class="quiet">Refresh workers and history</button></div>
+    </div>
+    <section id="localWorkerPlanPanel" class="local-worker-review" hidden>
+      <div class="section-head"><div><p class="eyebrow">Review before anything runs</p><h3>Worker plan</h3></div><span id="localWorkerPlanState" class="status"></span></div>
+      <div id="localWorkerPlanSummary" class="truth-grid"></div>
+      <label>Approval note<input id="localWorkerPlanNote" maxlength="500" placeholder="Required to approve"></label>
+      <div class="row"><button id="approveLocalWorkerPlan" class="primary">Approve plan</button><button id="rejectLocalWorkerPlan" class="quiet">Reject plan</button><button id="runLocalWorkerJob" class="primary" hidden>Run approved worker</button><button id="cancelLocalWorkerJob" class="quiet">Cancel</button><button id="recoverLocalWorkerJob" class="quiet" hidden>Recover interrupted job</button></div>
+      <details><summary>Advanced plan and contract evidence</summary><pre id="localWorkerPlanAdvanced"></pre></details>
+    </section>
+    <section id="localWorkerResultPanel" class="local-worker-review" hidden>
+      <div class="section-head"><div><p class="eyebrow">Validated output is evidence, not approval</p><h3>Proposed result</h3></div><span id="localWorkerResultState" class="status"></span></div>
+      <div id="localWorkerResultSummary"></div>
+      <label id="localWorkerResultNoteLabel">Decision note<input id="localWorkerResultNote" maxlength="500" placeholder="Required to approve"></label>
+      <div class="row"><button id="approveLocalWorkerResult" class="primary">Approve result</button><button id="rejectLocalWorkerResult" class="quiet">Reject result</button><button id="rollbackLocalWorkerResult" class="quiet" hidden>Roll back created note</button></div>
+      <details><summary>Advanced output and evidence</summary><pre id="localWorkerResultAdvanced"></pre></details>
+    </section>
+    <div class="section-head local-worker-history-head"><h3>Worker job history</h3><span class="badge">Receipts stay after safe history cleanup</span></div>
+    <div id="localWorkerHistory" class="local-worker-history"><p class="muted">No worker jobs loaded.</p></div>
+  </section>
+  <div id="workList" class="list"></div>
+</section>
+
+
+<section class="room" data-panel="flashriver-review">
+  <div class="section-head review-head"><div><p class="eyebrow">Local source archive</p><h2>FlashRiver Review</h2><p class="muted">Inspect and classify imported material. Original source files are never modified here.</p></div><div><input id="frReviewSearch" placeholder="Search imported artifacts"><select id="frReviewStatus"><option value="all">All statuses</option><option value="unreviewed">Unreviewed</option><option value="reviewed">Reviewed</option><option value="current_candidate">Current candidate</option><option value="superseded">Superseded</option><option value="conflicted">Conflicted</option><option value="private_source">Private source</option><option value="do_not_use">Do not use</option></select><button id="frCompare" class="quiet">Compare selected</button></div></div>
+  <div id="frReviewSummary" class="review-summary"></div>
+  <div id="frReviewWarnings"></div>
+  <div id="frReviewGroups" class="review-groups"></div>
+  <dialog id="frReviewDialog" class="review-dialog"><div class="section-head"><h3 id="frDialogTitle">Artifact</h3><button id="frDialogClose" class="quiet">Close</button></div><div id="frDialogBody"></div></dialog>
+</section>
+
+<section class="room" data-panel="modules">
+  <div class="section-head"><div><p class="eyebrow">Room 13 · Parts vault</p><h2>Modules</h2><p class="muted">The registry below reports static local registration truth. Inactive scaffolds are not installed or enabled. Proposals do not install or execute anything.</p></div><span class="badge">Local-first · honest registry</span></div>
+  <section id="capabilityBay" class="glass panel capability-bay" aria-labelledby="capabilityBayTitle">
+    <div class="section-head capability-bay-head"><div><p class="eyebrow">Canonical local capability contract</p><h3 id="capabilityBayTitle">Capability Bay</h3><p class="muted">One evidence-backed registry for native tools, workers, Agent Skills, protocols, runtimes, and known candidates. Registered does not mean installed; installed does not mean healthy; discovered does not mean executable.</p></div><div class="capability-actions"><button id="capabilityCompassHandoff" class="quiet">Catalog Artifact Compass finding</button><span id="capabilityBayState" class="status">NOT LOADED</span></div></div>
+    <div id="capabilityHardware" class="capability-hardware" aria-label="Measured hardware profile"></div>
+    <div class="capability-toolbar"><label>Find a capability<input id="capabilitySearch" type="search" maxlength="200" placeholder="Search by task, engine, type, or status"></label><button id="capabilityRefresh" class="quiet">Refresh verified state</button></div>
+    <div class="capability-filters" aria-label="Capability filters"><button type="button" class="quiet" data-capability-filter="verified" aria-pressed="false">Verified</button><button type="button" class="quiet" data-capability-filter="discovered" aria-pressed="false">Discovered</button><button type="button" class="quiet" data-capability-filter="installed" aria-pressed="false">Installed</button><button type="button" class="quiet" data-capability-filter="free" aria-pressed="false">Free</button><button type="button" class="quiet" data-capability-filter="local" aria-pressed="false">Local</button><button type="button" class="quiet" data-capability-filter="offline" aria-pressed="false">Offline</button><button type="button" class="quiet" data-capability-filter="workers" aria-pressed="false">Workers</button><button type="button" class="quiet" data-capability-filter="skills" aria-pressed="false">Skills</button><button type="button" class="quiet" data-capability-filter="mcp" aria-pressed="false">MCP</button><button type="button" class="quiet" data-capability-filter="creative" aria-pressed="false">Creative</button><button type="button" class="quiet" data-capability-filter="ai" aria-pressed="false">AI</button><button type="button" class="quiet" data-capability-filter="media" aria-pressed="false">Media</button><button type="button" class="quiet" data-capability-filter="development" aria-pressed="false">Development</button><button type="button" class="quiet" data-capability-filter="experimental" aria-pressed="false">Experimental</button><button type="button" class="quiet" data-capability-filter="degraded" aria-pressed="false">Degraded</button><button type="button" class="quiet" data-capability-filter="retired" aria-pressed="false">Retired</button></div>
+    <div class="section-head"><div><h4>Registered capabilities</h4><p id="capabilityRegistryHash" class="muted">Registry not loaded.</p></div><span id="capabilityCount" class="badge">0 registered</span></div>
+    <div id="capabilityList" class="capability-grid"><p class="muted">Loading capability truth.</p></div>
+    <section id="capabilityDetail" class="capability-detail" hidden aria-live="polite"></section>
+    <section id="capabilityInspection" class="capability-inspection" hidden aria-labelledby="capabilityInspectionTitle">
+      <div class="section-head"><div><p class="eyebrow">Governed proving ground</p><h4 id="capabilityInspectionTitle">Capability Inspection</h4><p id="capabilityInspectionSummary" class="muted">Select a capability to inspect its exact source, dependency, hardware, permission, and evidence state.</p></div><span id="capabilityInspectionState" class="status">NO INSPECTION</span></div>
+      <ol class="inspection-stages" aria-label="Inspection stages"><li data-inspection-stage="source">Source</li><li data-inspection-stage="dependencies">Dependencies</li><li data-inspection-stage="hardware">Hardware</li><li data-inspection-stage="permissions">Permissions</li><li data-inspection-stage="test">Test</li><li data-inspection-stage="evidence">Evidence</li><li data-inspection-stage="decision">Decision</li></ol>
+      <div class="inspection-actions"><button id="capabilityInspect" class="primary" type="button">Create static inspection plan</button><button id="capabilityPlanApprove" class="quiet" type="button" disabled>Approve exact plan</button><button id="capabilityPlanReject" class="quiet" type="button" disabled>Reject plan</button><button id="capabilityRunInspection" class="quiet" type="button" disabled>Run approved static inspection</button></div>
+      <label>Owner decision note<textarea id="capabilityInspectionNote" maxlength="4000" placeholder="Required for plan and evidence decisions"></textarea></label>
+      <div id="capabilityInspectionTruth" class="inspection-truth"><p class="muted">Discovery grants no execution authority. A static plan performs no capability execution, download, install, network request, or owner-source access.</p></div>
+      <div class="inspection-actions"><button id="capabilityOwnerVerify" class="primary" type="button" disabled>Verify exact evidence</button><button id="capabilityOwnerBlock" class="quiet" type="button" disabled>Block capability</button><button id="capabilityOwnerIncompatible" class="quiet" type="button" disabled>Mark incompatible</button></div>
+      <details><summary>Exact plan and evidence</summary><pre id="capabilityInspectionEvidence">No inspection evidence.</pre></details>
+    </section>
+    <div id="capabilityProtocols" class="capability-protocols" aria-label="Extension protocol readiness"></div>
+  </section>
+  <section class="glass panel"><div class="section-head"><div><h3>Module Proposal Builder</h3><p class="muted">Create a governed future-module specification with separate plan and result approval, inactive saving, export, recovery, and rollback.</p></div><span class="status">ACTIVE TOOL</span></div><button class="primary" data-builder-open="module">Open Module Proposal Builder</button></section>
+  <section id="modelBay" class="glass panel model-bay" aria-labelledby="modelBayTitle">
+    <div class="section-head"><div><p class="eyebrow">Release 0.17 · Registered local inference</p><h3 id="modelBayTitle">Local AI Model Bay</h3><p class="muted">One fixed CPU-first llama.cpp runtime. Models are registered and hash-verified; rooms request task categories and never own model paths.</p></div><span id="modelBayState" class="status">UNKNOWN</span></div>
+    <div class="model-bay-actions"><button id="modelBayVerify" class="quiet">Verify files and hashes</button><button id="modelBayStart" class="primary">Start local model</button><button id="modelBayHealth" class="quiet">Run real inference health test</button><button id="modelBayStop" class="quiet">Stop local model</button></div>
+    <p id="modelBayMessage" class="action-message muted" role="status" aria-live="polite">No state loaded.</p>
+    <div id="modelBayTruth" class="truth-grid"></div>
+    <details><summary>Fixed task routes and last inference evidence</summary><pre id="modelBayEvidence">Not loaded.</pre></details>
+  </section>
+  <div id="moduleGrid" class="module-grid"></div>
+  <div class="glass panel worker-harness-panel">
+    <div class="section-head"><div><p class="eyebrow">Foundation 0.5 - owner-truth control panel</p><h2>Guarded Worker Harness</h2><p class="muted">This panel reports the real fixed-worker, artifact, plan, candidate, approval, attachment, receipt, and rollback state. Source artifacts remain unchanged; approval and attachment are separate hash-bound actions.</p></div><span id="workerHarnessStatus" class="status">Not loaded</span></div>
+    <div id="workerLifecycleOverview" class="worker-lifecycle" aria-label="Current guarded lifecycle"></div>
+    <div class="worker-toolbar">
+      <label>Human actor assertion (not authenticated)<input id="workerActor" value="local-owner" maxlength="100"></label>
+      <label>Fixed worker<select id="workerSelect"><option value="artifact-compass-inspection-worker">Artifact Compass Inspection</option><option value="reference-metadata-worker">Reference metadata proof</option></select></label>
+      <button id="validateSelectedWorker" class="quiet">Validate Worker Card</button>
+      <button id="planSelectedWorker" class="quiet">Create execution plan</button>
+      <button id="runSelectedWorker" class="primary" disabled>Run planned worker</button>
+      <button id="refreshWorkerCandidates" class="quiet">Refresh governed state</button>
+    </div>
+    <div id="artifactInspectionSelection" class="worker-selection">
+      <label>Explicit public-safe artifact<select id="inspectionArtifact" aria-describedby="inspectionArtifactDetails"></select></label>
+      <button id="refreshInspectionArtifacts" class="quiet">Refresh artifact eligibility</button>
+      <button class="quiet" data-builder-open="handoff">Build Handoff</button>
+      <button class="quiet" data-builder-open="prompt">Build Prompt</button>
+      <div id="inspectionEligibility" class="eligibility-summary"><span>Artifact eligibility has not been loaded.</span></div>
+      <div id="inspectionArtifactDetails" class="truth-panel muted">Select an eligible artifact to see its exact identity.</div>
+      <details><summary>Ineligible artifacts and reasons</summary><div id="inspectionBlockedArtifacts" class="muted"></div></details>
+    </div>
+    <section id="workerCardPanel" class="truth-section" hidden>
+      <div class="section-head"><div><p class="eyebrow">Validated authority</p><h3>Worker Card summary</h3></div><span id="workerCardValidity" class="status">Not validated</span></div>
+      <div id="workerCardSummary" class="truth-grid"></div>
+      <details id="workerCardTechnical"><summary>Technical view - full validated Worker Card</summary><pre id="workerCardOutput"></pre></details>
+    </section>
+    <section id="workerPlanReview" class="truth-section">
+      <div class="section-head"><div><p class="eyebrow">Owner review gate</p><h3>Execution-plan authority</h3></div><span id="workerPlanValidity" class="status">No current plan</span></div>
+      <div id="workerPlanSummary" class="truth-grid"><p class="muted">Create a plan, then review its real authority before execution.</p></div>
+      <details id="workerPlanDetails"><summary>Technical view - exact execution-plan JSON</summary><pre id="workerPlanOutput">No plan created.</pre></details>
+    </section>
+    <div id="workerHarnessMessage" class="action-message muted" role="status" aria-live="polite">Awaiting local state refresh.</div>
+    <details class="action-log"><summary>Action history for this page session</summary><ol id="workerActionLog"><li>No actions yet.</li></ol></details>
+    <div class="section-head"><h3>Inspection and promotion candidates</h3><span class="badge">Explicit hash + generation required · source + card + plan bound</span></div>
+    <div id="workerCandidates" class="worker-candidates"><p class="muted">No candidates loaded.</p></div>
+  </div>
+</section>
+
+<section class="room" data-panel="settings"><div class="two"><div class="glass panel"><h2>Workshop settings</h2><label>Your name<input id="userName"></label><label>Companion name<input id="companionName"></label><label class="check"><input id="speakReplies" type="checkbox"> Speak replies</label><label class="check"><input id="lowMotion" type="checkbox"> Low-motion mode</label><button id="saveSettings" class="primary">Save settings</button></div><div class="glass panel"><h3>Local AI</h3><label class="check"><input id="localAiEnabled" type="checkbox"> Enable the registered local Model Bay</label><label>Default text model<input id="localAiDefaultModel" readonly value="liquid-lfm2.5-1.2b-instruct-q4-k-m"></label><label>Runtime binding<input id="localAiBinding" readonly value="127.0.0.1:8876"></label><label class="check"><input id="localAiAutostart" type="checkbox" disabled> Auto-start local model (OFF in Release 0.17)</label><button id="saveLocalAI" class="quiet">Save Local AI setting</button><p id="localAiSettingsStatus" class="muted">Model runtime is optional; Workshop startup never depends on it.</p><hr><h3>Cloudflare remote access</h3><p class="muted">Tunnel and Access policy are administered outside browser code. Credentials are never stored here. Remote roles are accepted only after origin-side Access JWT validation.</p><span class="status">LOCAL OR VERIFIED ACCESS ONLY</span></div></div></section>
+</main></div><div id="toast" class="toast"></div><link rel="stylesheet" href="assets/music-studio.css"><link rel="stylesheet" href="assets/video-workstation.css"><script src="assets/navigation-state.js"></script><script src="assets/music-engine.js"></script><script src="assets/app.js"></script><script src="assets/music-room.js"></script><script src="assets/video-workstation.js"></script><script src="assets/write-room.js"></script><script src="assets/talk-room.js"></script><script src="assets/local-worker-kit.js"></script><script src="assets/builder-workspace.js"></script><script src="assets/capability-bay.js"></script><script src="assets/model-bay.js"></script><script src="assets/worker-harness-view.js"></script><script src="assets/worker-harness.js"></script><script src="assets/flashriver-import-ui.js"></script><script src="assets/flashriver-review.js"></script>
+<link rel="stylesheet" href="assets/remote-access.css"><script src="assets/shell-0.14.js"></script><script src="assets/room-system.js"></script><script src="assets/ui-coherence.js"></script><script src="assets/remote-access.js"></script></body></html>

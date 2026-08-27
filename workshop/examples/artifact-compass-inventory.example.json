@@ -1,0 +1,18 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "example-001",
+      "project_id": "example-project",
+      "source_path": "C:\\Example\\Notes\\Foundation Plan.txt",
+      "sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "status": "draft",
+      "provenance": {
+        "kind": "human-authored",
+        "source": "local example fixture"
+      },
+      "content_text": "Foundation example phrase",
+      "size_bytes": 25,
+      "modified_ns": 0
+    }
+  ]
+}

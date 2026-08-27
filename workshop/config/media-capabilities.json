@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "twis-media-capability-registry-v1",
+  "contractVersion": "1.0.0",
+  "capabilities": [
+    {
+      "id": "image.canvas-edit",
+      "state": "AVAILABLE",
+      "runtime": "browser-canvas-2d",
+      "executionClass": "inline-local",
+      "operations": ["import", "draw", "text", "grayscale", "invert", "reset", "export-png", "save-governed-asset"]
+    },
+    {
+      "id": "image.background-removal-assisted",
+      "state": "AVAILABLE",
+      "runtime": "opencv-grabcut-cpu-4.14.0.94",
+      "executionClass": "governed-local-proposal",
+      "operations": ["foreground-rectangle", "keep-brush", "remove-brush", "preview", "compare", "approve-inactive-variation", "reject"],
+      "limitations": "Assisted GrabCut is not one-click AI. Hair, fur, transparency, clutter, and low-contrast edges can need correction."
+    },
+    {
+      "id": "media.scene-context",
+      "state": "AVAILABLE",
+      "runtime": "twis-local-companion",
+      "executionClass": "governed-local",
+      "operations": ["create-scene", "attach-reference", "route-between-rooms", "storyboard-item"]
+    },
+    {
+      "id": "image.generate",
+      "state": "UNAVAILABLE",
+      "workflowContract": "comfyui-image-generate-v1",
+      "compatibleWorkers": [],
+      "reason": "No registered compatible worker, ComfyUI runtime, approved workflow, or image model is present."
+    },
+    {
+      "id": "image.inpaint",
+      "state": "UNAVAILABLE",
+      "workflowContract": "comfyui-image-inpaint-v1",
+      "compatibleWorkers": [],
+      "reason": "No registered compatible worker, ComfyUI runtime, approved workflow, or inpaint model is present."
+    },
+    {
+      "id": "image.upscale",
+      "state": "UNAVAILABLE",
+      "workflowContract": "comfyui-image-upscale-v1",
+      "compatibleWorkers": [],
+      "reason": "No registered compatible worker, ComfyUI runtime, approved workflow, or upscaler is present."
+    },
+    {
+      "id": "image.animate",
+      "state": "UNAVAILABLE",
+      "workflowContract": "comfyui-image-animate-v1",
+      "compatibleWorkers": [],
+      "reason": "No registered compatible worker, ComfyUI runtime, approved workflow, or video model is present."
+    },
+    {
+      "id": "video.render",
+      "state": "AVAILABLE",
+      "runtime": "ffmpeg-9.0.1-portable",
+      "compatibleWorkers": ["twis-video-render-adapter-v1"],
+      "operations": ["still-sequence", "music-attach", "title-overlay", "cut", "crossfade", "zoom", "pan", "mp4-h264-aac"],
+      "reason": "The bounded local adapter accepts registered artifact IDs, verified hashes, and fixed presets only."
+    }
+  ],
+  "runtimes": [
+    {
+      "id": "browser-canvas-2d",
+      "state": "AVAILABLE",
+      "network": false,
+      "shell": false,
+      "authority": "owner-browser-session"
+    },
+    {
+      "id": "twis-local-companion",
+      "state": "AVAILABLE",
+      "network": "loopback-only",
+      "shell": false,
+      "authority": "existing-twis-companion"
+    },
+    {
+      "id": "opencv-grabcut-cpu-4.14.0.94",
+      "state": "AVAILABLE",
+      "network": false,
+      "shell": "fixed-adapter-only",
+      "authority": "explicit-owner-preview-and-result-approval",
+      "persistentProcess": false,
+      "manifest": "config/background-removal-runtime.json"
+    },
+    {
+      "id": "comfyui",
+      "state": "NOT_INSTALLED",
+      "network": false,
+      "shell": false,
+      "authority": "none"
+    },
+    {
+      "id": "ffmpeg-9.0.1-portable",
+      "state": "AVAILABLE",
+      "network": false,
+      "shell": "fixed-arguments-only",
+      "authority": "twis-video-render-adapter-v1",
+      "manifest": "config/ffmpeg-runtime.json"
+    }
+  ],
+  "workerContracts": [
+    {
+      "id": "twis-background-removal-worker-v1",
+      "state": "REGISTERED",
+      "runtime": "opencv-grabcut-cpu-4.14.0.94",
+      "input": "registered-image-id plus exact source hash plus bounded owner mask controls",
+      "output": "proposed transparent PNG",
+      "arbitraryCommand": false,
+      "arbitraryPath": false,
+      "network": false,
+      "automaticExecution": false,
+      "automaticSave": false,
+      "explicitOwnerPreview": true,
+      "explicitOwnerResultApproval": true
+    },
+    {
+      "id": "twis-video-render-adapter-v1",
+      "state": "REGISTERED",
+      "runtime": "ffmpeg-9.0.1-portable",
+      "input": "twis-video-composition-v1",
+      "output": "twis-video-render-v1",
+      "arbitraryCommand": false,
+      "network": false,
+      "automaticExecution": false,
+      "explicitOwnerRender": true
+    },
+    {
+      "id": "comfyui-compatible-media-worker-v1",
+      "state": "UNREGISTERED",
+      "runtime": "comfyui",
+      "workflowFormat": "ComfyUI API JSON",
+      "mustAdvertise": ["workerId", "workerVersion", "runtimeVersion", "workflowIds", "nodeTypes", "modelHashes", "hardwareClass", "outputTypes"],
+      "mustReturn": ["jobId", "workflowHash", "inputHashes", "modelHashes", "outputHash", "runtimeReceipt"],
+      "automaticActivation": false
+    }
+  ],
+  "workflowContracts": [
+    {
+      "id": "comfyui-image-generate-v1",
+      "state": "COMPATIBILITY_ONLY",
+      "requires": ["registered-compatible-worker", "approved-workflow-json", "required-node-manifest", "approved-model-hashes", "prompt", "seed", "dimensions"],
+      "output": "governed image asset"
+    },
+    {
+      "id": "comfyui-image-inpaint-v1",
+      "state": "COMPATIBILITY_ONLY",
+      "requires": ["registered-compatible-worker", "approved-workflow-json", "required-node-manifest", "source-image-hash", "mask-hash", "approved-model-hashes", "prompt"],
+      "output": "new governed image version"
+    },
+    {
+      "id": "comfyui-image-upscale-v1",
+      "state": "COMPATIBILITY_ONLY",
+      "requires": ["registered-compatible-worker", "approved-workflow-json", "required-node-manifest", "source-image-hash", "approved-model-hashes", "scale"],
+      "output": "new governed image version"
+    },
+    {
+      "id": "comfyui-image-animate-v1",
+      "state": "COMPATIBILITY_ONLY",
+      "requires": ["registered-compatible-worker", "approved-workflow-json", "required-node-manifest", "source-image-hash", "approved-model-hashes", "motion-brief"],
+      "output": "governed video draft"
+    }
+  ]
+}

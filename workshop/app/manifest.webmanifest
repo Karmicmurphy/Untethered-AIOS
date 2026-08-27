@@ -1,0 +1,9 @@
+{
+  "name": "Twis Holo Workshop",
+  "short_name": "Twis Holo",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05080d",
+  "theme_color": "#071019",
+  "icons": []
+}

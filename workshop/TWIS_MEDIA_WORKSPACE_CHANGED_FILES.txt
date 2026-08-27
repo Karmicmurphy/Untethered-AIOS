@@ -1,0 +1,37 @@
+TWIS IMAGES V2 OWNER-USABLE WORKSTATION — CHANGED FILE DECLARATION
+
+Replacements only; no additions and no removals.
+
+Product/UI
+- app/assets/app.js
+- app/assets/media-workspace.css
+- app/assets/media-workspace.js
+- app/index.html
+- app/service-worker.js
+- companion/media_workspace.py
+- companion/server.py
+
+Contract and release evidence
+- docs/TWIS_MEDIA_WORKSPACE_CONTRACT_V1.md
+- TWIS_MEDIA_WORKSPACE_CANDIDATE_MANIFEST.txt
+- TWIS_MEDIA_WORKSPACE_CHANGED_FILES.txt
+- TWIS_MEDIA_WORKSPACE_DEPLOYED_MANIFEST.txt
+- TWIS_MEDIA_WORKSPACE_RELEASE.md
+- TWIS_MEDIA_WORKSPACE_ROLLBACK.md
+- TWIS_MEDIA_WORKSPACE_VERIFICATION.md
+
+Bounded tests and inherited cache assertions
+- tests/local-worker-kit-ui.test.js
+- tests/media-workspace-ui.test.js
+- tests/music-studio-ui.test.js
+- tests/room-system-ui.test.js
+- tests/shell-ui.test.js
+- tests/talk-room-ui.test.js
+- tests/test_media_workspace.py
+- tests/test_worker_harness_ui.py
+- tests/write-room-ui.test.js
+
+Database migration: none.
+Database replacement: none.
+ComfyUI/model/runtime installation: none.
+HubUI architecture: none.

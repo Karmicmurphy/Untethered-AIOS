@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.2",
+  "worker_id": "future-worker",
+  "version": "0.1.0",
+  "lifecycle_status": "draft",
+  "purpose": "This fixture must be rejected because its schema is not supported.",
+  "accepted_input_types": ["text"],
+  "produced_output_types": ["text"],
+  "allowed_read_roots": ["C:\\TWIS_TEST\\input"],
+  "allowed_write_roots": [],
+  "blocked_roots": [],
+  "network_allowed": false,
+  "shell_allowed": false,
+  "destructive_actions_allowed": false,
+  "approval_required": false,
+  "timeout_seconds": 10,
+  "test_commands": ["python -m pytest"],
+  "failure_policy": {"on_validation_error": "reject", "on_runtime_error": "fail_closed", "retry_count": 0},
+  "receipt_required": true,
+  "source_provenance": {"kind": "human-authored", "source": "invalid fixture"}
+}

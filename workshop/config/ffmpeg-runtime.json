@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "twis-portable-runtime-v1",
+  "runtimeId": "ffmpeg-9.0.1-portable",
+  "displayName": "FFmpeg 9.0.1 Essentials",
+  "version": "9.0.1-essentials_build-www.gyan.dev",
+  "platform": "windows-x86_64",
+  "sourcePage": "https://ffmpeg.org/download.html",
+  "binarySource": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
+  "archiveSha256": "fec81ae03971d9dd4be3ebe02e263bd2ec1d789483f931bdba5f5715e65da2e9",
+  "ffmpegSha256": "72a489eccd008c2ec2c0a5856c5c75bc3d8bbfa90166c4566865c246445e6aa3",
+  "ffprobeSha256": "19202b23c0043f15ad1b7bce2344f406fd52bd6efd8f995ce02e7392a1cec52f",
+  "relativeInstallRoot": "runtime/ffmpeg/9.0.1",
+  "systemPathModified": false,
+  "networkAtRuntime": false,
+  "requiredFeatures": ["libx264", "aac", "xfade", "zoompan", "drawtext", "afade"],
+  "license": "GPLv3; bundled license is retained beside the portable binaries"
+}

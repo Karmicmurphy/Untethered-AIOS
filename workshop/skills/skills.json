@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "skills": [
+    {
+      "id": "write-story",
+      "name": "Write Story",
+      "inputs": [
+        "prompt",
+        "project-context"
+      ],
+      "outputs": [
+        "document"
+      ],
+      "permissions": [
+        "artifact:create"
+      ],
+      "cost": "free-core"
+    },
+    {
+      "id": "repair-conversation",
+      "name": "Harness Repair",
+      "inputs": [
+        "conversation",
+        "constraints"
+      ],
+      "outputs": [
+        "repair-packet"
+      ],
+      "permissions": [
+        "artifact:create"
+      ],
+      "cost": "free-core"
+    },
+    {
+      "id": "research-expedition",
+      "name": "Research Expedition",
+      "inputs": [
+        "mission"
+      ],
+      "outputs": [
+        "expedition-record"
+      ],
+      "permissions": [
+        "network:optional",
+        "artifact:create"
+      ],
+      "cost": "free-core/cloud-optional"
+    },
+    {
+      "id": "make-beat",
+      "name": "Make Beat",
+      "inputs": [
+        "tempo",
+        "pattern"
+      ],
+      "outputs": [
+        "music-project",
+        "wav"
+      ],
+      "permissions": [
+        "audio:play",
+        "download:create"
+      ],
+      "cost": "free-core"
+    },
+    {
+      "id": "edit-image",
+      "name": "Edit Image",
+      "inputs": [
+        "image"
+      ],
+      "outputs": [
+        "image-project",
+        "png"
+      ],
+      "permissions": [
+        "selected-file:read",
+        "download:create"
+      ],
+      "cost": "free-core"
+    },
+    {
+      "id": "build-module",
+      "name": "Build Workshop Module",
+      "inputs": [
+        "module-brief"
+      ],
+      "outputs": [
+        "module-files"
+      ],
+      "permissions": [
+        "project-files:write",
+        "execution:approval"
+      ],
+      "cost": "free-core"
+    }
+  ]
+}

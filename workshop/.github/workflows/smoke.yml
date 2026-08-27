@@ -1,0 +1,26 @@
+name: Smoke Test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Python syntax
+        run: python -m py_compile companion/server.py companion/remote_access.py companion/visitor_bench.py
+      - name: App JavaScript syntax
+        run: node --check app/assets/app.js && node --check app/assets/remote-access.js
+      - name: Smoke test
+        run: python tests/smoke_test.py

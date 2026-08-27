@@ -1,0 +1,17 @@
+# Copy to a protected Cloudflare service configuration directory.
+# Never put the real tunnel UUID, credential path, domain, or token in Git.
+tunnel: REPLACE_WITH_TUNNEL_UUID
+credentials-file: C:\ProgramData\Cloudflare\REPLACE_WITH_TUNNEL_UUID.json
+
+ingress:
+  - hostname: workshop.example.invalid
+    service: http://127.0.0.1:8787
+  - hostname: bench.example.invalid
+    service: http://127.0.0.1:8787
+  - hostname: preview.example.invalid
+    service: http://127.0.0.1:8787
+  - service: http_status:404
+
+# Keep the public hostname in the origin Host header. TWIS treats only an actual
+# loopback Host with no Cloudflare headers as the trusted local desktop path.
+

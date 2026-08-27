@@ -1,0 +1,118 @@
+.capability-bay {
+  --bay-cyan: #60eaff;
+  --bay-brass: #d4a95e;
+  border-color: rgba(96, 234, 255, .34);
+  background:
+    linear-gradient(135deg, rgba(96, 234, 255, .055), transparent 38%),
+    linear-gradient(315deg, rgba(212, 169, 94, .045), transparent 42%),
+    rgba(5, 13, 20, .94);
+}
+.capability-bay-head { align-items: flex-start; gap: 1rem; }
+.capability-bay-head .status { white-space: nowrap; }
+.capability-toolbar,
+.capability-filters,
+.capability-actions { display: flex; flex-wrap: wrap; gap: .55rem; align-items: end; }
+.capability-toolbar label { flex: 1 1 18rem; margin: 0; }
+.capability-filters { margin: .8rem 0; }
+.capability-filters button[aria-pressed="true"] {
+  color: #021117;
+  border-color: var(--bay-cyan);
+  background: var(--bay-cyan);
+}
+.capability-hardware {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 1rem 0;
+  border: 1px solid rgba(212, 169, 94, .25);
+  background: rgba(212, 169, 94, .15);
+}
+.capability-hardware div { min-width: 0; padding: .7rem; background: #08131c; }
+.capability-hardware small,
+.capability-card small,
+.capability-detail dt { display: block; color: #8ba8b8; font: 600 .69rem/1.35 var(--mono, monospace); letter-spacing: .075em; text-transform: uppercase; }
+.capability-hardware b { display: block; margin-top: .2rem; overflow-wrap: anywhere; color: #e9fbff; }
+.capability-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+.capability-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .45rem .8rem;
+  min-width: 0;
+  padding: .85rem;
+  color: inherit;
+  text-align: left;
+  border: 1px solid rgba(137, 178, 195, .28);
+  border-radius: 2px;
+  background: #091720;
+}
+.capability-card:hover,
+.capability-card:focus-visible { border-color: var(--bay-cyan); box-shadow: 0 0 0 1px rgba(96, 234, 255, .25); }
+.capability-card[data-selected="true"] { border-color: var(--bay-cyan); background: #0b202a; }
+.capability-card[data-status="DISCOVERED"],
+.capability-card[data-status="TESTING"] { border-style: dashed; }
+.capability-card[data-fit="UNSUPPORTED"],
+.capability-card[data-fit="TOO HEAVY"],
+.capability-card[data-status="INCOMPATIBLE"],
+.capability-card[data-status="BLOCKED"] { border-color: rgba(255, 94, 91, .58); }
+.capability-card strong { overflow-wrap: anywhere; color: #f2fdff; }
+.capability-card p { grid-column: 1 / -1; margin: 0; color: #a9bec9; font-size: .84rem; }
+.capability-card .capability-state { color: var(--bay-cyan); font: 700 .7rem/1.2 var(--mono, monospace); }
+.capability-card[data-status="DISCOVERED"] .capability-state { color: var(--bay-brass); }
+.capability-detail {
+  margin-top: .8rem;
+  padding: .9rem;
+  border: 1px solid rgba(96, 234, 255, .22);
+  background: rgba(3, 10, 15, .82);
+}
+.capability-detail[hidden] { display: none; }
+.capability-detail h4 { margin: 0 0 .7rem; color: #f3fdff; }
+.capability-detail dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7rem; margin: 0; }
+.capability-detail dd { margin: .18rem 0 0; overflow-wrap: anywhere; color: #d3e5ed; }
+.capability-inspection { margin-top: .85rem; padding: .9rem; border: 1px dashed rgba(212, 169, 94, .6); background: #071118; }
+.capability-inspection[hidden] { display: none; }
+.inspection-stages { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 1px; padding: 0; margin: .8rem 0; list-style: none; background: rgba(96,234,255,.15); border: 1px solid rgba(96,234,255,.2); }
+.inspection-stages li { padding: .55rem .35rem; text-align: center; color: #8ba8b8; background: #08131c; font: 700 .66rem/1.2 var(--mono, monospace); text-transform: uppercase; }
+.inspection-stages li[data-state="complete"] { color: #8fffc4; border-bottom: 2px solid #5be7a0; }
+.inspection-stages li[data-state="current"] { color: #071116; background: var(--bay-cyan); }
+.inspection-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin: .7rem 0; }
+.capability-inspection textarea { min-height: 4.5rem; }
+.inspection-truth { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; margin-top: .7rem; }
+.inspection-truth article { min-width: 0; padding: .65rem; border: 1px solid rgba(137,178,195,.25); background: #091720; }
+.inspection-truth article small { display: block; color: #8ba8b8; text-transform: uppercase; }
+.inspection-truth article b { display: block; margin-top: .2rem; overflow-wrap: anywhere; }
+.capability-inspection pre { max-height: 24rem; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+.capability-advisor {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(16rem, .65fr);
+  gap: .9rem;
+}
+.capability-advisor textarea { min-height: 7rem; }
+.capability-recommendation { min-height: 7rem; padding: .85rem; border: 1px dashed rgba(96, 234, 255, .35); background: #08141c; }
+.capability-recommendation[data-state="verified"] { border-style: solid; border-color: rgba(91, 231, 160, .58); }
+.capability-recommendation[data-state="proposal"] { border-color: rgba(212, 169, 94, .62); }
+.capability-recommendation h4 { margin: 0 0 .35rem; }
+.capability-recommendation p { margin: .25rem 0; }
+.capability-protocols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; margin-top: .85rem; }
+.capability-protocols article { padding: .75rem; border: 1px solid rgba(137, 178, 195, .22); background: #08131b; }
+.capability-protocols h4 { margin: 0 0 .35rem; }
+.capability-protocols p { margin: .18rem 0; color: #a9bec9; font-size: .82rem; }
+@media (max-width: 760px) {
+  .capability-grid,
+  .capability-advisor,
+  .capability-protocols { grid-template-columns: 1fr; }
+  .capability-hardware { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .capability-detail dl { grid-template-columns: 1fr; }
+  .inspection-stages { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .inspection-truth { grid-template-columns: 1fr; }
+}
+@media (max-width: 410px) {
+  .capability-hardware { grid-template-columns: 1fr; }
+  .capability-actions > button,
+  .capability-toolbar > button,
+  .inspection-actions > button { flex: 1 1 100%; min-height: 44px; }
+  .inspection-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .capability-bay *, .capability-bay *::before, .capability-bay *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}

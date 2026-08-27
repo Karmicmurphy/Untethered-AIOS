@@ -1,0 +1,15 @@
+{
+  "name": "ollie-twis-holo-workshop",
+  "version": "0.17.0",
+  "private": true,
+  "description": "Local-first Twis Holo Workshop with optional Cloudflare remote hull.",
+  "type": "module",
+  "scripts": {
+    "test": "python -m pytest tests && node --test tests/flashriver-navigation.test.js tests/worker-harness-view.test.js tests/write-room-ui.test.js tests/talk-room-ui.test.js tests/local-worker-kit-ui.test.js tests/builder-workspace-ui.test.js tests/model-bay-ui.test.js tests/capability-bay-ui.test.js tests/shell-ui.test.js tests/room-system-ui.test.js tests/music-studio-ui.test.js tests/media-workspace-ui.test.js tests/video-workstation-ui.test.js && node --check app/assets/app.js && node --check app/assets/media-workspace.js && node --check app/assets/music-engine.js && node --check app/assets/music-room.js && node --check app/assets/video-workstation.js && node --check app/assets/talk-room.js && node --check app/assets/write-room.js && node --check app/assets/local-worker-kit.js && node --check app/assets/builder-workspace.js && node --check app/assets/model-bay.js && node --check app/assets/capability-bay.js && node --check app/assets/shell-0.14.js && node --check app/assets/room-system.js && node --check app/assets/worker-harness-view.js && node --check app/assets/worker-harness.js && node --check app/assets/flashriver-import-ui.js && node --check app/assets/flashriver-review.js && node --check app/service-worker.js",
+    "test:static": "python -m pytest tests",
+    "test:js": "node --test tests/flashriver-navigation.test.js tests/worker-harness-view.test.js tests/write-room-ui.test.js tests/talk-room-ui.test.js tests/local-worker-kit-ui.test.js tests/builder-workspace-ui.test.js tests/model-bay-ui.test.js tests/capability-bay-ui.test.js tests/shell-ui.test.js tests/room-system-ui.test.js tests/music-studio-ui.test.js tests/media-workspace-ui.test.js tests/video-workstation-ui.test.js && node --check app/assets/app.js && node --check app/assets/media-workspace.js && node --check app/assets/music-engine.js && node --check app/assets/music-room.js && node --check app/assets/video-workstation.js && node --check app/assets/talk-room.js && node --check app/assets/write-room.js && node --check app/assets/local-worker-kit.js && node --check app/assets/builder-workspace.js && node --check app/assets/model-bay.js && node --check app/assets/capability-bay.js && node --check app/assets/shell-0.14.js && node --check app/assets/room-system.js && node --check app/assets/worker-harness-view.js && node --check app/assets/worker-harness.js && node --check app/assets/flashriver-import-ui.js && node --check app/assets/flashriver-review.js && node --check app/service-worker.js",
+    "test:e2e": "python tests/e2e_api_test.py && python -m pytest tests/test_worker_harness_api_e2e.py tests/test_artifact_inspection_api_e2e.py",
+    "smoke": "python tests/smoke_test.py",
+    "foundation": "python -m companion.foundation.cli --help"
+  }
+}

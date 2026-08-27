@@ -1,0 +1,36 @@
+TWIS MUSIC STUDIO — DECLARED FILE SCOPE
+
+REPLACEMENTS (15)
+app/index.html
+app/service-worker.js
+app/assets/app.js
+companion/builder_output.py
+companion/local_worker_kit.py
+companion/model_bay.py
+companion/server.py
+package.json
+tests/local-worker-kit-ui.test.js
+tests/room-system-ui.test.js
+tests/shell-ui.test.js
+tests/talk-room-ui.test.js
+tests/test_model_bay.py
+tests/test_worker_harness_ui.py
+tests/write-room-ui.test.js
+
+ADDITIONS (11)
+TWIS_MUSIC_STUDIO_RELEASE.md
+TWIS_MUSIC_STUDIO_CANDIDATE_MANIFEST.txt
+TWIS_MUSIC_STUDIO_DEPLOYED_MANIFEST.txt
+TWIS_MUSIC_STUDIO_VERIFICATION.md
+TWIS_MUSIC_STUDIO_CHANGED_FILES.txt
+app/assets/music-engine.js
+app/assets/music-room.js
+app/assets/music-studio.css
+docs/TWIS_MUSIC_STUDIO_ROLLBACK.md
+tests/music-studio-ui.test.js
+tests/test_music_studio.py
+
+REMOVALS (0)
+
+No database, model/runtime, launcher, cache, bytecode, browser evidence, test environment, rendered verification WAV, or rollback-package file is a deployment member.
+

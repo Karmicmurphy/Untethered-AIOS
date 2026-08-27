@@ -1,0 +1,15 @@
+TWIS WRITE STUDIO AI ACTIONS - DEPLOYED MANIFEST
+Status: EXPECTED DEPLOYED EQUALITY; final equality is established by the deployment verifier
+Scope: 21 files = 15 replacements + 6 additions + 0 removals
+Database members: 0
+Cache / temporary / bytecode members: 0
+Model or runtime members: 0
+
+Authoritative candidate manifest:
+FOUNDATION_WRITE_STUDIO_AI_ACTIONS_CANDIDATE_MANIFEST.txt
+SHA-256: D84CC1335AEA2C7A65A461A67C5B56A638D97F0926714BF6467A64C728D08707
+
+The deployed payload is required to match every path, byte count, disposition,
+and SHA-256 recorded in the authoritative candidate manifest. No path outside
+that declared scope is authorized for deployment. This manifest's standalone
+SHA-256 is recorded by the deployment verifier after this file is frozen.

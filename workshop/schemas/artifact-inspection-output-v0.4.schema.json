@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://twis.local/schemas/artifact-inspection-output-v0.4.schema.json",
+  "title": "Artifact Compass Inspection Output v0.4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_id", "source_path", "source_sha256", "file_type",
+    "byte_count", "line_count", "word_count", "headings", "code_symbols", "links",
+    "likely_document_purpose", "todo_fixme_markers", "duplicate_hash_group",
+    "provenance_references", "review_status", "warnings", "inspection_timestamp",
+    "inspector_version"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.4"},
+    "artifact_id": {"type": "string", "minLength": 1, "maxLength": 200},
+    "source_path": {"type": "string", "minLength": 3},
+    "source_sha256": {"$ref": "#/$defs/sha256"},
+    "file_type": {"enum": ["text/plain", "text/markdown", "application/json", "text/x-python", "text/javascript", "text/html", "text/css"]},
+    "byte_count": {"type": "integer", "minimum": 0, "maximum": 524288},
+    "line_count": {"type": "integer", "minimum": 0},
+    "word_count": {"type": "integer", "minimum": 0},
+    "headings": {"$ref": "#/$defs/boundedObjects"},
+    "code_symbols": {"$ref": "#/$defs/boundedObjects"},
+    "links": {"$ref": "#/$defs/boundedObjects"},
+    "likely_document_purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "classification", "rule"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "classification": {"const": "heuristic_not_fact"},
+        "rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "todo_fixme_markers": {"$ref": "#/$defs/boundedObjects"},
+    "duplicate_hash_group": {"type": "array", "maxItems": 100, "items": {"type": "object"}},
+    "provenance_references": {"type": "array", "maxItems": 100, "items": {"type": "object"}},
+    "review_status": {"type": "string", "minLength": 1},
+    "warnings": {"type": "array", "maxItems": 256, "uniqueItems": true, "items": {"type": "string"}},
+    "inspection_timestamp": {"type": "string", "format": "date-time"},
+    "inspector_version": {"const": "0.4.0"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "boundedObjects": {"type": "array", "maxItems": 256, "items": {"type": "object"}}
+  }
+}

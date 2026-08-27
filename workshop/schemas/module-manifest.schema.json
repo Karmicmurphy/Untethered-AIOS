@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Module Manifest",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "version",
+    "room",
+    "execution",
+    "permissions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "room": {
+      "type": "string"
+    },
+    "execution": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cost": {
+      "type": "string"
+    },
+    "enabledByDefault": {
+      "type": "boolean"
+    }
+  }
+}

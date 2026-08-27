@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "worker_id": "bounded-file-worker",
+  "version": "0.1.0",
+  "lifecycle_status": "draft",
+  "purpose": "Exercise declared read and write roots through the separate path-containment library.",
+  "accepted_input_types": ["text-file"],
+  "produced_output_types": ["text-file"],
+  "allowed_read_roots": ["C:\\TWIS_TEST\\input"],
+  "allowed_write_roots": ["C:\\TWIS_TEST\\output"],
+  "blocked_roots": ["C:\\TWIS_TEST\\private"],
+  "network_allowed": false,
+  "shell_allowed": false,
+  "destructive_actions_allowed": false,
+  "approval_required": false,
+  "timeout_seconds": 10,
+  "test_commands": ["python -m pytest tests/test_path_policy.py"],
+  "failure_policy": {
+    "on_validation_error": "reject",
+    "on_runtime_error": "record_failure",
+    "retry_count": 0
+  },
+  "receipt_required": true,
+  "source_provenance": {
+    "kind": "human-authored",
+    "source": "Foundation Release 0.2 test fixture"
+  }
+}

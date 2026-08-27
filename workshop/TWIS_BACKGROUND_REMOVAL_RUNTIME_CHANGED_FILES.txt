@@ -1,0 +1,42 @@
+TWIS BACKGROUND REMOVAL RUNTIME + IMAGES V2 — CHANGED FILE DECLARATION
+Status: VERIFIED CANDIDATE — NOT DEPLOYED
+Database migration: none
+Removals: 0
+
+APPLICATION
+REPLACE|CURRENT_STATE.md
+ADD|TWIS_BACKGROUND_REMOVAL_RUNTIME_RELEASE.md
+ADD|TWIS_BACKGROUND_REMOVAL_RUNTIME_ROLLBACK.md
+ADD|TWIS_BACKGROUND_REMOVAL_RUNTIME_VERIFICATION.md
+REPLACE|app/assets/media-workspace.css
+REPLACE|app/assets/media-workspace.js
+REPLACE|app/index.html
+REPLACE|app/service-worker.js
+ADD|companion/background_removal_runtime.py
+ADD|companion/background_removal_worker.py
+REPLACE|companion/media_workspace.py
+REPLACE|companion/server.py
+ADD|config/background-removal-runtime.json
+REPLACE|config/capability-registry.json
+REPLACE|config/media-capabilities.json
+REPLACE|tests/capability-bay-ui.test.js
+REPLACE|tests/local-worker-kit-ui.test.js
+REPLACE|tests/media-workspace-ui.test.js
+REPLACE|tests/music-studio-ui.test.js
+REPLACE|tests/room-system-ui.test.js
+REPLACE|tests/shell-ui.test.js
+REPLACE|tests/talk-room-ui.test.js
+ADD|tests/test_background_removal_api.py
+ADD|tests/test_background_removal_runtime.py
+REPLACE|tests/test_builder_kit.py
+REPLACE|tests/test_capability_api.py
+REPLACE|tests/test_capability_registry.py
+REPLACE|tests/test_remote_access.py
+REPLACE|tests/test_worker_harness_ui.py
+REPLACE|tests/write-room-ui.test.js
+ADD|TWIS_BACKGROUND_REMOVAL_RUNTIME_CHANGED_FILES.txt
+
+ADJACENT RUNTIME RESOURCE
+ADD TREE|background-removal/opencv-grabcut/4.14.0.94|1034 files|157822188 bytes
+
+No live data, project, source, artifact, receipt, export, launcher, FFmpeg, model, credential, or provider file is in scope.

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "local-model-bay-v1",
+  "manifestVersion": "0.17.0",
+  "models": [
+    {
+      "modelId": "liquid-lfm2.5-1.2b-instruct-q4-k-m",
+      "displayName": "Liquid LFM2.5 1.2B Instruct Q4_K_M",
+      "provider": "Liquid AI",
+      "family": "LFM2.5",
+      "architecture": "lfm2",
+      "localRelativePath": "models/liquid/lfm2.5-1.2b-instruct/LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+      "fileName": "LFM2.5-1.2B-Instruct-Q4_K_M.gguf",
+      "fileSize": 730895168,
+      "sha256": "B1B3DE114215D9507409A662A501A631095A479A419584E8A2DED6304B19B4F5",
+      "xetHash": "93E807019AB026414A5C8DEF0D7815957049512ECD3D629060573D108634CBBB",
+      "quantization": "Q4_K_M",
+      "runtime": "llama.cpp-server",
+      "runtimeCompatibility": "llama.cpp GGUF / OpenAI-compatible localhost server",
+      "runtimeVersion": "b10333",
+      "runtimeCommit": "08659901C43B51DE735740F1CF61BB82FBE0C4E4",
+      "runtimeExecutableRelativePath": "runtime/llama.cpp/b10333/llama-server.exe",
+      "runtimeExecutableSize": 9216,
+      "runtimeExecutableSha256": "63E7ED32203FC90DF3DF42FCC42762B988446E0D66B786ADB9AD059FA3CE2819",
+      "enabled": true,
+      "sourceRepository": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+      "sourceRevision": "76022b8bfa64af5862d6bce90a676c3cc9b17b52",
+      "licenseName": "LFM Open License v1.0",
+      "licenseReference": "https://huggingface.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF/blob/main/LICENSE",
+      "capabilities": ["text-generation", "instruction-following"],
+      "intendedTaskCategories": ["text.general", "text.rewrite", "text.summarize", "text.extract", "planning.general"],
+      "contextInformation": "Workshop runtime is conservatively fixed to 2048 tokens for Release 0.17.",
+      "ownerNotes": "Initial CPU-first local text model. No cloud fallback.",
+      "lastVerificationState": "Derived at runtime from file, hash, process, and real inference evidence."
+    }
+  ],
+  "routes": {
+    "text.general": "liquid-lfm2.5-1.2b-instruct-q4-k-m",
+    "text.rewrite": "liquid-lfm2.5-1.2b-instruct-q4-k-m",
+    "text.summarize": "liquid-lfm2.5-1.2b-instruct-q4-k-m",
+    "text.extract": "liquid-lfm2.5-1.2b-instruct-q4-k-m",
+    "planning.general": "liquid-lfm2.5-1.2b-instruct-q4-k-m"
+  }
+}

@@ -7,13 +7,15 @@ from datetime import datetime, timezone
 
 EXCLUDED_DIRS = {
     ".git", "__pycache__", "node_modules", ".venv", "venv",
-    "cache", "caches", "tmp", "temp", "logs",
+    ".pytest_cache", "cache", "caches", "tmp", "temp", "logs",
+    "data", "private_source_artifacts",
 }
 EXCLUDED_SUFFIXES = {
-    ".db", ".sqlite", ".sqlite3", ".wal", ".shm", ".pyc",
+    ".db", ".sqlite", ".sqlite3", ".wal", ".shm", ".pyc", ".zip",
+    ".exe", ".pdb", "-wal", "-shm", "-journal",
 }
 EXCLUDED_NAMES = {
-    ".env", ".env.local", ".env.production",
+    ".env", ".env.local", ".env.production", "flashriver_receipt.json",
 }
 
 def sha256_file(path: Path) -> str:
@@ -21,6 +23,14 @@ def sha256_file(path: Path) -> str:
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             h.update(chunk)
+    return h.hexdigest()
+
+def tree_digest(entries: list[dict]) -> str:
+    h = hashlib.sha256()
+    for entry in sorted(entries, key=lambda item: item["path"]):
+        h.update(
+            f'{entry["path"]}\0{entry["size"]}\0{entry["sha256"]}\n'.encode("utf-8")
+        )
     return h.hexdigest()
 
 def safe_files(root: Path):
@@ -35,7 +45,12 @@ def safe_files(root: Path):
             continue
         if not path.is_file():
             continue
-        if path.name.lower() in EXCLUDED_NAMES or path.suffix.lower() in EXCLUDED_SUFFIXES:
+        name_lower = path.name.lower()
+        if (
+            name_lower in EXCLUDED_NAMES
+            or name_lower.startswith(".env.")
+            or any(name_lower.endswith(suffix) for suffix in EXCLUDED_SUFFIXES)
+        ):
             excluded.append((str(rel), "private/runtime file class"))
             continue
         included.append(path)
@@ -53,14 +68,13 @@ def main() -> None:
 
     paths, excluded = safe_files(root)
     manifest = []
-    tree = hashlib.sha256()
-
     for path in paths:
         rel = path.relative_to(root).as_posix()
         digest = sha256_file(path)
         size = path.stat().st_size
         manifest.append({"path": rel, "size": size, "sha256": digest})
-        tree.update(f"{rel}\0{size}\0{digest}\n".encode("utf-8"))
+
+    tree_sha256 = tree_digest(manifest)
 
     output = {
         "format": "twis-untethered-workshop-baseline-v1",
@@ -68,7 +82,7 @@ def main() -> None:
         "source": str(root),
         "included_file_count": len(manifest),
         "excluded_file_count": len(excluded),
-        "code_safe_tree_sha256": tree.hexdigest(),
+        "code_safe_tree_sha256": tree_sha256,
         "files": manifest,
         "excluded": [{"path": p, "reason": reason} for p, reason in excluded],
         "warning": "This is a code-safe manifest, not proof that every excluded file is private and not proof of live functional health.",
@@ -80,7 +94,7 @@ def main() -> None:
     print(f"Wrote {out}")
     print(f"Included files: {len(manifest)}")
     print(f"Excluded files: {len(excluded)}")
-    print(f"Tree SHA-256: {tree.hexdigest()}")
+    print(f"Tree SHA-256: {tree_sha256}")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,33 @@
+MUSIC_LOOP_DECK_V1 exact application scope
+
+REPLACEMENTS
+CURRENT_STATE.md
+app/assets/app.js
+app/assets/music-engine.js
+app/assets/music-room.js
+app/assets/music-studio.css
+app/index.html
+app/service-worker.js
+companion/server.py
+config/capability-registry.json
+tests/capability-bay-ui.test.js
+tests/local-worker-kit-ui.test.js
+tests/music-studio-ui.test.js
+tests/room-system-ui.test.js
+tests/shell-ui.test.js
+tests/talk-room-ui.test.js
+tests/test_music_studio.py
+tests/test_worker_harness_ui.py
+tests/write-room-ui.test.js
+
+ADDITIONS
+TWIS_MUSIC_LOOP_DECK_V1_CHANGED_FILES.txt
+TWIS_MUSIC_LOOP_DECK_V1_RELEASE.md
+TWIS_MUSIC_LOOP_DECK_V1_ROLLBACK.md
+TWIS_MUSIC_LOOP_DECK_V1_VERIFICATION.md
+tests/test_music_loop_deck.py
+
+REMOVALS
+None
+
+Database migration: none. Runtime/model additions: none. Tone.js: not added.

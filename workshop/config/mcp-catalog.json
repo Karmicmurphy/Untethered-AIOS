@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "twis-mcp-catalog-v1",
+  "protocolVersion": "2026-07-28",
+  "servers": [
+    {
+      "serverId": "twis-disposable-mcp-test-fixture",
+      "name": "Disposable MCP Catalog Fixture",
+      "source": "tests only",
+      "endpoint": null,
+      "status": "OFFLINE",
+      "authorityLevel": "read-only",
+      "networkRequirement": "loopback-only",
+      "costClass": "local-free",
+      "tools": [],
+      "resources": [],
+      "autoEnabled": false,
+      "executionEnabled": false,
+      "knownLimitations": "No live server is registered. Tests create a disposable loopback fixture and tear it down."
+    }
+  ]
+}

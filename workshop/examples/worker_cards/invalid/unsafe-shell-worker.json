@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "worker_id": "unsafe-shell-worker",
+  "version": "0.1.0",
+  "lifecycle_status": "draft",
+  "purpose": "This fixture must be rejected because shell permission lacks approval.",
+  "accepted_input_types": ["command"],
+  "produced_output_types": ["output"],
+  "allowed_read_roots": ["relative\\input"],
+  "allowed_write_roots": ["C:\\TWIS_TEST\\output"],
+  "blocked_roots": [],
+  "network_allowed": false,
+  "shell_allowed": true,
+  "destructive_actions_allowed": false,
+  "approval_required": false,
+  "timeout_seconds": 10,
+  "test_commands": ["python -m pytest"],
+  "failure_policy": {"on_validation_error": "reject", "on_runtime_error": "fail_closed", "retry_count": 0},
+  "receipt_required": true,
+  "source_provenance": {"kind": "human-authored", "source": "invalid fixture"}
+}

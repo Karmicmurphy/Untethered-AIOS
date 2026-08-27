@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>TWIS Holo Workshop — Showcase</title>
+  <link rel="icon" href="/showcase/showcase-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/showcase/showcase.css">
+</head>
+<body>
+  <div class="showcase-mode" role="status"><b>SHOWCASE MODE</b><span>VIEW ONLY</span></div>
+  <div class="water" aria-hidden="true"></div>
+  <main class="workshop" id="workshop">
+    <section class="room active sanctuary" data-room="sanctuary" aria-labelledby="sanctuary-title">
+      <div class="orrery" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+      <div class="sanctuary-copy">
+        <p class="eyebrow">TWIS HOLO WORKSHOP · PUBLIC PRESENTATION</p>
+        <h1 id="sanctuary-title">Sanctuary</h1>
+        <p class="lead">A local-first place for ideas, evidence, creative work, and governed tools. This public showcase contains presentation samples only.</p>
+        <div class="clock" aria-label="Local browser time"><span>LOCAL TIME</span><time id="local-time">--:--</time></div>
+        <button class="primary" data-open="crossroads">Enter the Showcase</button>
+      </div>
+    </section>
+
+    <section class="room crossroads" data-room="crossroads" aria-labelledby="crossroads-title" hidden>
+      <header class="room-head"><button class="back" data-open="sanctuary">← Sanctuary</button><div><p class="eyebrow">NAVIGATION CORE</p><h1 id="crossroads-title">Crossroads</h1><p>Select a presentation room. Private system rooms are not connected to this showcase.</p></div></header>
+      <div class="compass" aria-hidden="true"><i></i><b>TWIS</b><span>CREATE · DISCOVER</span></div>
+      <nav class="districts" aria-label="Showcase rooms">
+        <section><header><b>Create</b><small>Words, sound, light, and motion</small></header><div>
+          <button data-open="write"><strong>Write</strong><span>Draft Workshop</span></button>
+          <button data-open="music"><strong>Music</strong><span>Song Brief</span></button>
+          <button data-open="images"><strong>Images</strong><span>Visual Brief</span></button>
+          <button data-open="video"><strong>Video</strong><span>Production Brief</span></button>
+        </div></section>
+        <section><header><b>Discover</b><small>Evidence and structured inquiry</small></header><div>
+          <button data-open="explore"><strong>Explore</strong><span>Evidence Compare</span></button>
+        </div></section>
+      </nav>
+      <p class="private-note">My Work, Control Room, Machine Room, Settings, owner projects, artifacts, receipts, approvals, recovery, and administration are not part of this public surface.</p>
+    </section>
+
+    <section class="room tool-room" data-room="write" aria-labelledby="write-title" hidden>
+      <header class="room-head"><button class="back" data-open="crossroads">← Crossroads</button><div><p class="eyebrow">ROOM 06 · PRESENTATION SAMPLE</p><h1 id="write-title">Write · Draft Workshop</h1><p>A governed drafting desk that separates source material, plans, proposals, approval, and inactive saving.</p></div></header>
+      <div class="workbench write-bench"><article><span class="state">SOURCE · PRESERVED</span><h2>Rough thought</h2><p>A short owner-supplied passage would remain unchanged here while the Workshop prepares a clearly bounded writing task.</p></article><article class="proposed"><span class="state">PROPOSED · NOT SAVED</span><h2>Draft preparation</h2><ul><li>Rewrite clearly</li><li>Shorten without losing meaning</li><li>Expand notes</li><li>Change tone</li><li>Organize a document</li></ul></article></div>
+      <div class="disabled-action" aria-disabled="true"><b>Creation is disabled in Showcase Mode.</b><span>The private Workshop requires an owner-controlled plan and approval lifecycle.</span></div>
+    </section>
+
+    <section class="room tool-room" data-room="music" aria-labelledby="music-title" hidden>
+      <header class="room-head"><button class="back" data-open="crossroads">← Crossroads</button><div><p class="eyebrow">ROOM 08 · PRESENTATION SAMPLE</p><h1 id="music-title">Music · Song Production Brief</h1><p>A planning alcove for turning supplied notes into an honest, exportable production brief—without generating or playing music.</p></div></header>
+      <div class="workbench music-bench"><article><span class="state">INPUT BOUNDARY</span><h2>Owner direction</h2><dl><dt>Purpose</dt><dd>Soundtrack or cinematic cue</dd><dt>Mood</dt><dd>Quiet momentum</dd><dt>Duration</dt><dd>Unresolved musical decision</dd></dl></article><article class="proposed"><span class="state">BRIEF STRUCTURE</span><h2>Production map</h2><p>Concept · arc · tempo · instrumentation · sections · dynamics · mix direction · unresolved decisions</p></article></div>
+      <div class="disabled-action" aria-disabled="true"><b>No music is generated, played, submitted, or published here.</b></div>
+    </section>
+
+    <section class="room tool-room" data-room="images" aria-labelledby="images-title" hidden>
+      <header class="room-head"><button class="back" data-open="crossroads">← Crossroads</button><div><p class="eyebrow">ROOM 07 · PRESENTATION SAMPLE</p><h1 id="images-title">Images · Visual Brief Builder</h1><p>A light table for organizing visual intent into a production specification and manual-use prompt.</p></div></header>
+      <div class="workbench image-bench"><article><span class="state">VISUAL PURPOSE</span><h2>Story or scene artwork</h2><div class="swatches" aria-label="Sample color direction"><i></i><i></i><i></i><i></i></div><p>Subject, setting, mood, composition, lighting, color, required elements, exclusions, and output intent remain explicit.</p></article><article class="proposed"><span class="state">HONEST BOUNDARY</span><h2>Brief, not image</h2><p>The private tool formats supplied information. It does not claim an image was rendered or contact an image provider.</p></article></div>
+      <div class="disabled-action" aria-disabled="true"><b>Image creation is unavailable in this public presentation.</b></div>
+    </section>
+
+    <section class="room tool-room" data-room="explore" aria-labelledby="explore-title" hidden>
+      <header class="room-head"><button class="back" data-open="crossroads">← Crossroads</button><div><p class="eyebrow">ROOM 11 · PRESENTATION SAMPLE</p><h1 id="explore-title">Explore · Evidence Compare</h1><p>A research table for source-bound comparison without pretending that unperformed semantic research occurred.</p></div></header>
+      <div class="workbench compare-bench"><article><span class="state">SOURCE A · SAMPLE</span><h2>Evidence record</h2><p>Identity, provenance, order, and exact source integrity remain visible to the owner.</p></article><article><span class="state">SOURCE B · SAMPLE</span><h2>Evidence record</h2><p>Duplicate titles remain distinguishable. Stale source plans are blocked.</p></article><article class="proposed"><span class="state">COMPARISON FRAME</span><h2>Registers</h2><p>Agreements · textual differences · contradictions to assess · evidence gaps · unresolved questions · synthesis outline</p></article></div>
+      <div class="disabled-action" aria-disabled="true"><b>These are sample structures, not claims about private source material.</b></div>
+    </section>
+
+    <section class="room tool-room" data-room="video" aria-labelledby="video-title" hidden>
+      <header class="room-head"><button class="back" data-open="crossroads">← Crossroads</button><div><p class="eyebrow">ROOM 09 · PRESENTATION SAMPLE</p><h1 id="video-title">Video · Production Brief Builder</h1><p>An editing-bay planning surface for shots, continuity, sound, pacing, and handoff—not a renderer.</p></div></header>
+      <div class="filmstrip" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="workbench video-bench"><article><span class="state">CONCEPT</span><h2>Cinematic scene</h2><p>Objective · sequence · opening beat · progression · closing beat</p></article><article class="proposed"><span class="state">PRODUCTION MAP</span><h2>Shot planning</h2><p>Environment · camera language · movement · lighting · transitions · audio · continuity · unresolved decisions</p></article></div>
+      <div class="disabled-action" aria-disabled="true"><b>No video is generated, uploaded, rendered, or published.</b></div>
+    </section>
+  </main>
+  <footer><span>TWIS Holo Workshop — Showcase</span><span>Static presentation · no accounts · no persistence</span></footer>
+  <script src="/showcase/showcase.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "twis-background-removal-owner-evidence-decision-v1",
+  "inspectionId": "c3c72fce-1442-44f5-bf13-e51945cdc2d2",
+  "capabilityId": "external.opencv-grabcut-cpu-candidate",
+  "capabilityVersion": "4.14.0.94",
+  "decision": "VERIFY",
+  "status": "VERIFIED",
+  "healthState": "NOT-INSTALLED",
+  "evidenceHash": "34C09EEFA97856ED4BC9CDF91EC76F4AFE0E4910006185C5348878AE685FACD0",
+  "inspectedRegistryHash": "6A776E2E954DA6A7B5AB3F5CE0167178F55EBBC85A8E1354E12503C5AC8648DE",
+  "hardwareProfileHash": "FD44C4D042A6DF0E9FDFB9B96731A2C0DDDFA52E967C9EB947BCFDA1A3CC8B4A",
+  "decidedAt": "2026-08-25T00:47:51.501299+00:00",
+  "receiptId": "73da128c-83c8-4967-9ec9-f1a4b2ed5027",
+  "approvalText": "APPROVE CAPABILITY EVIDENCE — OPENCV_GRABCUT_SYNTHETIC_V1 — inspection c3c72fce-1442-44f5-bf13-e51945cdc2d2 — evidence 34C09EEFA97856ED4BC9CDF91EC76F4AFE0E4910006185C5348878AE685FACD0 — version 4.14.0.94 — registry 6A776E2E954DA6A7B5AB3F5CE0167178F55EBBC85A8E1354E12503C5AC8648DE — hardware FD44C4D042A6DF0E9FDFB9B96731A2C0DDDFA52E967C9EB947BCFDA1A3CC8B4A",
+  "deploymentOccurred": false,
+  "runtimeInstalled": false,
+  "imagesIntegrationOccurred": false
+}

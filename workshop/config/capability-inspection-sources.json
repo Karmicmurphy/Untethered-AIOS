@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "twis-capability-inspection-source-v1",
+  "capabilities": {
+    "external.rembg-cpu-candidate": {
+      "inspectedVersion": "2.0.81",
+      "catalogVersionAtDiscovery": "2.0.81",
+      "previousCatalogVersion": "2.0.77",
+      "source": {
+        "project": "danielgatis/rembg",
+        "repository": "https://github.com/danielgatis/rembg",
+        "package": "https://pypi.org/project/rembg/2.0.81/",
+        "release": "2.0.81",
+        "releaseDate": "2026-08-18",
+        "sourceLicense": "MIT",
+        "python": ">=3.11,<4.0",
+        "wheelSha256": "764D96567C1AE12573037156180BF813D51335E80DFFB116F62999B308079083",
+        "sdistSha256": "0A8B7A8D4219836A1BBE465F533F07D87B7BA8BEDBAE5C0D84043419622195B8"
+      },
+      "dependencies": {
+        "directCore": ["jsonschema>=4.25.1,<5", "numpy>=2.3.0,<3", "pillow>=12.1.0,<13", "pooch>=1.8.2,<2", "pymatting>=1.1.14,<2", "scikit-image>=0.26.0,<0.27", "scipy>=1.16.3,<2", "tqdm>=4.67.1,<5"],
+        "cpuBackend": ["onnxruntime>=1.23.2,<2"],
+        "optionalCli": ["aiohttp", "asyncer", "click", "fastapi", "filetype", "gradio", "python-multipart", "sniffio", "uvicorn", "watchdog"],
+        "entryPoints": ["rembg=rembg.cli:main"],
+        "installScriptsObserved": ["PEP 517 poetry_dynamic_versioning build backend"],
+        "transitiveCompleteness": "NOT RESOLVED; no package install or resolver execution was approved"
+      },
+      "model": {
+        "default": "bria-rmbg / RMBG-2.0",
+        "downloadSource": "https://huggingface.co/briaai/RMBG-2.0",
+        "integrityDeclaredByProject": "NOT CAPTURED: model files were not downloaded and an exact asset hash was not independently recorded",
+        "storage": "~/.rembg/models (current project documentation)",
+        "automaticDownload": "first use via pooch unless model is already present",
+        "license": "BRIA RMBG-2.0 model license; official rembg documentation says commercial use requires a paid agreement",
+        "sizeBytes": null,
+        "reportedApproximateSize": "approximately 1.02 GB; exact asset byte size and SHA-256 were not downloaded or independently measured",
+        "smallerAlternative": "u2netp is reported by the official U-2-Net project at 4.7 MB and is selectable in rembg; the rembg-hosted ONNX release asset was not downloaded, and its model-file license/provenance is not sufficiently explicit for selection in this release"
+      },
+      "network": {
+        "install": ["pypi.org", "files.pythonhosted.org"],
+        "model": ["huggingface.co and its model-delivery hosts for the current default; exact redirect destinations not captured"],
+        "runtimeAfterProvisioning": "none expected for local-file use; not functionally measured"
+      },
+      "hardware": {
+        "state": "MAY WORK",
+        "reasons": ["CPU backend exists and Python 3.12 is compatible.", "AMD A4-6210 and about 7.4 GB RAM are not excluded by package metadata.", "The current default model is reported at approximately 1.02 GB and may be marginal on this low-spec computer.", "ONNX model latency and peak RAM are unmeasured on this machine.", "A smaller u2net model can be selected explicitly, but it was not downloaded or measured."],
+        "gpuRequired": false
+      },
+      "security": [
+        "The source package is MIT, but the current default BRIA model has separate licensing that restricts commercial use without a paid agreement.",
+        "The approximately 1.02 GB default model download occurs at first use unless provisioning is controlled.",
+        "The optional withoutBG backend is a cloud service and must remain outside any local-only approved plan.",
+        "The PyPI release metadata reports Trusted Publishing false; this is a supply-chain observation, not proof of compromise.",
+        "No comprehensive security audit was performed."
+      ],
+      "inspectionDepth": "source, dependency declarations, permissions, and hardware qualification only",
+      "functionalAdapter": null,
+      "staticVerdict": "NEEDS_REVIEW",
+      "limitations": ["Transitive package set, installed footprint, exact model bytes/SHA-256, peak RAM, CPU time, and output quality are unmeasured.", "The current default model has separate commercial-use licensing and a material reported footprint.", "The smaller u2netp asset remains unmeasured and its distributed model-file license/provenance needs clarification.", "Functional execution was not approved."]
+    },
+    "external.opencv-grabcut-cpu-candidate": {
+      "inspectedVersion": "4.14.0.94",
+      "source": {
+        "project": "OpenCV/opencv-python",
+        "documentation": "https://docs.opencv.org/4.x/d8/d83/tutorial_py_grabcut.html",
+        "package": "https://pypi.org/project/opencv-python-headless/4.14.0.94/",
+        "releaseDate": "2026-07-28",
+        "packagingLicense": "MIT",
+        "engineLicense": "Apache-2.0",
+        "wheelSha256": "CBED65415B8F6A9541C705AFE3E64795840524D0FF3BC58F507826284A1DC64B"
+      },
+      "dependencies": {
+        "directCore": ["numpy==2.5.2", "opencv-python-headless==4.14.0.94"],
+        "numpyWheelSha256": "28AC63476EC7651484215EE7FA15A1F78B57C14621F01E392AFE17B9A1390CE4",
+        "combinedPinnedWheelAllowanceBytes": 60000000,
+        "transitiveCompleteness": "Complete for the approved no-deps disposable wheel plan"
+      },
+      "model": {"required": false, "license": "not applicable", "sizeBytes": 0},
+      "network": {"inspection": ["files.pythonhosted.org"], "runtimeAfterProvisioning": "none"},
+      "hardware": {
+        "state": "GOOD FIT",
+        "reasons": ["CPU-only classical algorithm with no neural model.", "Pinned Windows x86-64 wheels support CPython 3.12.", "The bounded inspection uses four 256x256 synthetic inputs and one child process."],
+        "gpuRequired": false
+      },
+      "security": ["No cloud service, account, credential, model, PATH change, startup task, or permanent installation.", "Functional inspection is limited to two hash-pinned wheel downloads and a fixed adapter command in a disposable workspace."],
+      "inspectionDepth": "official-source, dependency, license, hardware, and fixed-authority plan prepared; functional execution not yet approved",
+      "functionalAdapter": "opencv-grabcut-synthetic-v1",
+      "staticVerdict": "NEEDS_REVIEW",
+      "functionalVerdict": "VERIFICATION_CANDIDATE",
+      "limitations": ["Assisted rather than one-click automatic removal.", "Owner must provide a foreground rectangle; fine hair and similar-tone edges may require later touch-up support.", "No functional result exists until the hash-bound inspection plan is explicitly approved and executed."]
+    },
+    "external.mediapipe-selfie-segmentation-candidate": {
+      "inspectedVersion": "1.0.0",
+      "source": {"project": "Google MediaPipe", "documentation": "https://ai.google.dev/edge/mediapipe/solutions/vision/image_segmenter/python", "package": "https://pypi.org/project/mediapipe/1.0.0/", "packageLicense": "Apache-2.0"},
+      "dependencies": {"directCore": ["mediapipe==1.0.0", "exact TFLite segmentation model not selected"], "transitiveCompleteness": "NOT RESOLVED; no install approved"},
+      "model": {"required": true, "license": "exact selected model requires separate confirmation", "sizeBytes": null},
+      "network": {"inspection": [], "runtimeAfterProvisioning": "none expected"},
+      "hardware": {"state": "MAY WORK", "reasons": ["Windows CPython 3.12 wheel exists.", "Scope is person/selfie segmentation, not general object removal."], "gpuRequired": false},
+      "security": ["Model identity, license, and hash remain separate governed dependencies."],
+      "inspectionDepth": "official-source static qualification only",
+      "functionalAdapter": null,
+      "staticVerdict": "NEEDS_REVIEW",
+      "limitations": ["Portrait/person scope only.", "No selected hash-verified model or functional evidence."]
+    },
+    "external.modnet-portrait-candidate": {
+      "inspectedVersion": "official-repository-master",
+      "source": {"project": "ZHKKKe/MODNet", "repository": "https://github.com/ZHKKKe/MODNet", "sourceAndModelLicense": "Apache-2.0 per official repository"},
+      "dependencies": {"directCore": ["legacy PyTorch or converted runtime", "official portrait model"], "transitiveCompleteness": "NOT RESOLVED; no install justified"},
+      "model": {"required": true, "license": "Apache-2.0 per official repository", "sizeBytes": null},
+      "network": {"inspection": [], "runtimeAfterProvisioning": "none expected"},
+      "hardware": {"state": "TOO HEAVY", "reasons": ["Portrait-only PyTorch-era stack is disproportionate for the AMD A4 system and current memory pressure."], "gpuRequired": false},
+      "security": ["Official licensing is clear, but no bounded modern CPython 3.12 adapter was established."],
+      "inspectionDepth": "official-source static rejection",
+      "functionalAdapter": null,
+      "staticVerdict": "INCOMPATIBLE",
+      "limitations": ["Portrait-only.", "Runtime cost and maintenance burden exceed the first-capability budget."]
+    },
+    "external.carvekit-cpu-candidate": {
+      "inspectedVersion": "4.1.0",
+      "source": {"project": "OPHoperHPO/image-background-remove-tool", "repository": "https://github.com/OPHoperHPO/image-background-remove-tool", "frameworkLicense": "Apache-2.0"},
+      "dependencies": {"directCore": ["PyTorch", "Tracer or U2Net", "FBA matting"], "transitiveCompleteness": "NOT RESOLVED; no install justified"},
+      "model": {"required": true, "license": "each selected model and transitive component requires enumeration", "sizeBytes": null},
+      "network": {"inspection": [], "runtimeAfterProvisioning": "none expected"},
+      "hardware": {"state": "TOO HEAVY", "reasons": ["Multi-model PyTorch stack is disproportionate for roughly 7.4 GB RAM.", "Official documentation targets Python 3.9 through 3.11 rather than the current 3.12 baseline."], "gpuRequired": false},
+      "security": ["Framework license alone does not settle all bundled model and transitive licenses."],
+      "inspectionDepth": "official-source static rejection",
+      "functionalAdapter": null,
+      "staticVerdict": "INCOMPATIBLE",
+      "limitations": ["Heavy environment.", "Current Python baseline mismatch.", "No functional inspection justified."]
+    }
+  },
+  "typeDepth": {
+    "external-optional": "official-source metadata plus separately approved fixed-adapter functional evidence",
+    "native": "metadata plus existing health evidence",
+    "agent-skill": "static structure and security metadata; bundled scripts blocked",
+    "local-worker": "metadata plus already-supported bounded health",
+    "disposable-worker": "metadata plus approved disposable health where an adapter exists",
+    "mcp": "identity, protocol, tools/resources/schema/health metadata; no tool calls",
+    "a2a": "Agent Card descriptor validation only",
+    "wasi-component": "metadata and interface inspection only",
+    "comfy-workflow": "workflow/schema and requirement inspection only",
+    "local-model-engine": "metadata plus existing verified health/performance evidence",
+    "cloud-free-tier": "cost/quota/account/network/provider metadata only",
+    "media-runtime": "registered binary hash/version/features/health"
+  }
+}

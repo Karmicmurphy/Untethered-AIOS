@@ -10,6 +10,7 @@ from scripts.import_workshop_baseline import (
     tree_digest,
     verify_source,
 )
+from scripts.authenticate_workshop import safe_files, tree_digest as authentication_tree_digest
 
 
 class WorkshopBaselineTests(unittest.TestCase):
@@ -101,6 +102,47 @@ class WorkshopBaselineTests(unittest.TestCase):
 
             with self.assertRaises(ImportErrorSafe):
                 copy_verified(manifest, source, destination)
+
+    def test_authentication_excludes_private_and_runtime_state(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            safe = root / "app" / "main.py"
+            safe.parent.mkdir()
+            safe.write_text("print('safe')", encoding="utf-8")
+
+            excluded = [
+                root / "data" / "projects" / "owner" / "project.json",
+                root / ".pytest_cache" / "v" / "cache" / "nodeids",
+                root / "private_source_artifacts" / "archive.zip",
+                root / "bundle.zip",
+                root / "desktop-launcher" / "TWIS Holo Workshop.exe",
+                root / "desktop-launcher" / "TWIS Holo Workshop.pdb",
+                root / "FLASHRIVER_RECEIPT.json",
+                root / "runtime.sqlite3-wal",
+                root / "runtime.sqlite3-shm",
+                root / "runtime.db-journal",
+                root / ".env.development",
+            ]
+            for path in excluded:
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("private", encoding="utf-8")
+
+            included_paths, excluded_paths = safe_files(root)
+            included_rel = {path.relative_to(root).as_posix() for path in included_paths}
+            excluded_rel = {Path(path).as_posix() for path, _ in excluded_paths}
+
+            self.assertEqual(included_rel, {"app/main.py"})
+            self.assertTrue(
+                {path.relative_to(root).as_posix() for path in excluded}
+                .issubset(excluded_rel)
+            )
+
+    def test_authentication_tree_digest_matches_import_contract(self):
+        entries = [
+            {"path": "z/file.txt", "size": 1, "sha256": "b" * 64},
+            {"path": "A/file.txt", "size": 1, "sha256": "a" * 64},
+        ]
+        self.assertEqual(authentication_tree_digest(entries), tree_digest(entries))
 
 
 if __name__ == "__main__":

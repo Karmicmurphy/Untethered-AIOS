@@ -1,25 +1,36 @@
-TWIS UNTETHERED AIOS — BOOTSTRAP VERIFICATION
+TWIS UNTETHERED AIOS — PHASE 0 BOOTSTRAP VERIFICATION
 
-Unit tests: PASS
-Tests run: 7
+Date: 2026-08-27
+Branch: bootstrap/workshop-baseline
+Source commit: f33976af8b484206b46327806fa90362d2e600a6
+
+Untethered unit tests: PASS
+Command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\test.ps1
+Tests run: 13
 Failures: 0
 Errors: 0
+Elapsed: 1.076 seconds
 
-Verified contracts:
-- audit receipt creation
-- ungranted capability denial
-- path scope allow/deny
-- traversal escape denial
-- cooperative yield/requeue
-- WAITING -> event wake -> DONE lifecycle
-- child capability escalation denial
+Imported Workshop Python tests: PASS
+Command: ..\.venv\Scripts\python.exe -m pytest tests -p no:cacheprovider
+Tests run: 249
+Failures: 0
+Errors: 0
+Elapsed: 483.90 seconds
 
-Demo: PASS
-Observed:
-pid=1 state=DONE ticks=2
-Workshop capability reached through kernel.
-receipts=3
+Imported Workshop JavaScript/UI tests: PASS
+Command: npm.cmd run test:js
+Tests run: 86
+Failures: 0
+Errors: 0
+Declared JavaScript syntax checks: PASS
+
+Authenticated Workshop code-safe files: 293
+Excluded private/runtime/cache files: 233
+Source tree SHA-256: a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27
+Imported tree SHA-256: a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27
+Exact source/import match: PASS
 
 NOTE:
-This verifies only the bootstrap kernel scaffold.
-Workshop baseline import and real Workshop capability adapters are intentionally not yet implemented.
+This verifies Phase 0 baseline authentication/import and the existing bootstrap contracts.
+It does not claim Kernel V0.2 or live Workshop integration is complete.

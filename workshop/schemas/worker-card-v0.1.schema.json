@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://twis.local/schemas/worker-card-v0.1.schema.json",
+  "title": "Twis Holo Worker Card v0.1",
+  "description": "A validated capability declaration. This document is not an operating-system security boundary.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "worker_id",
+    "version",
+    "lifecycle_status",
+    "purpose",
+    "accepted_input_types",
+    "produced_output_types",
+    "allowed_read_roots",
+    "allowed_write_roots",
+    "blocked_roots",
+    "network_allowed",
+    "shell_allowed",
+    "destructive_actions_allowed",
+    "approval_required",
+    "timeout_seconds",
+    "test_commands",
+    "failure_policy",
+    "receipt_required",
+    "source_provenance"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "worker_id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$", "minLength": 3, "maxLength": 80},
+    "version": {"type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"},
+    "lifecycle_status": {"enum": ["draft", "test", "active", "deprecated", "retired"]},
+    "purpose": {"type": "string", "minLength": 1, "maxLength": 500},
+    "accepted_input_types": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "produced_output_types": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "allowed_read_roots": {"$ref": "#/$defs/pathArray"},
+    "allowed_write_roots": {"$ref": "#/$defs/pathArray"},
+    "blocked_roots": {"$ref": "#/$defs/pathArray"},
+    "network_allowed": {"type": "boolean"},
+    "shell_allowed": {"type": "boolean"},
+    "destructive_actions_allowed": {"type": "boolean"},
+    "approval_required": {"type": "boolean"},
+    "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 3600},
+    "test_commands": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "failure_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["on_validation_error", "on_runtime_error", "retry_count"],
+      "properties": {
+        "on_validation_error": {"enum": ["reject"]},
+        "on_runtime_error": {"enum": ["fail_closed", "record_failure"]},
+        "retry_count": {"type": "integer", "minimum": 0, "maximum": 3}
+      }
+    },
+    "receipt_required": {"type": "boolean"},
+    "source_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "source"],
+      "properties": {
+        "kind": {"enum": ["human-authored", "imported", "generated", "derived"]},
+        "source": {"type": "string", "minLength": 1, "maxLength": 500},
+        "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "anyOf": [
+          {"properties": {"network_allowed": {"const": true}}, "required": ["network_allowed"]},
+          {"properties": {"shell_allowed": {"const": true}}, "required": ["shell_allowed"]},
+          {"properties": {"destructive_actions_allowed": {"const": true}}, "required": ["destructive_actions_allowed"]}
+        ]
+      },
+      "then": {"properties": {"approval_required": {"const": true}}, "required": ["approval_required"]}
+    }
+  ],
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 300}
+    },
+    "pathArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "pattern": "^(?:[A-Za-z]:\\\\|\\\\\\\\[^\\\\]+\\\\[^\\\\]+)",
+        "description": "Absolute Windows drive or UNC path. Runtime access still requires a host enforcement component."
+      }
+    }
+  }
+}

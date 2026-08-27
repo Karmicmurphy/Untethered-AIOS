@@ -1,0 +1,257 @@
+[
+  {
+    "id": "talk",
+    "name": "Talk",
+    "version": "1.0.0",
+    "room": "talk",
+    "execution": [
+      "browser",
+      "local-companion",
+      "ai-optional"
+    ],
+    "permissions": [
+      "conversation:write",
+      "artifact:create"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "working"
+  },
+  {
+    "id": "write",
+    "name": "Write",
+    "version": "1.0.0",
+    "room": "write",
+    "execution": [
+      "browser",
+      "local-companion"
+    ],
+    "permissions": [
+      "artifact:create",
+      "artifact:update"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "working"
+  },
+  {
+    "id": "music",
+    "name": "Music Bench",
+    "version": "1.0.0",
+    "room": "music",
+    "execution": [
+      "browser"
+    ],
+    "permissions": [
+      "audio:play",
+      "artifact:create",
+      "download:create"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "working"
+  },
+  {
+    "id": "image",
+    "name": "Image Studio",
+    "version": "1.0.0",
+    "room": "image",
+    "execution": [
+      "browser"
+    ],
+    "permissions": [
+      "selected-file:read",
+      "artifact:create",
+      "download:create"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "working"
+  },
+  {
+    "id": "video",
+    "name": "Video Workstation + Production Brief Builder",
+    "version": "2.0.0",
+    "room": "video",
+    "execution": [
+      "browser",
+      "local-companion"
+    ],
+    "permissions": [
+      "selected-file:read",
+      "artifact:create"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "active-governed-brief-builder",
+    "summary": "Builds governed still-image timelines with Music renders and titles, previews them in-browser, and renders inactive local MP4 artifacts through the fixed portable FFmpeg adapter. The separate planning brief remains available; no generative video or provider call exists."
+  },
+  {
+    "id": "research",
+    "name": "Expedition Engine",
+    "version": "1.0.0",
+    "room": "research",
+    "execution": [
+      "browser",
+      "cloud-optional"
+    ],
+    "permissions": [
+      "artifact:create",
+      "network:optional"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "working"
+  },
+  {
+    "id": "build-work-order",
+    "name": "Build Work Order Builder",
+    "version": "0.16.0",
+    "room": "code",
+    "execution": [
+      "local-companion"
+    ],
+    "permissions": [
+      "registered-sources:read",
+      "inactive-artifact:create",
+      "local-export:create"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "active-governed-proposal-builder",
+    "summary": "Creates work orders only; no code, shell, file mutation, submission, or deployment."
+  },
+  {
+    "id": "importer",
+    "name": "Artifact Importer",
+    "version": "1.0.0",
+    "room": "import",
+    "execution": [
+      "local-companion"
+    ],
+    "permissions": [
+      "selected-folder:read",
+      "artifact:create"
+    ],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "working"
+  },
+  {
+    "id": "module-proposal",
+    "name": "Module Proposal Builder",
+    "version": "0.16.0",
+    "room": "modules",
+    "execution": ["browser", "local-companion"],
+    "permissions": ["registered-sources:read", "inactive-artifact:create", "local-export:create"],
+    "cost": "free-core",
+    "enabledByDefault": true,
+    "status": "active-governed-proposal-builder",
+    "summary": "Creates inactive module proposals only; no install, download, execution, or activation."
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare Remote Hull",
+    "version": "0.1.0",
+    "room": "modules",
+    "execution": [
+      "cloudflare"
+    ],
+    "permissions": [
+      "network",
+      "remote-state"
+    ],
+    "cost": "free-tier-optional",
+    "enabledByDefault": false,
+    "status": "inactive-scaffold",
+    "summary": "Static optional scaffold; disabled and not contacted."
+  },
+  {
+    "id": "local-ai-model-bay",
+    "name": "Local AI Model Bay",
+    "version": "0.17.0",
+    "room": "modules",
+    "execution": [
+      "local",
+      "llama.cpp",
+      "loopback-only"
+    ],
+    "permissions": [
+      "registered-model:inspect",
+      "registered-runtime:start-stop",
+      "registered-model:invoke"
+    ],
+    "cost": "local-compute",
+    "enabledByDefault": true,
+    "status": "available-governed-local-inference",
+    "summary": "The Model Bay capability is active. Individual model state is derived separately from file/hash/runtime/real-inference evidence; no cloud fallback exists."
+  },
+  {
+    "id": "comfyui-workflow-compatibility",
+    "name": "ComfyUI Workflow Compatibility",
+    "version": "0.1.0",
+    "room": "modules",
+    "execution": [
+      "compatible-worker-required",
+      "workflow-json"
+    ],
+    "permissions": [
+      "media-workflow:inspect"
+    ],
+    "cost": "contract-only",
+    "enabledByDefault": false,
+    "status": "inactive-not-installed-unregistered",
+    "summary": "Compatibility contract only. No ComfyUI runtime, workflow, custom node, image model, or compatible TWIS worker is installed or registered."
+  },
+  {
+    "id": "mcp",
+    "name": "MCP Bridge",
+    "version": "0.1.0",
+    "room": "modules",
+    "execution": [
+      "local",
+      "network"
+    ],
+    "permissions": [
+      "tools:discover",
+      "tools:invoke"
+    ],
+    "cost": "adapter-only",
+    "enabledByDefault": false,
+    "status": "inactive-contract",
+    "summary": "Static contract concept; tool discovery and invocation are disabled."
+  },
+  {
+    "id": "ag-ui",
+    "name": "AG-UI Event Stream",
+    "version": "0.1.0",
+    "room": "modules",
+    "execution": [
+      "browser",
+      "network"
+    ],
+    "permissions": [
+      "events:stream"
+    ],
+    "cost": "adapter-only",
+    "enabledByDefault": false,
+    "status": "inactive-contract",
+    "summary": "Static contract concept; no event stream is connected."
+  },
+  {
+    "id": "a2ui",
+    "name": "A2UI Surface Renderer",
+    "version": "0.1.0",
+    "room": "modules",
+    "execution": [
+      "browser"
+    ],
+    "permissions": [
+      "ui:render"
+    ],
+    "cost": "adapter-only",
+    "enabledByDefault": false,
+    "status": "inactive-contract",
+    "summary": "Static contract concept; no external surface is loaded."
+  }
+]

@@ -1,0 +1,30 @@
+WRITE STUDIO AI ACTIONS — DECLARED FILE SCOPE
+
+REPLACEMENTS (15)
+app/index.html
+app/service-worker.js
+app/assets/style.css
+app/assets/write-room.js
+companion/builder_output.py
+companion/local_worker_kit.py
+companion/model_bay.py
+tests/local-worker-kit-ui.test.js
+tests/model-bay-ui.test.js
+tests/room-system-ui.test.js
+tests/shell-ui.test.js
+tests/talk-room-ui.test.js
+tests/test_model_bay.py
+tests/test_worker_harness_ui.py
+tests/write-room-ui.test.js
+
+ADDITIONS (6)
+FOUNDATION_RELEASE_WRITE_STUDIO_AI_ACTIONS.md
+FOUNDATION_WRITE_STUDIO_AI_ACTIONS_CANDIDATE_MANIFEST.txt
+FOUNDATION_WRITE_STUDIO_AI_ACTIONS_DEPLOYED_MANIFEST.txt
+FOUNDATION_WRITE_STUDIO_AI_ACTIONS_VERIFICATION.md
+FOUNDATION_WRITE_STUDIO_AI_ACTIONS_CHANGED_FILES.txt
+docs/WRITE_STUDIO_AI_ACTIONS_ROLLBACK.md
+
+REMOVALS (0)
+
+Database files, model/runtime resources, launchers, caches, bytecode, generated browser evidence, verification environments, and rollback packages are not deployment members.

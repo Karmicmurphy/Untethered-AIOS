@@ -1,0 +1,16 @@
+{
+  "id": "flashriver-source-archive",
+  "name": "FlashRiver Source Archive Intake",
+  "version": "0.2.0",
+  "room": "import",
+  "execution": ["local-companion", "zip-integrity", "sha256", "sqlite", "receipt"],
+  "permissions": ["selected-zip:read", "artifact:create", "receipt:create"],
+  "sandbox": "human-selected-zip-only",
+  "inputBoundary": "one local FlashRiver handoff ZIP path",
+  "outputArtifact": "flashriver-intake-manifest",
+  "receiptRequired": true,
+  "cost": "free-core",
+  "enabledByDefault": true,
+  "status": "working-backend-and-ui",
+  "notes": "Imports public-safe handoff docs while keeping raw nested source archives local/private."
+}

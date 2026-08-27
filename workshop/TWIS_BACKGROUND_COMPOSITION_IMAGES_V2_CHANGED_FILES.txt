@@ -1,0 +1,29 @@
+TWIS BACKGROUND COMPOSITION — IMAGES V2 — CHANGED FILE DECLARATION
+Status: VERIFIED CANDIDATE — NOT DEPLOYED
+Database migration: none
+Runtime/model/provider additions: none
+Removals: 0
+
+REPLACE|app/assets/media-workspace.css
+REPLACE|app/assets/media-workspace.js
+REPLACE|app/index.html
+REPLACE|app/service-worker.js
+REPLACE|companion/media_workspace.py
+REPLACE|companion/server.py
+REPLACE|tests/capability-bay-ui.test.js
+REPLACE|tests/local-worker-kit-ui.test.js
+REPLACE|tests/media-workspace-ui.test.js
+REPLACE|tests/music-studio-ui.test.js
+REPLACE|tests/room-system-ui.test.js
+REPLACE|tests/shell-ui.test.js
+REPLACE|tests/talk-room-ui.test.js
+ADD|tests/test_background_composition_api.py
+REPLACE|tests/test_media_workspace.py
+REPLACE|tests/test_worker_harness_ui.py
+REPLACE|tests/write-room-ui.test.js
+ADD|TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_RELEASE.md
+ADD|TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_ROLLBACK.md
+ADD|TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_VERIFICATION.md
+ADD|TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_CHANGED_FILES.txt
+
+No data, project, source, artifact, media byte, receipt, export, runtime, model, launcher, credential, or provider file is in scope.
