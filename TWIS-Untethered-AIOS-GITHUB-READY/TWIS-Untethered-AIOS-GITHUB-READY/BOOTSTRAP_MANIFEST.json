@@ -1,0 +1,162 @@
+{
+  "name": "TWIS-Untethered-AIOS",
+  "version": "0.1.0-bootstrap",
+  "file_count_excluding_manifest": 31,
+  "files": [
+    {
+      "path": ".gitignore",
+      "size": 403,
+      "sha256": "ee4cc10cb7be60e7ed008acb350e9b9629d6ecba960a9182aacdda31790736ee"
+    },
+    {
+      "path": "AGENTS.md",
+      "size": 3678,
+      "sha256": "01c26f634cd160b1b888daa58733a67134715416cf5d4b7fa2eb591d5ebc536d"
+    },
+    {
+      "path": "README.md",
+      "size": 3127,
+      "sha256": "54f5d8c5c56fd816212702f63f2cce37763bcbbfc6a63dd4713a281ad34fb620"
+    },
+    {
+      "path": "STATUS.md",
+      "size": 416,
+      "sha256": "75246168fb94d6f554b9439169b2af84b6ff72977a99e4c0cfd0f1e802136c3d"
+    },
+    {
+      "path": "contracts/capability.schema.json",
+      "size": 709,
+      "sha256": "085b1b31b794cf1b2750c7580970bc5c3fc6234e7a056dda0b3d892b846ed906"
+    },
+    {
+      "path": "contracts/worker.schema.json",
+      "size": 560,
+      "sha256": "f9d698ef43c6bee0efa8d4e805d74e4e8cfd7ae853e4126bd4625a8d9a607b55"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "size": 2721,
+      "sha256": "4cd4e60f7f62397313ab44dbfa7f82234f824b2a66e6b93ac98a743e078d692f"
+    },
+    {
+      "path": "docs/AUTHORITY_AND_GATES.md",
+      "size": 1500,
+      "sha256": "1d6738336d91f54c96c40cabdf4a33bcca8467c784f9e45a70fc3ae6509d25c7"
+    },
+    {
+      "path": "docs/CODEX_HANDOFF.md",
+      "size": 2014,
+      "sha256": "1a793f8f6e2cccac8d6b03b2d0d4c93ddfceb0134dadb833f6c87905ffa65677"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "size": 1390,
+      "sha256": "552735521496dfcb8831f2a7701266ea319c47250ce7228d24ab9f323bc9189a"
+    },
+    {
+      "path": "evidence/BOOTSTRAP_TEST_RESULTS.txt",
+      "size": 595,
+      "sha256": "04ec4703ada57cb5cc6c59cd156c39a5cca34cc322eb3d4edb33d37ce3d9e631"
+    },
+    {
+      "path": "evidence/README.md",
+      "size": 229,
+      "sha256": "a261865f67be03be4659583b108235a1b2153f8b741675e7adcfc898af6d5ea6"
+    },
+    {
+      "path": "pyproject.toml",
+      "size": 306,
+      "sha256": "bbd0de1de280ec7f90bd75fb9fd1e0ebed2ba08365968b704e08b1d75979d0d0"
+    },
+    {
+      "path": "scripts/authenticate_workshop.py",
+      "size": 2936,
+      "sha256": "d92a0f10034b316b3694529aceef9c945cb24eafe90b201bc6b80bc67359acb0"
+    },
+    {
+      "path": "scripts/demo.py",
+      "size": 1076,
+      "sha256": "d322d5e6b284b8cac298d90d732f6a9c1d5cfc675cc969f90e1dbd43a1e2c285"
+    },
+    {
+      "path": "scripts/test.bat",
+      "size": 100,
+      "sha256": "2b2bccd4827518dad046360451b157942bc97d39cdd59ece6fafada390dd11c8"
+    },
+    {
+      "path": "scripts/test.ps1",
+      "size": 167,
+      "sha256": "b6b8d89cd9cc987265de9924b90d5f00d2aece52ac0492026481694426dc7881"
+    },
+    {
+      "path": "skills/capability-security/SKILL.md",
+      "size": 799,
+      "sha256": "7f5265222dd2fa4b60ef8fc6efc8f05009b1f70bfae2c940dc24056471694414"
+    },
+    {
+      "path": "skills/kernel-engineering/SKILL.md",
+      "size": 871,
+      "sha256": "f772a882d39a06a42877937cb15bf1f3c866e1c22763ca50a9af3b2b07f837ad"
+    },
+    {
+      "path": "skills/release-guard/SKILL.md",
+      "size": 729,
+      "sha256": "1e20eb648c0372b635e12d2214afc446def77d43ff62ae093c2786fc1daebaab"
+    },
+    {
+      "path": "skills/workshop-baseline/SKILL.md",
+      "size": 646,
+      "sha256": "38d437960802a89ed99e5e7d7c05fb1645efb0cfc43320c76bda2b186ffe79b8"
+    },
+    {
+      "path": "src/untethered_aios/__init__.py",
+      "size": 453,
+      "sha256": "295d287efc0cb273d51f2e47aa35980f1b3da668621d4b523bd441cb468b53ae"
+    },
+    {
+      "path": "src/untethered_aios/audit.py",
+      "size": 1105,
+      "sha256": "f5273353714142189889e3687d013d65e806c94407a7ab3a4c1201e6e912caf6"
+    },
+    {
+      "path": "src/untethered_aios/capabilities.py",
+      "size": 1906,
+      "sha256": "ac21d433ec92264d47ee56cb4dc51f3217ec00411a7c452e501e97c127859bee"
+    },
+    {
+      "path": "src/untethered_aios/events.py",
+      "size": 720,
+      "sha256": "dc254c426fb4e53b66d266858389fceda1bee5a706bff8cf8190b917aa469c18"
+    },
+    {
+      "path": "src/untethered_aios/fake_model.py",
+      "size": 556,
+      "sha256": "547ab3c74ddaa25677feac43967cd2d3fcd523687fd61ecb3191883b7d66a34a"
+    },
+    {
+      "path": "src/untethered_aios/kernel.py",
+      "size": 6769,
+      "sha256": "f26f2974a5d3b13878ebd6394b5e64b4a34faf71dea660a30fad55f1aec74852"
+    },
+    {
+      "path": "tests/test_audit.py",
+      "size": 436,
+      "sha256": "0b5e28915c6706cab01ab83b7301441af8ca4a490c1332999ef3bf5aa2307bba"
+    },
+    {
+      "path": "tests/test_capabilities.py",
+      "size": 1735,
+      "sha256": "3c3e1289a92ace5ad06c96caff81e3116e261282b1bf3923d2206b1616dfd7fb"
+    },
+    {
+      "path": "tests/test_kernel.py",
+      "size": 1971,
+      "sha256": "f87ff9156e730f4f1fe821259048af960131afdbb4f1757813514741d0c77025"
+    },
+    {
+      "path": "workshop/README.md",
+      "size": 625,
+      "sha256": "fac93a0e0fdb98f4f56665101278d898785142778c99c9e8c73addd4a7b03b54"
+    }
+  ]
+}
