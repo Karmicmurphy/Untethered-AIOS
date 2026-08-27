@@ -34,23 +34,60 @@ Changes belong in this repository unless the owner separately approves a product
 3. `docs/ARCHITECTURE.md`
 4. `docs/AUTHORITY_AND_GATES.md`
 5. `docs/CODEX_HANDOFF.md`
-6. `contracts/capability.schema.json`
-7. the relevant file under `skills/`
+6. `skills/artifact-compass/SKILL.md`
+7. `skills/direct-successor-autopilot/SKILL.md`
+8. `skills/no-drift-build/SKILL.md`
+9. `skills/no-broadening-audit/SKILL.md`
+10. `skills/receipt-trace-certificate/SKILL.md`
+11. `contracts/capability.schema.json`
+12. any additional relevant file under `skills/`.
+
+When the owner asks for a deep dive, multiple passes, frontier search, salvage, or technology sweep, also read:
+
+- `skills/deep-salvage/SKILL.md`
+- `skills/better-question-rewriter/SKILL.md`
 
 `CODEX_START_HERE.md` is the definitive launch order for a fresh Codex session and overrides older bootstrap wording if there is any conflict.
+
+## Artifact Compass gate
+
+Artifact Compass is mandatory before:
+
+- selecting a new model/runtime/framework/database/sandbox/protocol;
+- adopting a new external dependency that materially affects architecture;
+- beginning a major new AIOS successor after current-state authentication;
+- replacing a verified mechanism with a different one;
+- making a claim that a frontier technology is necessary.
+
+Use the 10-pass method in `skills/artifact-compass/SKILL.md`.
+
+Every serious candidate must be classified:
+
+- `KEEP`
+- `CUT`
+- `TEST`
+- `REJECT`
+- `DEFER`
+
+Do not install or integrate a discovery simply because it is interesting. `TEST` means reversible candidate experiment first.
+
+Artifact Compass must end in one bounded direct-successor decision, not a pile of links.
 
 ## Default engineering loop
 
 1. Inspect current repo and git state.
 2. Authenticate required baselines.
-3. Define the smallest owner-visible or kernel-contract improvement.
-4. Implement in isolation.
-5. Add or update tests.
-6. Run affected tests.
-7. Run the complete suite.
-8. Fix ordinary defects automatically.
-9. Record evidence.
-10. Stop only at a real destructive/live/deployment gate.
+3. If technology/successor choice is involved, run the bounded Artifact Compass gate.
+4. Define the smallest owner-visible or kernel-contract improvement.
+5. Implement in isolation using Direct Successor Autopilot + NDBA.
+6. Add or update tests.
+7. Run affected tests.
+8. Run the complete suite.
+9. Fix ordinary defects automatically.
+10. Run No-Broadening Audit.
+11. Record receipts/traces/evidence.
+12. Update state/restart packet.
+13. Stop only at a real destructive/live/deployment gate.
 
 Do not ask for routine permission to test, fix candidate bugs, write manifests, or create rollback evidence.
 
@@ -70,6 +107,9 @@ Do not ask for routine permission to test, fix candidate bugs, write manifests, 
 - Discover hardware and model availability at runtime; do not hardcode giant models as mandatory.
 - Preserve artifacts and provenance across engine replacement.
 - Failure must be observable and recoverable.
+- Official sources outrank hype when evaluating technology.
+- Hardware reality outranks benchmark fantasy.
+- Legal/license fit is part of engineering proof.
 
 ## Definition of done for a kernel feature
 
@@ -82,6 +122,7 @@ It is done when:
 - no authority boundary is weakened;
 - audit evidence exists;
 - existing tests remain green;
+- No-Broadening Audit is clean;
 - status is reported honestly.
 
 ## Forbidden drift
@@ -97,11 +138,14 @@ Do not:
 - install system-wide packages without explicit owner need;
 - make Rust/WASM/vector DB/framework migration the goal by itself;
 - broaden one bounded successor into the entire roadmap;
-- merge into production Workshop automatically.
+- merge into production Workshop automatically;
+- adopt a technology before establishing its stack position and proof need;
+- use Artifact Compass as an excuse for endless research instead of a bounded decision.
 
 ## Codex report format
 
 1. What changed.
-2. What tests/evidence passed.
-3. What remains partial or blocked.
-4. Exact owner gate only when one genuinely exists.
+2. What Artifact Compass classified/selected when relevant.
+3. What tests/evidence passed.
+4. What remains partial, deferred, rejected, or blocked.
+5. Exact owner gate only when one genuinely exists.
