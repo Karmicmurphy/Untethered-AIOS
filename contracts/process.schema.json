@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Untethered AIOS Kernel V0.2 Process Record",
+  "type": "object",
+  "required": [
+    "pid",
+    "name",
+    "runner_id",
+    "grants",
+    "parent_pid",
+    "state",
+    "wake_pending",
+    "ticks",
+    "metadata",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "pid": {"type": "integer", "minimum": 1},
+    "name": {"type": "string", "minLength": 1},
+    "runner_id": {"type": "string", "minLength": 1},
+    "grants": {
+      "type": "array",
+      "items": {"$ref": "capability.schema.json"}
+    },
+    "parent_pid": {"type": ["integer", "null"], "minimum": 1},
+    "state": {
+      "enum": ["NEW", "READY", "RUNNING", "WAITING", "SUSPENDED", "DONE", "FAILED", "CANCELLED"]
+    },
+    "result": {},
+    "error": {"type": ["string", "null"]},
+    "waiting_for": {"type": ["string", "null"]},
+    "suspended_from": {
+      "type": ["string", "null"],
+      "enum": ["READY", "RUNNING", "WAITING", null]
+    },
+    "wake_pending": {"type": "boolean"},
+    "last_event": {"type": ["object", "null"]},
+    "ticks": {"type": "integer", "minimum": 0},
+    "metadata": {"type": "object"},
+    "created_at": {"type": "string", "minLength": 1},
+    "updated_at": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

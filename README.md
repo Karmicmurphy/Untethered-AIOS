@@ -42,32 +42,32 @@ The authoritative local Workshop remains outside this repository until Codex del
 
 ## What is included now
 
-This bootstrap contains:
+The current candidate contains:
 
-- a runnable Python standard-library AIOS kernel scaffold;
-- process table and lifecycle states;
+- a runnable Python standard-library Kernel V0.2 candidate;
+- in-memory and rollback-journal SQLite process-table implementations;
+- explicit process lifecycle states and transition authority;
 - cooperative scheduler;
-- event bus;
-- capability registry with scoped permissions;
-- audit receipts;
+- event wait, wake, suspend, resume, cancellation, and restart recovery;
+- capability registry with canonical scoped permissions and narrow child delegation;
+- structured hash-linked audit receipts;
 - deterministic fake-model worker backend;
 - baseline hashing/authentication script;
 - unit tests;
 - Codex operating instructions;
 - repository-local engineering skills;
 - architecture and release gates;
-- a placeholder for the authenticated Workshop baseline.
+- the authenticated, code-safe Workshop baseline imported during Phase 0.
 
-## First use
+## Reproduce the current candidate
 
-1. Create the GitHub repository `TWIS-Untethered-AIOS`.
-2. Upload this package.
-3. Open the repository in Codex.
-4. Tell Codex to read `AGENTS.md` and `docs/CODEX_HANDOFF.md`.
-5. Give Codex access to the authoritative local Workshop path:
-   `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS`
-6. Codex must authenticate the current Workshop **before** copying any baseline into `workshop/`.
-7. Do not merge AIOS work back into the production Workshop automatically.
+1. Check out `bootstrap/workshop-baseline`.
+2. Read `AGENTS.md`, `CODEX_START_HERE.md`, and `docs/CODEX_HANDOFF.md`.
+3. Verify `evidence/workshop-baseline.json` against the authoritative local
+   Workshop without writing to that Workshop.
+4. Verify the imported `workshop/` tree against the same manifest.
+5. Run `scripts\test.bat` and `python scripts\demo.py`.
+6. Do not merge or deploy AIOS work into the production Workshop automatically.
 
 ## Run the current kernel tests
 
@@ -93,4 +93,5 @@ python scripts/demo.py
 
 **BOOTSTRAP / EXPERIMENTAL.**
 
-The included kernel is intentionally small and testable. It is a foundation to beat on, not a declaration that the final Untethered AIOS is finished.
+The included kernel is intentionally small and testable. No real Workshop
+capability adapter or production integration is claimed by Kernel V0.2.

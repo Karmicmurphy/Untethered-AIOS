@@ -32,7 +32,10 @@ UNTETHERED AIOS KERNEL
 
 ## Kernel responsibilities
 
-The kernel owns coordination, not creative authority.
+The kernel owns coordination, not creative authority. Kernel V0.2 implements
+the process lifecycle, deterministic scheduler, event wake path, capability
+scope enforcement, process persistence abstraction, and receipt chain. Resource
+budgets, model discovery, and hostile-process isolation remain later work.
 
 It should eventually provide:
 
@@ -64,6 +67,36 @@ CANCELLED
 
 A process cannot directly edit its permissions.
 
+Kernel V0.2 enforces one transition matrix:
+
+```text
+NEW -> READY
+READY -> RUNNING | SUSPENDED | FAILED | CANCELLED
+RUNNING -> READY | WAITING | SUSPENDED | DONE | FAILED | CANCELLED
+WAITING -> READY | SUSPENDED | FAILED | CANCELLED
+SUSPENDED -> READY | WAITING | FAILED | CANCELLED
+DONE | FAILED | CANCELLED -> terminal
+```
+
+The FIFO ready queue and per-topic FIFO wait queues are deterministic. A real
+yield returns `RUNNING -> READY` and requeues the PID. An event wakes only the
+matching wait queue. If a waiting process is suspended when its event arrives,
+the kernel records a pending wake and makes it READY only after resume.
+
+### Process table and restart behavior
+
+`ProcessTable` separates serializable process truth from in-memory runner
+bindings. `InMemoryProcessTable` is the deterministic unit-test/default store.
+`SQLiteProcessTable` is the persistent implementation and uses one local SQLite
+file, serialized transactions, `synchronous=FULL`, foreign keys, and rollback
+journal mode. WAL is deliberately not enabled in V0.2.
+
+PIDs remain monotonic across a SQLite reopen. READY, WAITING, and SUSPENDED
+records are reconstructed. A record found in RUNNING state after reopen is
+failed with explicit `KernelRestart` crash evidence; it is never silently run
+again. A persisted nonterminal process must rebind the exact recorded
+`runner_id` before execution.
+
 ## Capability model
 
 A worker receives explicit grants such as:
@@ -76,14 +109,35 @@ music.loop.launch
 network:https://allowed.example
 ```
 
-A grant combines:
+A Kernel V0.2 grant combines:
 
 - capability name;
-- allowed scope;
-- optional resource budget;
-- optional expiry.
+- one or more allowed scopes.
 
-The first bootstrap implements name + scope enforcement.
+Resource budgets and grant expiry remain future contracts.
+
+Kernel V0.2 uses structured `CapabilityRequest` values. Capability definitions,
+not worker requests, declare whether a call is a mutation and which argument is
+the scoped resource. Windows paths are made absolute and canonical before
+containment; UNC paths, parent traversal, alternate data streams, reserved
+names, trailing dot/space components, sibling-prefix escapes, and other-drive
+escapes fail closed. Child grants must be equal to or narrower than parent
+grants.
+
+Workers receive a copied process view. Metadata changes and child spawning go
+through kernel methods, so supported worker APIs cannot mutate grants or the
+process table directly. This is an application-level boundary for cooperating
+workers, not hostile-code sandboxing.
+
+## Receipts and traces
+
+Every spawn, state transition, capability denial/call/mutation, event publish,
+cancellation, completion, failure, and restart recovery is represented in an
+ordered receipt. Receipts bind sequence, previous receipt hash, actor PID,
+parent PID, action, canonical target when applicable, timestamp, and bounded
+detail. Capability receipts store argument names and input/output hashes rather
+than full content. SQLite-backed receipts survive reopen, and a corrupt chain
+fails closed during kernel construction.
 
 ## Worker model
 

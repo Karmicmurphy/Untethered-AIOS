@@ -21,10 +21,13 @@ def main() -> None:
     def worker(ctx):
         state["turn"] += 1
         if state["turn"] == 1:
-            value = ctx.call("demo.echo", text="Workshop capability reached through kernel.")
-            ctx.process.metadata["echo"] = value
+            value = ctx.call(
+                "demo.echo",
+                text="Synthetic capability reached through kernel; no Workshop adapter invoked.",
+            )
+            ctx.set_metadata("echo", value)
             return Step.yield_cpu()
-        return Step.done(ctx.process.metadata["echo"])
+        return Step.done(ctx.metadata["echo"])
 
     pid = kernel.spawn(
         "demo-worker",
