@@ -34,13 +34,20 @@ Changes belong in this repository unless the owner separately approves a product
 3. `docs/ARCHITECTURE.md`
 4. `docs/AUTHORITY_AND_GATES.md`
 5. `docs/CODEX_HANDOFF.md`
-6. `skills/artifact-compass/SKILL.md`
-7. `skills/direct-successor-autopilot/SKILL.md`
-8. `skills/no-drift-build/SKILL.md`
-9. `skills/no-broadening-audit/SKILL.md`
-10. `skills/receipt-trace-certificate/SKILL.md`
-11. `contracts/capability.schema.json`
-12. any additional relevant file under `skills/`.
+6. `docs/CREDIT_EFFICIENT_WORK_SPLIT.md`
+7. `skills/artifact-compass/SKILL.md`
+8. `skills/credit-efficient-execution/SKILL.md`
+9. `skills/direct-successor-autopilot/SKILL.md`
+10. `skills/no-drift-build/SKILL.md`
+11. `skills/no-broadening-audit/SKILL.md`
+12. `skills/receipt-trace-certificate/SKILL.md`
+13. `contracts/capability.schema.json`
+14. any additional relevant file under `skills/`.
+
+Before any owner-facing UI work also read:
+
+- `docs/UI_DESIGN_SYSTEM.md`
+- `skills/high-end-ui/SKILL.md`
 
 When the owner asks for a deep dive, multiple passes, frontier search, salvage, or technology sweep, also read:
 
@@ -73,21 +80,44 @@ Do not install or integrate a discovery simply because it is interesting. `TEST`
 
 Artifact Compass must end in one bounded direct-successor decision, not a pile of links.
 
+## Credit-efficiency law
+
+Codex allowance is for local execution, not repeated public research or project-history rediscovery.
+
+Use `docs/CREDIT_EFFICIENT_WORK_SPLIT.md` and `skills/credit-efficient-execution/SKILL.md`.
+
+- Prefer current repo instructions/evidence over giant repeated handoffs.
+- Do not repeat public Artifact Compass research when `evidence/ARTIFACT_COMPASS_BOOTSTRAP_FINDINGS.md` already answers it; validate only unresolved/local-fit questions.
+- Batch bounded implementation + tests + ordinary fixes + full verification + evidence into one Codex turn where practical.
+- Write verbose machine evidence to files and keep chat summaries compact.
+- Never solve a usage-limit problem by silently buying credits or enabling auto-reload.
+
+## High-end UI law
+
+Any owner-facing UI must follow `docs/UI_DESIGN_SYSTEM.md` and `skills/high-end-ui/SKILL.md`.
+
+High-end means deliberate hierarchy, spacing, typography, tactile controls, restrained light, cinematic but functional motion, and excellent responsiveness.
+
+Reject generic SaaS styling, rainbow neon, glow everywhere, fake hologram clutter, tiny HUD text, gratuitous 3D, and framework migration purely for fashion.
+
+Preserve the existing static/local shell. Lit and Motion are bounded `TEST` candidates, not permission to rewrite the Workshop.
+
 ## Default engineering loop
 
 1. Inspect current repo and git state.
 2. Authenticate required baselines.
-3. If technology/successor choice is involved, run the bounded Artifact Compass gate.
-4. Define the smallest owner-visible or kernel-contract improvement.
-5. Implement in isolation using Direct Successor Autopilot + NDBA.
-6. Add or update tests.
-7. Run affected tests.
-8. Run the complete suite.
+3. Read current evidence to avoid repeated research/work.
+4. If technology/successor choice is involved, run only the unresolved bounded Artifact Compass gate.
+5. Define the smallest owner-visible or kernel-contract improvement.
+6. Implement in isolation using Direct Successor Autopilot + NDBA.
+7. Add or update tests.
+8. Run affected tests.
 9. Fix ordinary defects automatically.
-10. Run No-Broadening Audit.
-11. Record receipts/traces/evidence.
-12. Update state/restart packet.
-13. Stop only at a real destructive/live/deployment gate.
+10. Run the complete suite.
+11. Run No-Broadening Audit.
+12. Record receipts/traces/evidence.
+13. Update state/restart packet.
+14. Stop only at a real destructive/live/deployment gate.
 
 Do not ask for routine permission to test, fix candidate bugs, write manifests, or create rollback evidence.
 
@@ -140,7 +170,9 @@ Do not:
 - broaden one bounded successor into the entire roadmap;
 - merge into production Workshop automatically;
 - adopt a technology before establishing its stack position and proof need;
-- use Artifact Compass as an excuse for endless research instead of a bounded decision.
+- use Artifact Compass as an excuse for endless research instead of a bounded decision;
+- spend Codex allowance redoing current public research already preserved in repo evidence;
+- make owner-facing UI look like generic SaaS, gamer neon, or a stock AI dashboard.
 
 ## Codex report format
 
