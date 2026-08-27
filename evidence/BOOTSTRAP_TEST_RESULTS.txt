@@ -6,10 +6,10 @@ Source commit: f33976af8b484206b46327806fa90362d2e600a6
 
 Untethered unit tests: PASS
 Command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\test.ps1
-Tests run: 13
+Tests run: 37
 Failures: 0
 Errors: 0
-Elapsed: 1.076 seconds
+Elapsed: 16.576 seconds
 
 Imported Workshop Python tests: PASS
 Command: ..\.venv\Scripts\python.exe -m pytest tests -p no:cacheprovider
@@ -31,6 +31,15 @@ Source tree SHA-256: a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb3046
 Imported tree SHA-256: a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27
 Exact source/import match: PASS
 
+Kernel V0.2 candidate: PASS
+Implementation commit: dde57590c2df28274271ff3bec171d4e850f81e6
+Git tree: ed230538763a472264821245d0d4146abe69b39f
+Compileall: PASS
+Synthetic demo: PASS (2 ticks, DONE, 8 receipts)
+JSON contract parse: PASS (4/4)
+Rollback simulation: PASS (reverse candidate equals cca5026; 13/13 baseline tests pass)
+
 NOTE:
-This verifies Phase 0 baseline authentication/import and the existing bootstrap contracts.
-It does not claim Kernel V0.2 or live Workshop integration is complete.
+This verifies Phase 0 baseline authentication/import and the bounded Kernel V0.2
+candidate. It does not claim a real Workshop adapter, provider runtime, live
+Workshop integration, production deployment, or the whole AIOS is complete.
