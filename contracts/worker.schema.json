@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Untethered AIOS Worker Contract",
+  "type": "object",
+  "required": [
+    "name",
+    "capabilities"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "restart": {
+      "enum": [
+        "never",
+        "on_failure",
+        "bounded"
+      ]
+    },
+    "max_restarts": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false
+}

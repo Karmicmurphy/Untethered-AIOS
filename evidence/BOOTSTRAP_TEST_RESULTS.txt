@@ -1,0 +1,25 @@
+TWIS UNTETHERED AIOS — BOOTSTRAP VERIFICATION
+
+Unit tests: PASS
+Tests run: 7
+Failures: 0
+Errors: 0
+
+Verified contracts:
+- audit receipt creation
+- ungranted capability denial
+- path scope allow/deny
+- traversal escape denial
+- cooperative yield/requeue
+- WAITING -> event wake -> DONE lifecycle
+- child capability escalation denial
+
+Demo: PASS
+Observed:
+pid=1 state=DONE ticks=2
+Workshop capability reached through kernel.
+receipts=3
+
+NOTE:
+This verifies only the bootstrap kernel scaffold.
+Workshop baseline import and real Workshop capability adapters are intentionally not yet implemented.
