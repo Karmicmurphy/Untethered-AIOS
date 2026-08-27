@@ -51,7 +51,7 @@ The old Workshop Codex thread can remain where it is for production Workshop wor
 
 Paste this as the first message:
 
-> Read `AGENTS.md` and `CODEX_START_HERE.md` completely. This is the new Untethered AIOS repository. The authoritative Workshop is `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS` and must remain read-only. Execute Phase 0 exactly, authenticate/import the current code-safe Workshop baseline into this repo on a candidate branch, run all required verification, then continue automatically into KERNEL V0.2. Do not restart already-deployed Music Loop Deck V1. Fix ordinary candidate defects automatically. Stop only at a real protected/live deployment gate.
+> Read `AGENTS.md` and `CODEX_START_HERE.md` completely. This is the new Untethered AIOS repository. The authoritative Workshop is `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS` and must remain read-only. Execute Phase 0 exactly and authenticate/import the current code-safe Workshop baseline into this repo on a candidate branch. Then execute the mandatory Phase 0.5 updated Artifact Compass sweep using `skills/artifact-compass`, `skills/deep-salvage` when useful, and the supporting No-Drift/Direct-Successor/No-Broadening/evidence skills. Classify serious technologies `KEEP/CUT/TEST/REJECT/DEFER`, salvage mechanisms rather than whole platforms, stay free-first/local-first/legal-aware/hardware-measured, and end with one bounded Kernel V0.2 implementation decision. Continue automatically into KERNEL V0.2. Do not restart already-deployed Music Loop Deck V1. Fix ordinary candidate defects automatically. Stop only at a real protected/live deployment gate.
 
 That is enough. Do not paste the entire old Music handoff again unless Codex proves it needs specific historical evidence.
 
@@ -76,9 +76,12 @@ Codex should:
 5. import the code-safe baseline into `workshop/`;
 6. prove hashes match;
 7. run Untethered tests;
-8. fix ordinary candidate defects;
-9. record evidence;
-10. continue into KERNEL V0.2;
-11. stop before any live Workshop modification/deployment.
+8. run the mandatory Artifact Compass bounded reality sweep;
+9. classify findings `KEEP/CUT/TEST/REJECT/DEFER` and choose one bounded implementation;
+10. continue into KERNEL V0.2 using Direct Successor Autopilot + NDBA;
+11. fix ordinary candidate defects;
+12. run No-Broadening Audit;
+13. record receipt/trace/certificate evidence;
+14. stop before any live Workshop modification/deployment.
 
-If Codex begins rebuilding Music Loop Deck V1, rewriting the Workshop, installing giant models, or editing the authoritative `TWIS` folder, stop that thread and point it back to `CODEX_START_HERE.md`.
+If Codex begins rebuilding Music Loop Deck V1, rewriting the Workshop, installing giant models, broadening into Rust/WASM/vector DB/provider work without current evidence, or editing the authoritative `TWIS` folder, stop that thread and point it back to `CODEX_START_HERE.md`.
