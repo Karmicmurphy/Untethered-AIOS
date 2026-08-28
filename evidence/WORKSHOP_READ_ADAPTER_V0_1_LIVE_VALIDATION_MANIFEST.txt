@@ -1,0 +1,22 @@
+TWIS UNTETHERED AIOS — WORKSHOP READ ADAPTER V0.1 LIVE VALIDATION MANIFEST
+
+Date: 2026-08-28
+Branch: validation/workshop-read-adapter-v0.1-live
+Starting candidate: 390e2cba9b4f1377642bcfe6fad9b47235fee556
+Validation harness commit: 93637403ad69567edd0cfc38d42d1898acabbfde
+Validation harness tree: 8d0dc4eb8c7197fac97c12baa92ff64b17f60588
+Manifested executable files: 1
+Hash algorithm: SHA-256
+
+a0f89647335110e9b51b12b30e5d93c97778cd6a903226dc52f5d59ffc2d48d6  scripts/validate_live_workshop_read_v0_1.py
+
+Live validation result SHA-256:
+5b8e7d3a2407a89b369937b70b7a0ed730a96a4f9207d6140a558775322d9a2e
+
+Live capability receipt SHA-256:
+1b7e15771337f7a5bde2fc6dee7b268a3625213ee7316bb5b1a601e460796157
+
+The certificate, restart packet, and this manifest are evidence recorded after
+the immutable validation-harness commit and are intentionally outside its
+one-file executable hash set. Ignored local JSON contains only the sanitized
+machine-readable run and is not part of Git publication evidence.
