@@ -9,7 +9,8 @@
 - Artifact Compass Kernel V0.2 sweep: PASS / DIRECT SUCCESSOR SELECTED
 - Kernel V0.2 implementation: VERIFIED CANDIDATE (`dde57590c2df28274271ff3bec171d4e850f81e6`)
 - Kernel V0.2 unit tests: PASS (37/37)
-- Workshop capability adapters: NOT IMPLEMENTED
+- Workshop Read Adapter V0.1: VERIFIED CANDIDATE (one project-scoped artifact metadata read)
+- Other Workshop capability adapters: NOT IMPLEMENTED
 - Real Ollama/provider model runtime: NOT REQUIRED / NOT IMPLEMENTED
 - Production Workshop integration: NOT APPROVED
 - Live deployment: NONE

@@ -3,11 +3,20 @@ from __future__ import annotations
 from dataclasses import dataclass
 import os
 from pathlib import Path, PureWindowsPath
+import re
 from typing import Any, Callable
 
 
 class PermissionDenied(RuntimeError):
     def __init__(self, message: str, *, target: str | None = None) -> None:
+        super().__init__(message)
+        self.target = target
+
+
+class CapabilityFailed(RuntimeError):
+    """A capability operation failed after authorization selected its target."""
+
+    def __init__(self, message: str, *, target: str) -> None:
         super().__init__(message)
         self.target = target
 
@@ -36,7 +45,14 @@ class Capability:
     name: str
     handler: Callable[..., Any]
     scope_arg: str | None = None
+    scope_kind: str = "path"
+    allow_wildcard_scope: bool = True
     mutation: bool = False
+
+
+RESOURCE_SCOPE_PATTERN = re.compile(
+    r"^[a-z][a-z0-9.-]{0,31}:[a-z0-9][a-z0-9_-]{0,127}$"
+)
 
 
 def _looks_unc(value: str) -> bool:
@@ -80,6 +96,15 @@ def canonical_path(value: str) -> str:
         raise PermissionDenied(f"path canonicalization failed: {exc}", target=value) from exc
 
 
+def canonical_resource_scope(value: Any) -> str:
+    """Return a strict, non-path resource scope suitable for exact matching."""
+
+    if not isinstance(value, str) or not RESOURCE_SCOPE_PATTERN.fullmatch(value):
+        target = value if isinstance(value, str) else None
+        raise PermissionDenied("resource scope is invalid", target=target)
+    return value
+
+
 def _path_within(candidate: str, scope: str) -> bool:
     if scope == "*":
         return True
@@ -90,6 +115,20 @@ def _path_within(candidate: str, scope: str) -> bool:
         scope_text = os.path.normcase(scope_path)
         return os.path.commonpath((candidate_text, scope_text)) == scope_text
     except (PermissionDenied, ValueError):
+        return False
+
+
+def _resource_within(
+    candidate: str,
+    scope: str,
+    *,
+    allow_wildcard: bool,
+) -> bool:
+    if scope == "*":
+        return allow_wildcard
+    try:
+        return canonical_resource_scope(candidate) == canonical_resource_scope(scope)
+    except PermissionDenied:
         return False
 
 
@@ -131,16 +170,55 @@ class CapabilityRegistry:
         handler: Callable[..., Any],
         scope_arg: str | None = None,
         *,
+        scope_kind: str = "path",
+        allow_wildcard_scope: bool = True,
         mutation: bool = False,
     ) -> None:
         if name in self._caps:
             raise ValueError(f"capability already registered: {name}")
+        if scope_kind not in {"path", "resource"}:
+            raise ValueError(f"unsupported scope kind: {scope_kind}")
+        if scope_arg is None and scope_kind != "path":
+            raise ValueError("resource scope kind requires a scoped argument")
         self._caps[name] = Capability(
             name=name,
             handler=handler,
             scope_arg=scope_arg,
+            scope_kind=scope_kind,
+            allow_wildcard_scope=allow_wildcard_scope,
             mutation=mutation,
         )
+
+    def grants_are_subset(
+        self,
+        requested: tuple[CapabilityGrant, ...],
+        parent: tuple[CapabilityGrant, ...],
+    ) -> bool:
+        for child_grant in requested:
+            matching = [grant for grant in parent if grant.name == child_grant.name]
+            if not matching:
+                return False
+            cap = self._caps.get(child_grant.name)
+            for child_scope in child_grant.scopes:
+                if cap is not None and cap.scope_kind == "resource":
+                    allowed = any(
+                        _resource_within(
+                            child_scope,
+                            parent_scope,
+                            allow_wildcard=cap.allow_wildcard_scope,
+                        )
+                        for grant in matching
+                        for parent_scope in grant.scopes
+                    )
+                else:
+                    allowed = any(
+                        scope_within(child_scope, parent_scope)
+                        for grant in matching
+                        for parent_scope in grant.scopes
+                    )
+                if not allowed:
+                    return False
+        return True
 
     def invoke_request(
         self,
@@ -161,14 +239,28 @@ class CapabilityRegistry:
                 raise PermissionDenied(f"missing scoped argument: {cap.scope_arg}")
             requested_target = str(request.arguments[cap.scope_arg])
             try:
-                target = canonical_path(requested_target)
+                if cap.scope_kind == "path":
+                    target = canonical_path(requested_target)
+                else:
+                    target = canonical_resource_scope(request.arguments[cap.scope_arg])
             except PermissionDenied as exc:
                 raise PermissionDenied(str(exc), target=requested_target) from exc
-            allowed = any(
-                _path_within(target, scope)
-                for grant in matching
-                for scope in grant.scopes
-            )
+            if cap.scope_kind == "path":
+                allowed = any(
+                    _path_within(target, scope)
+                    for grant in matching
+                    for scope in grant.scopes
+                )
+            else:
+                allowed = any(
+                    _resource_within(
+                        target,
+                        scope,
+                        allow_wildcard=cap.allow_wildcard_scope,
+                    )
+                    for grant in matching
+                    for scope in grant.scopes
+                )
             if not allowed:
                 raise PermissionDenied(
                     f"scope denied for {request.name}: {requested_target}",
@@ -182,7 +274,17 @@ class CapabilityRegistry:
             # a resolved path would weaken the scope boundary.
             handler_arguments[cap.scope_arg] = target
 
-        value = cap.handler(**handler_arguments)
+        try:
+            value = cap.handler(**handler_arguments)
+        except (PermissionDenied, CapabilityFailed):
+            raise
+        except Exception as exc:
+            if target is not None:
+                raise CapabilityFailed(
+                    f"{type(exc).__name__}: {exc}",
+                    target=target,
+                ) from exc
+            raise
         return CapabilityOutcome(value=value, target=target, mutation=cap.mutation)
 
     def invoke(

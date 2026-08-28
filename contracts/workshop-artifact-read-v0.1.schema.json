@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Untethered AIOS Workshop Artifact Read V0.1 Result",
+  "type": "object",
+  "required": [
+    "schema",
+    "capability",
+    "scope",
+    "primitive",
+    "artifact",
+    "trace"
+  ],
+  "properties": {
+    "schema": {
+      "const": "twis-workshop-artifact-read-v0.1"
+    },
+    "capability": {
+      "const": "workshop.artifact.read"
+    },
+    "scope": {
+      "type": "string",
+      "pattern": "^project:[a-z0-9][a-z0-9_-]{0,127}$"
+    },
+    "primitive": {
+      "const": "workshop.companion.server.artifact_inspection_options"
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "artifact_id",
+        "project_id",
+        "title",
+        "kind",
+        "path",
+        "sha256",
+        "file_type",
+        "byte_count",
+        "review_status"
+      ],
+      "properties": {
+        "artifact_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "project_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "title": {"type": "string"},
+        "kind": {"type": "string"},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+        "file_type": {"type": "string", "minLength": 1},
+        "byte_count": {"type": "integer", "minimum": 0},
+        "review_status": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "trace": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "kernel.capability.invoke"},
+        {"const": "untethered_aios.workshop_read_adapter.WorkshopArtifactReadAdapter.read"},
+        {"const": "workshop.companion.server.artifact_inspection_options"}
+      ],
+      "items": false,
+      "minItems": 3,
+      "maxItems": 3
+    }
+  },
+  "additionalProperties": false
+}

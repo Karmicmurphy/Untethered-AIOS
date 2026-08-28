@@ -116,6 +116,17 @@ A Kernel V0.2 grant combines:
 
 Resource budgets and grant expiry remain future contracts.
 
+Workshop Read Adapter V0.1 adds strict non-path resource scopes in the form
+`project:<project-id>`. They are exact-match only for this capability: wildcard
+invocation and wildcard-to-child delegation are denied. The adapter accepts no
+filesystem path or SQL input from the worker. After kernel authorization, it
+calls the authenticated Workshop's existing
+`artifact_inspection_options(project_id)` primitive and returns only eligible,
+project-matching public artifact metadata under that project's Workshop root.
+The result includes its source hash, a three-hop trace, and a non-mutation
+capability receipt. Adapter and primitive failures are explicit and bind the
+canonical project target.
+
 Kernel V0.2 uses structured `CapabilityRequest` values. Capability definitions,
 not worker requests, declare whether a call is a mutation and which argument is
 the scoped resource. Windows paths are made absolute and canonical before

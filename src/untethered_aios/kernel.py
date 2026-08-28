@@ -8,6 +8,7 @@ from typing import Any, Callable
 
 from .audit import AuditLog, hash_value
 from .capabilities import (
+    CapabilityFailed,
     CapabilityGrant,
     CapabilityRegistry,
     CapabilityRequest,
@@ -129,6 +130,21 @@ class ProcessContext:
                     "argument_keys": sorted(request.arguments),
                     "input_sha256": input_hash,
                     "error": str(exc),
+                },
+            )
+            raise
+        except CapabilityFailed as exc:
+            self.kernel.audit.emit(
+                "capability.failed",
+                actor=actor,
+                action=request.name,
+                target=exc.target,
+                pid=proc.pid,
+                parent_pid=proc.parent_pid,
+                detail={
+                    "argument_keys": sorted(request.arguments),
+                    "input_sha256": input_hash,
+                    "error": f"{type(exc).__name__}: {exc}",
                 },
             )
             raise
@@ -273,7 +289,7 @@ class Kernel:
             parent = self._record(parent_pid)
             if parent.state != ProcessState.RUNNING:
                 raise PermissionDenied("child spawning requires a RUNNING parent")
-            if not grants_are_subset(grants, parent.grants):
+            if not self.capabilities.grants_are_subset(grants, parent.grants):
                 raise PermissionDenied("child cannot receive capabilities beyond parent grants")
 
         pid = self.process_table.allocate_pid()

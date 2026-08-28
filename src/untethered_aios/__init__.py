@@ -10,6 +10,7 @@ from .process_table import (
     SQLiteProcessTable,
 )
 from .capabilities import (
+    CapabilityFailed,
     CapabilityGrant,
     CapabilityRequest,
     CapabilityRegistry,
@@ -25,6 +26,7 @@ __all__ = [
     "InMemoryProcessTable",
     "SQLiteProcessTable",
     "CapabilityRegistry",
+    "CapabilityFailed",
     "CapabilityGrant",
     "CapabilityRequest",
     "PermissionDenied",

@@ -50,6 +50,7 @@ The current candidate contains:
 - cooperative scheduler;
 - event wait, wake, suspend, resume, cancellation, and restart recovery;
 - capability registry with canonical scoped permissions and narrow child delegation;
+- one candidate-only, project-scoped Workshop artifact-metadata read adapter;
 - structured hash-linked audit receipts;
 - deterministic fake-model worker backend;
 - baseline hashing/authentication script;
@@ -61,7 +62,7 @@ The current candidate contains:
 
 ## Reproduce the current candidate
 
-1. Check out `bootstrap/workshop-baseline`.
+1. Check out `successor/workshop-read-adapter-v0.1`.
 2. Read `AGENTS.md`, `CODEX_START_HERE.md`, and `docs/CODEX_HANDOFF.md`.
 3. Verify `evidence/workshop-baseline.json` against the authoritative local
    Workshop without writing to that Workshop.
@@ -93,5 +94,8 @@ python scripts/demo.py
 
 **BOOTSTRAP / EXPERIMENTAL.**
 
-The included kernel is intentionally small and testable. No real Workshop
-capability adapter or production integration is claimed by Kernel V0.2.
+The included kernel is intentionally small and testable. Workshop Read Adapter
+V0.1 exposes one real, project-scoped metadata read through the authenticated
+Workshop primitive and emits a hash-linked capability receipt. It is a
+candidate-only integration: no live deployment or broader Workshop authority is
+claimed.
