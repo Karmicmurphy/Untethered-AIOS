@@ -1,0 +1,24 @@
+TWIS UNTETHERED AIOS — WORKSHOP READ ADAPTER V0.1 IMPLEMENTATION MANIFEST
+
+Date: 2026-08-27
+Branch: successor/workshop-read-adapter-v0.1
+Base commit: f93dfcbda3831bc918d42c8ff3f298af6e7681fe
+Implementation commit: 1ba5800e598b4b3063e68541d95625cffeac6133
+Implementation tree: fa149d97cc5a7a76eb699053082744f163c76243
+Manifested files: 9
+Hash algorithm: SHA-256
+
+c4d88f4bf45d15b4e47706618d1d9b0b1af6286170b949914f8f57ff2083abdb  README.md
+96639ff22f19206bc6b9a7e0e6efdce344bfb38a10dd976d414619777184cc9e  STATUS.md
+281f9274bad460f2f9baa018836efa02382b7e7603d99370dc9bf294f04b6058  contracts/workshop-artifact-read-v0.1.schema.json
+ba18bfe62349bdd60e2e97ef57dfdad7373156e3bf92b9c8ae3523b097478525  docs/ARCHITECTURE.md
+382257b272c955e96450e8baf8e182be5fc58c917ed6921b5d1ecbaceda08fd5  src/untethered_aios/__init__.py
+cf2f9024b8ad29e7e9e47d7559d63673f4bc86d253afd826f06f7052880bb651  src/untethered_aios/capabilities.py
+de123611cb3d45f9618ad2623f10e61db9edd523f64412aa69112f238eb57b82  src/untethered_aios/kernel.py
+235058e100d8f98ffa5a5c2e91170dc8f85a2216800027801247e1ee9f7ac488  src/untethered_aios/workshop_read_adapter.py
+4e5cb9e41319387a7336ca4164ea1970599555219b7fe1de811a239b177719cd  tests/test_workshop_read_adapter.py
+
+This manifest covers the bounded implementation commit only. The verification
+certificate, restart packet, and this manifest are evidence written after that
+immutable implementation commit and are intentionally outside its nine-file
+hash set.
