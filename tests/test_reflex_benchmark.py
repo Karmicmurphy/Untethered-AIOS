@@ -31,6 +31,10 @@ class ReflexExecutionBenchmarkTests(unittest.TestCase):
         self.assertFalse(
             result["execution_cases"]["identical_repeat"]["handler_executed"]
         )
+        self.assertGreater(
+            result["execution_cases"]["identical_repeat"]["wall_ns"],
+            0,
+        )
         self.assertEqual(
             result["execution_cases"]["dependency_changed"]["status"],
             "EXECUTED",

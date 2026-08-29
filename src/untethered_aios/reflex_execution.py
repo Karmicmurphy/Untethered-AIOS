@@ -320,6 +320,12 @@ class KernelCheapExecutionBridge:
             "payload": hash_value(payload),
             "work_item": work_item.input_sha256,
         }
+        was_tracing = tracemalloc.is_tracing()
+        if not was_tracing:
+            tracemalloc.start()
+        _, reuse_peak_before = tracemalloc.get_traced_memory()
+        reuse_wall_start = time.perf_counter_ns()
+        reuse_cpu_start = time.process_time_ns()
         reuse = self.memory.check_reuse(
             computation_id,
             input_hashes=input_hashes,
@@ -349,6 +355,12 @@ class KernelCheapExecutionBridge:
                 },
                 target=computation_id,
             )
+            reuse_cpu_ns = time.process_time_ns() - reuse_cpu_start
+            reuse_wall_ns = time.perf_counter_ns() - reuse_wall_start
+            _, reuse_peak_after = tracemalloc.get_traced_memory()
+            reuse_traced_memory = max(0, reuse_peak_after - reuse_peak_before)
+            if not was_tracing:
+                tracemalloc.stop()
             return ExecutionOutcome(
                 route=decision.route,
                 status=ExecutionStatus.REUSED,
@@ -359,10 +371,12 @@ class KernelCheapExecutionBridge:
                 pid=None,
                 decision_receipt_sha256=decision.receipt_sha256,
                 receipt_sha256=receipt.sha256,
-                cpu_ns=0,
-                wall_ns=0,
-                traced_memory_bytes=0,
+                cpu_ns=reuse_cpu_ns,
+                wall_ns=reuse_wall_ns,
+                traced_memory_bytes=reuse_traced_memory,
             )
+        if not was_tracing:
+            tracemalloc.stop()
         return self._execute_handler(
             decision,
             work_item,

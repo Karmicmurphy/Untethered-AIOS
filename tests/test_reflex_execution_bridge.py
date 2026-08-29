@@ -168,6 +168,9 @@ class ReflexExecutionBridgeTests(unittest.TestCase):
         self.assertEqual(self.model.calls, [])
         self.assertIsNotNone(first.pid)
         self.assertIsNone(second.pid)
+        self.assertGreater(second.wall_ns, 0)
+        self.assertGreaterEqual(second.cpu_ns, 0)
+        self.assertGreaterEqual(second.traced_memory_bytes, 0)
         self.assertEqual(
             self.kernel.get_process(first.pid).state,
             ProcessState.DONE,
