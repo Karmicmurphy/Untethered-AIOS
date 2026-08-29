@@ -1,0 +1,43 @@
+TWIS COGNITIVE SUBSTRATE V0.1 CANDIDATE MANIFEST
+
+Status: PASS - Campaign 1 candidate verified; not deployed
+Branch: successor/cognitive-substrate-v0.1
+Rollback base: acf981b15de4b098659e0f74b28465d288a97e0b
+Implementation commit: a329349ca8483396d49e142082dd0c8c5dec034e
+Implementation tree: 233d89365bd562a66c7ba8a8187dee60684c77dc
+Authoritative Workshop: C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS (read-only)
+
+SHA-256  PATH
+715c84fe38fa9ec0153ff100f23860bbb5275d0ecbc902bef08aa5122e38a316  contracts/cognitive-substrate-v0.1.schema.json
+0785e0798e805b2bd709f151a2390166b77a2327edbd825d8fea2adef5a437d0  docs/ARCHITECTURE.md
+eb9e49cee47a13bd767d887e6f275f7efca4c5f1aa08e63a2011ba591610c734  docs/COGNITIVE_SUBSTRATE_V0_1.md
+ac7fe841b41cc8f4c6ffde8bb2708f9a4c2c368eba27f132f0a2b47232f501e7  evidence/ARTIFACT_COMPASS_COGNITIVE_SUBSTRATE_V0_1.md
+e0e7712649a1e5ac21623c4334a4db499be53d8142a2544ea67404f2d412435a  evidence/cognitive-substrate-v0.1-benchmark.json
+5678b27d256e2dddfc8a9770d8683629f9c9492246160cf5b5cd97cc640b3ad1  evidence/cognitive-substrate-v0.1-protected-state.json
+5e0c717d3d30bfa09b08ab72dbc6d5277aeaf67b16f9ae3697df1b36a59ac7ea  scripts/run_cognitive_benchmark.py
+2f0fa97bf8cc38d5c66c6240a6364a054ccee93552578768c560ba2adfdf5222  src/untethered_aios/__init__.py
+75faaafafd80fed305dda60f9359cf5d7fa93bb5a024d03e2c617ae008e48f75  src/untethered_aios/attention_governor.py
+12f2cd378adea07bf085f5ca06c6f434762e2a6b55d83f15bc05d73402546324  src/untethered_aios/cognitive_benchmark.py
+0d261a70c2d4a9f317db3034354b28231e52617bd6e81d230c97746d4780ef87  src/untethered_aios/cognitive_contracts.py
+367e3e8e5bec09b90d0e7e10628e40c4926aa19aa28983809c7c45aef8e30d08  src/untethered_aios/computation_memory.py
+d58e83deb01293125e0e92f8c0a6eb955abb74c744d6aedf2feb1cae47ae9455  tests/test_attention_governor.py
+5e97963332f556b02acf64513c26335c3523d858e5fb2e5a4ea610bf18f3dfeb  tests/test_cognitive_benchmark.py
+651ce9c235eec5891ef5dcdd6800117ef30b93552588d7a426efd64abb7c48c4  tests/test_cognitive_contracts.py
+d7f944d69ad4ac0d693e935818d5f6583ba8934208ebe45625337ce57aae5ff9  tests/test_computation_memory.py
+
+FINAL VALIDATION
+- Focused Campaign 1: 14/14 PASS
+- Complete Untethered: 63/63 PASS
+- Exact rollback base: 49/49 PASS
+- Benchmark routes/correctness: 9/9 PASS
+- Central AI required/avoided: 2/4 (FakeModel only)
+- Python compileall: PASS
+- JSON contracts: 6/6 PASS
+- Demo: PASS
+- Receipt chain: VALID
+- SQLite integrity/journal: ok/delete
+- Protected code-safe tree: UNCHANGED
+- Workshop changes/deployment: NONE
+
+STOP: no Campaign 2, owner-surface deployment, Workshop write/restart, Music
+action, provider/model activation, network, permission widening, or publishing.
