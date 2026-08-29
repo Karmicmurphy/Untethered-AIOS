@@ -205,3 +205,18 @@ The existing room remains usable while the AIOS path is proven.
 - mandatory vector database;
 - mandatory OpenAI/Ollama/provider;
 - replacing existing Workshop rooms.
+
+## Cognitive Substrate V0.1 candidate
+
+Campaign 1 adds a local decision and computation-evidence layer beside the
+Kernel. The Attention Governor maps a bounded WorkItem to exactly one route
+using explicit authority/resource gates and expected benefit minus cost.
+Computation Memory persists hashes and dependency edges in a candidate-only
+rollback-journal SQLite ledger, so changed dependencies invalidate only
+reachable dependents. Kernel V0.2 remains process/capability authority; the
+governor cannot execute or self-grant work.
+
+The complete bounded contract is in
+`docs/COGNITIVE_SUBSTRATE_V0_1.md`. Blackboard, general memory, Capability
+Cells, Model Gateway implementation, Cognitive Downshift, associative memory,
+MicroForge, provider integration, and owner UI remain deferred.

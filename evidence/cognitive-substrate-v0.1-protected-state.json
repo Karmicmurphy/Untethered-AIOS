@@ -1,0 +1,49 @@
+{
+  "schema": "twis-cognitive-substrate-protected-state-v0.1",
+  "authoritative_workshop": "C:\\TWIS_FLASHRIVER_REVIEW_READY\\TWIS",
+  "campaign_workshop_writes": 0,
+  "before": {
+    "included_file_count": 293,
+    "excluded_file_count": 233,
+    "code_safe_tree_sha256": "a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27",
+    "raw_manifest_sha256": "7d36e6c85898644abb5a5b49ff94090d9633cf03755a11347897161a2229f693"
+  },
+  "final": {
+    "included_file_count": 293,
+    "excluded_file_count": 231,
+    "code_safe_tree_sha256": "a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27",
+    "raw_manifest_sha256": "03d1dc003d4768bc37a08e68e11c753c1ccdea7902d353542995f7dd0a700aba"
+  },
+  "code_safe_tree_unchanged": true,
+  "excluded_runtime_drift": {
+    "removed": [
+      "data\\visitor_bench.sqlite3-shm",
+      "data\\visitor_bench.sqlite3-wal"
+    ],
+    "added": [],
+    "interpretation": "excluded SQLite sidecars are non-authoritative live runtime state; no code-safe file changed"
+  },
+  "imported_snapshot": {
+    "tracked_workshop_changes_in_campaign": 0,
+    "fresh_manifest_files": 293,
+    "working_tree_hash_matches": 290,
+    "inherited_line_ending_mismatches": [
+      {
+        "path": "workshop/start-workshop.bat",
+        "fresh_live_sha256": "e50edfa8b151efbbeff401dd771e22c82c4885fd314d4239ad452da5a42cc1c1",
+        "committed_blob_sha256": "8cd685faca97191ee8085260e90a508710ded4aedc6b2431e937fc992457a86c"
+      },
+      {
+        "path": "workshop/TWIS_BACKGROUND_COMPOSITION_IMAGES_V2_CHANGED_FILES.txt",
+        "fresh_live_sha256": "e9dc339cff29d584cd12e86c910cbe7a0f2fdc7f4ba39087a47bb124c9141671",
+        "committed_blob_sha256": "92efe805ac49748b55793f3476b6463ea4d097336f32635132bc69fc189ae7b0"
+      },
+      {
+        "path": "workshop/TWIS_BACKGROUND_REMOVAL_RUNTIME_CHANGED_FILES.txt",
+        "fresh_live_sha256": "1a78289522c1f7d7638e88c49cbc48141750b1086fe9ed55e45efb3ae8ba44eb",
+        "committed_blob_sha256": "fd46a3395efd2e6d76b22e32d4cdadcbd6ae3a3c2398e04a3745f78439223235"
+      }
+    ],
+    "interpretation": "pre-existing CRLF-to-LF Git normalization in the selected base; Campaign 1 does not modify Workshop source bytes"
+  }
+}

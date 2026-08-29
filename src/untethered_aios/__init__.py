@@ -18,6 +18,20 @@ from .capabilities import (
 )
 from .events import Event, EventBus
 from .audit import AuditLog, Receipt
+from .attention_governor import AttentionGovernor
+from .cognitive_contracts import (
+    CandidateValue,
+    Route,
+    RouteDecision,
+    RouteEstimate,
+    WorkItem,
+)
+from .computation_memory import (
+    ComputationRecord,
+    ComputationState,
+    ReuseDecision,
+    SQLiteComputationMemory,
+)
 
 __all__ = [
     "Kernel",
@@ -34,5 +48,15 @@ __all__ = [
     "EventBus",
     "AuditLog",
     "Receipt",
+    "AttentionGovernor",
+    "Route",
+    "RouteEstimate",
+    "WorkItem",
+    "CandidateValue",
+    "RouteDecision",
+    "ComputationState",
+    "ComputationRecord",
+    "ReuseDecision",
+    "SQLiteComputationMemory",
     "__version__",
 ]

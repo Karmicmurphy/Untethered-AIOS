@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Untethered AIOS Cognitive Substrate V0.1",
+  "type": "object",
+  "oneOf": [
+    {"$ref": "#/$defs/workItem"},
+    {"$ref": "#/$defs/routeDecision"},
+    {"$ref": "#/$defs/computationRecord"}
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "route": {
+      "enum": [
+        "IGNORE",
+        "DEFER",
+        "REFLEX",
+        "RULE",
+        "WORKER",
+        "CENTRAL_AI",
+        "OWNER_GATE"
+      ]
+    },
+    "routeEstimate": {
+      "type": "object",
+      "required": [
+        "route",
+        "handler_id",
+        "estimated_cost",
+        "success_probability",
+        "cpu_ms",
+        "memory_mb",
+        "deterministic"
+      ],
+      "properties": {
+        "route": {
+          "enum": ["REFLEX", "RULE", "WORKER", "CENTRAL_AI"]
+        },
+        "handler_id": {"type": "string", "minLength": 1},
+        "estimated_cost": {"type": "number", "minimum": 0},
+        "success_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cpu_ms": {"type": "integer", "minimum": 0},
+        "memory_mb": {"type": "number", "minimum": 0},
+        "deterministic": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "workItem": {
+      "type": "object",
+      "required": [
+        "work_item_id",
+        "task_class",
+        "urgency",
+        "owner_priority",
+        "novelty",
+        "uncertainty",
+        "risk",
+        "expected_benefit",
+        "cpu_budget_ms",
+        "available_memory_mb",
+        "memory_pressure",
+        "failure_history",
+        "route_estimates",
+        "protected_operation"
+      ],
+      "properties": {
+        "work_item_id": {"type": "string", "minLength": 1},
+        "task_class": {"type": "string", "minLength": 1},
+        "urgency": {"type": "number", "minimum": 0, "maximum": 1},
+        "owner_priority": {"type": "number", "minimum": 0, "maximum": 1},
+        "novelty": {"type": "number", "minimum": 0, "maximum": 1},
+        "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+        "risk": {"type": "number", "minimum": 0, "maximum": 1},
+        "expected_benefit": {"type": "number", "minimum": 0},
+        "cpu_budget_ms": {"type": "integer", "minimum": 0},
+        "available_memory_mb": {"type": "number", "minimum": 0},
+        "memory_pressure": {"type": "number", "minimum": 0, "maximum": 1},
+        "failure_history": {
+          "type": "array",
+          "items": {"type": "boolean"}
+        },
+        "route_estimates": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/routeEstimate"},
+          "maxItems": 4
+        },
+        "protected_operation": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "candidateValue": {
+      "type": "object",
+      "required": [
+        "route",
+        "handler_id",
+        "eligible",
+        "expected_benefit",
+        "expected_cost",
+        "expected_net_value",
+        "success_probability",
+        "reason",
+        "cpu_ms",
+        "memory_mb"
+      ],
+      "properties": {
+        "route": {"$ref": "#/$defs/route"},
+        "handler_id": {"type": "string"},
+        "eligible": {"type": "boolean"},
+        "expected_benefit": {"type": "number"},
+        "expected_cost": {"type": "number"},
+        "expected_net_value": {"type": ["number", "null"]},
+        "success_probability": {"type": "number"},
+        "reason": {"type": "string"},
+        "cpu_ms": {"type": "integer"},
+        "memory_mb": {"type": "number"}
+      },
+      "additionalProperties": false
+    },
+    "routeDecision": {
+      "type": "object",
+      "required": [
+        "work_item_id",
+        "route",
+        "selected_handler",
+        "expected_benefit",
+        "expected_cost",
+        "expected_net_value",
+        "reason_code",
+        "reason",
+        "input_sha256",
+        "candidate_values",
+        "resource_assumptions",
+        "receipt_sha256"
+      ],
+      "properties": {
+        "work_item_id": {"type": "string"},
+        "route": {"$ref": "#/$defs/route"},
+        "selected_handler": {"type": ["string", "null"]},
+        "expected_benefit": {"type": "number"},
+        "expected_cost": {"type": "number"},
+        "expected_net_value": {"type": ["number", "null"]},
+        "reason_code": {"type": "string"},
+        "reason": {"type": "string"},
+        "input_sha256": {"$ref": "#/$defs/sha256"},
+        "candidate_values": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/candidateValue"}
+        },
+        "resource_assumptions": {"type": "object"},
+        "receipt_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "computationRecord": {
+      "type": "object",
+      "required": [
+        "computation_id",
+        "input_hashes",
+        "dependency_hashes",
+        "producer",
+        "result_hash",
+        "duration_ms",
+        "cpu_ms",
+        "memory_bytes",
+        "cost_units",
+        "invalidation_rule",
+        "proof_reference",
+        "state"
+      ],
+      "properties": {
+        "computation_id": {"type": "string", "minLength": 1},
+        "input_hashes": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/sha256"}
+        },
+        "dependency_hashes": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/sha256"}
+        },
+        "producer": {"type": "string", "minLength": 1},
+        "result_hash": {"$ref": "#/$defs/sha256"},
+        "duration_ms": {"type": "number", "minimum": 0},
+        "cpu_ms": {"type": "number", "minimum": 0},
+        "memory_bytes": {"type": "integer", "minimum": 0},
+        "cost_units": {"type": "number", "minimum": 0},
+        "invalidation_rule": {"type": "string", "minLength": 1},
+        "proof_reference": {"type": "string", "minLength": 1},
+        "state": {"enum": ["VALID", "STALE", "FAILED"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}
