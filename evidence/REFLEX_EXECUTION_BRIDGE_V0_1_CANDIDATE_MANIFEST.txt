@@ -1,0 +1,50 @@
+TWIS REFLEX EXECUTION BRIDGE V0.1 CANDIDATE MANIFEST
+
+Status: PASS - Campaign 2 candidate verified; not deployed or published
+Branch: successor/reflex-execution-bridge-v0.1
+Rollback base: d71ed807bf55499312a1a70c5aed7ac09e8cd5ac
+Implementation commit: 387c9598de90924bd8413d1c5076277b079ee2fc
+Implementation tree: 4d39ae7651496e82b6071e1ad93b39f8ca13f5e6
+Authoritative Workshop: C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS (read-only)
+
+SHA-256  PATH
+029a060d2fa439f526290cfa6cd105ec9c7479ac6941c7346572bf6a4a542814  README.md
+a1a6bf176eb9e89a0764b3f96c755ca68d27a169cd61fe4d5a37ac42861151a2  contracts/cognitive-substrate-v0.1.schema.json
+a3222b93b37591e37cb75104952c6a57cc77346af5ac9b5eb645f7cd20ced755  contracts/reflex-execution-bridge-v0.1.schema.json
+20727124ad88bd5f22e3d6617246a548f7e063521e1e8ccb6b78469b0b364024  docs/ARCHITECTURE.md
+2dc2c1c711e735fd866fae5a6170fd62c1808ee7e198a347c0d2efe697986b8e  docs/COGNITIVE_SUBSTRATE_V0_1.md
+94b059f03216bcb378c8b49fba418d10a47dbe11f317b5d901f3b00aee13bde0  docs/REFLEX_EXECUTION_BRIDGE_V0_1.md
+86c99bd967371bc44bd4d1e52fd1cb88028813b859846928eae9cc2d1115d7c9  evidence/ARTIFACT_COMPASS_REFLEX_EXECUTION_BRIDGE_V0_1.md
+58bad7915243b2406d915baaf486ba4d0d9c766c215abd0ebb32f7342e6b0a21  evidence/reflex-execution-bridge-v0.1-benchmark.json
+23ae7322dee7dfe58f193f236c5f049252626bc02972fdb64c1232b66428001c  evidence/reflex-execution-bridge-v0.1-protected-state.json
+5a1bc1dbd2084a9bab3c66442dacafb80bf54c2b670adb66ae76f31ae891ffed  scripts/run_reflex_execution_benchmark.py
+fb3d74823f196d548b88e3788345b984dc1db1ed534f833e907357e90acd76e1  src/untethered_aios/__init__.py
+baa39c1accacf97050901fd4ac9c2a806e898e19866746498acc9aed76efe2ae  src/untethered_aios/computation_memory.py
+7b3332bd0dc0eb989d542d2c2b993c6d0695ad05add522c2045e5a54110994d0  src/untethered_aios/reflex_benchmark.py
+06586930ac1fa94f0877b71e230748c153b38039a0d0b0bccc12763ddb881a70  src/untethered_aios/reflex_execution.py
+69fb164740c6ecfd66480ce6ee1ce371194ba9063c3b927ac672b18bd9ed7d3b  tests/test_cognitive_contracts.py
+a33fb59537436baea9174751796c1965209e7a6f6bfaa85ec3f0ee8d0947ec67  tests/test_computation_memory.py
+ce4607198cc468a031a52eb9d95947f1a8615103c6ad80ea119c46e9ebb44eac  tests/test_reflex_benchmark.py
+2722c9329b016b338d421c2af47a09866d54a8b6fc2010a66fe966775e28582b  tests/test_reflex_contracts.py
+f603acf8774d57a8702df34b90354a4842f6f443ef06db7fe86861fe0a1c1188  tests/test_reflex_execution_bridge.py
+
+FINAL VALIDATION
+- Focused Campaign 2 and affected contracts: 18/18 PASS
+- Complete Untethered: 75/75 PASS
+- Exact rollback base: 63/63 PASS
+- Benchmark correctness: 10/10 PASS
+- Handler executions/reuse/affected recomputation: 2/1/1
+- Handler recomputations avoided: 1
+- FakeModel actual/avoided: 1/4
+- Python compileall: PASS
+- JSON contracts: 7/7 PASS
+- Demo: PASS
+- Receipt chain: 32/32 PERSISTED, VALID
+- SQLite integrity/journal: ok/delete
+- New dependencies/providers/network/GPU: NONE
+- Protected code-safe Workshop tree: UNCHANGED
+- Workshop changes/deployment/restart/Music action: NONE
+
+STOP: no Campaign 3, Workshop write/deployment/restart, Music action, new
+Workshop capability, real model/provider, network, permission widening, or
+Campaign 2 publishing.
