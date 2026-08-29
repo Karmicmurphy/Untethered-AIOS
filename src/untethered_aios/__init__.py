@@ -32,6 +32,17 @@ from .computation_memory import (
     ReuseDecision,
     SQLiteComputationMemory,
 )
+from .reflex_execution import (
+    CHEAP_HANDLER_CAPABILITY,
+    REQUEST_NORMALIZER_HANDLER_ID,
+    REQUEST_NORMALIZER_SCOPE,
+    CheapHandlerRegistry,
+    CheapHandlerSpec,
+    ExecutionOutcome,
+    ExecutionStatus,
+    KernelCheapExecutionBridge,
+    build_default_cheap_handler_registry,
+)
 
 __all__ = [
     "Kernel",
@@ -58,5 +69,14 @@ __all__ = [
     "ComputationRecord",
     "ReuseDecision",
     "SQLiteComputationMemory",
+    "CHEAP_HANDLER_CAPABILITY",
+    "REQUEST_NORMALIZER_HANDLER_ID",
+    "REQUEST_NORMALIZER_SCOPE",
+    "CheapHandlerRegistry",
+    "CheapHandlerSpec",
+    "ExecutionOutcome",
+    "ExecutionStatus",
+    "KernelCheapExecutionBridge",
+    "build_default_cheap_handler_registry",
     "__version__",
 ]

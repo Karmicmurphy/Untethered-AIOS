@@ -220,3 +220,15 @@ The complete bounded contract is in
 `docs/COGNITIVE_SUBSTRATE_V0_1.md`. Blackboard, general memory, Capability
 Cells, Model Gateway implementation, Cognitive Downshift, associative memory,
 MicroForge, provider integration, and owner UI remain deferred.
+
+## Reflex Execution Bridge V0.1 candidate
+
+Campaign 2 adds one Kernel-owned cheap execution lane. The Governor still only
+selects a route. For `request.normalize`, the bridge resolves one declared
+deterministic handler, spawns a Kernel process with the exact
+`cheap.handler.execute` resource grant, and invokes it through the existing
+CapabilityRegistry. A valid Computation Memory record returns its stored,
+hash-verified result without spawning or executing again.
+
+This does not create a general plugin framework or add filesystem, network,
+process, provider, model, Workshop, or deployment authority.

@@ -6,11 +6,13 @@ import json
 from pathlib import Path
 import re
 import sqlite3
+from typing import Any
 
-from .audit import AuditLog
+from .audit import AuditLog, hash_value
 
 
 _DIGEST = re.compile(r"^[0-9a-f]{64}$")
+_UNSET = object()
 
 
 class ComputationState(str, Enum):
@@ -26,6 +28,7 @@ class ComputationRecord:
     dependency_hashes: dict[str, str]
     producer: str
     result_hash: str
+    result_value: Any | None
     duration_ms: float
     cpu_ms: float
     memory_bytes: int
@@ -65,6 +68,7 @@ class SQLiteComputationMemory:
                 input_hashes_json TEXT NOT NULL,
                 producer TEXT NOT NULL,
                 result_hash TEXT NOT NULL,
+                result_json TEXT,
                 duration_ms REAL NOT NULL,
                 cpu_ms REAL NOT NULL,
                 memory_bytes INTEGER NOT NULL,
@@ -88,6 +92,16 @@ class SQLiteComputationMemory:
                 ON computation_dependencies(dependency_id);
             """
         )
+        columns = {
+            row["name"]
+            for row in self._connection.execute(
+                "PRAGMA table_info(computations)"
+            ).fetchall()
+        }
+        if "result_json" not in columns:
+            self._connection.execute(
+                "ALTER TABLE computations ADD COLUMN result_json TEXT"
+            )
         self._connection.commit()
 
     def close(self) -> None:
@@ -113,6 +127,7 @@ class SQLiteComputationMemory:
         cost_units: float,
         invalidation_rule: str,
         proof_reference: str,
+        result_value: Any = _UNSET,
         state: ComputationState = ComputationState.VALID,
     ) -> ComputationRecord:
         self._validate_record(
@@ -121,6 +136,7 @@ class SQLiteComputationMemory:
             dependency_hashes,
             producer,
             result_hash,
+            result_value,
             duration_ms,
             cpu_ms,
             memory_bytes,
@@ -136,14 +152,15 @@ class SQLiteComputationMemory:
             self._connection.execute(
                 """
                 INSERT INTO computations (
-                    computation_id, input_hashes_json, producer, result_hash,
+                    computation_id, input_hashes_json, producer, result_hash, result_json,
                     duration_ms, cpu_ms, memory_bytes, cost_units,
                     invalidation_rule, proof_reference, state
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(computation_id) DO UPDATE SET
                     input_hashes_json=excluded.input_hashes_json,
                     producer=excluded.producer,
                     result_hash=excluded.result_hash,
+                    result_json=excluded.result_json,
                     duration_ms=excluded.duration_ms,
                     cpu_ms=excluded.cpu_ms,
                     memory_bytes=excluded.memory_bytes,
@@ -157,6 +174,16 @@ class SQLiteComputationMemory:
                     self._json(input_hashes),
                     producer,
                     result_hash,
+                    (
+                        None
+                        if result_value is _UNSET
+                        else json.dumps(
+                            result_value,
+                            ensure_ascii=False,
+                            sort_keys=True,
+                            separators=(",", ":"),
+                        )
+                    ),
                     duration_ms,
                     cpu_ms,
                     memory_bytes,
@@ -205,6 +232,7 @@ class SQLiteComputationMemory:
                 "input_hashes": input_hashes,
                 "dependency_hashes": dependency_hashes,
                 "result_hash": result_hash,
+                "result_value_stored": result_value is not _UNSET,
                 "duration_ms": duration_ms,
                 "cpu_ms": cpu_ms,
                 "memory_bytes": memory_bytes,
@@ -244,6 +272,11 @@ class SQLiteComputationMemory:
             },
             producer=row["producer"],
             result_hash=row["result_hash"],
+            result_value=(
+                None
+                if row["result_json"] is None
+                else json.loads(row["result_json"])
+            ),
             duration_ms=row["duration_ms"],
             cpu_ms=row["cpu_ms"],
             memory_bytes=row["memory_bytes"],
@@ -259,12 +292,32 @@ class SQLiteComputationMemory:
         *,
         input_hashes: dict[str, str],
         dependency_hashes: dict[str, str],
+        expected_producer: str | None = None,
+        expected_invalidation_rule: str | None = None,
+        require_proof: bool = False,
+        require_result_value: bool = False,
     ) -> ReuseDecision:
         record = self.get(computation_id)
         if record is None:
             reusable, reason = False, "computation is absent"
         elif record.state is not ComputationState.VALID:
             reusable, reason = False, f"computation state is {record.state.value}"
+        elif expected_producer is not None and record.producer != expected_producer:
+            reusable, reason = False, "producer or handler version changed"
+        elif (
+            expected_invalidation_rule is not None
+            and record.invalidation_rule != expected_invalidation_rule
+        ):
+            reusable, reason = False, "invalidation rule changed"
+        elif require_proof and not record.proof_reference:
+            reusable, reason = False, "proof reference is absent"
+        elif require_result_value and record.result_value is None:
+            reusable, reason = False, "reusable result value is absent"
+        elif (
+            record.result_value is not None
+            and hash_value(record.result_value) != record.result_hash
+        ):
+            reusable, reason = False, "stored result value does not match result hash"
         elif record.input_hashes != input_hashes:
             reusable, reason = False, "input hashes changed"
         elif record.dependency_hashes != dependency_hashes:
@@ -288,6 +341,10 @@ class SQLiteComputationMemory:
             {
                 "input_hashes": input_hashes,
                 "dependency_hashes": dependency_hashes,
+                "expected_producer": expected_producer,
+                "expected_invalidation_rule": expected_invalidation_rule,
+                "require_proof": require_proof,
+                "require_result_value": require_result_value,
                 "reusable": reusable,
                 "reason": reason,
                 "mutation": False,
@@ -361,6 +418,7 @@ class SQLiteComputationMemory:
         dependency_hashes: dict[str, str],
         producer: str,
         result_hash: str,
+        result_value: Any,
         duration_ms: float,
         cpu_ms: float,
         memory_bytes: int,
@@ -377,6 +435,8 @@ class SQLiteComputationMemory:
         if any(not value for value in required.values()):
             raise ValueError("ledger identity, producer, rule, and proof are required")
         cls._validate_digest("result_hash", result_hash)
+        if result_value is not _UNSET and hash_value(result_value) != result_hash:
+            raise ValueError("result_value does not match result_hash")
         for name, digest in {**input_hashes, **dependency_hashes}.items():
             cls._validate_digest(name, digest)
         if duration_ms < 0 or cpu_ms < 0 or memory_bytes < 0 or cost_units < 0:

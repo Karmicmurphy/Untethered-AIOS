@@ -50,6 +50,9 @@ class CognitiveContractTests(unittest.TestCase):
                 "state",
             },
         )
+        self.assertIn(
+            "result_value", schema["$defs"]["computationRecord"]["properties"]
+        )
 
     def test_architecture_contract_names_every_bounded_interface(self):
         text = (ROOT / "docs" / "COGNITIVE_SUBSTRATE_V0_1.md").read_text(

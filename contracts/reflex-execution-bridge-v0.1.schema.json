@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Untethered AIOS Reflex Execution Bridge V0.1",
+  "type": "object",
+  "oneOf": [
+    {"$ref": "#/$defs/cheapHandler"},
+    {"$ref": "#/$defs/executionOutcome"}
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "route": {
+      "enum": ["REFLEX", "RULE", "CENTRAL_AI", "OWNER_GATE"]
+    },
+    "capabilityGrant": {
+      "type": "object",
+      "required": ["name", "scopes"],
+      "properties": {
+        "name": {"const": "cheap.handler.execute"},
+        "scopes": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^handler:[a-z0-9-]+$"},
+          "minItems": 1,
+          "maxItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "cheapHandler": {
+      "type": "object",
+      "required": [
+        "handler_id",
+        "supported_task_class",
+        "required_capabilities",
+        "input_contract",
+        "output_contract",
+        "deterministic",
+        "version",
+        "dependency_identity",
+        "dependency_sha256",
+        "expected_cost_units",
+        "route",
+        "invalidation_rule"
+      ],
+      "properties": {
+        "handler_id": {
+          "const": "request-normalizer-v1"
+        },
+        "supported_task_class": {
+          "const": "request.normalize"
+        },
+        "required_capabilities": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/capabilityGrant"},
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "input_contract": {"type": "object"},
+        "output_contract": {"type": "object"},
+        "deterministic": {"const": true},
+        "version": {"const": "1.0.0"},
+        "dependency_identity": {"type": "string", "minLength": 1},
+        "dependency_sha256": {"$ref": "#/$defs/sha256"},
+        "expected_cost_units": {"type": "number", "minimum": 0},
+        "route": {"enum": ["REFLEX", "RULE"]},
+        "invalidation_rule": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "executionOutcome": {
+      "type": "object",
+      "required": [
+        "route",
+        "status",
+        "result",
+        "result_hash",
+        "computation_id",
+        "handler_id",
+        "pid",
+        "decision_receipt_sha256",
+        "receipt_sha256",
+        "cpu_ns",
+        "wall_ns",
+        "traced_memory_bytes"
+      ],
+      "properties": {
+        "route": {"$ref": "#/$defs/route"},
+        "status": {
+          "enum": [
+            "EXECUTED",
+            "REUSED",
+            "CENTRAL_AI",
+            "OWNER_GATE",
+            "NOT_EXECUTED"
+          ]
+        },
+        "result": {},
+        "result_hash": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "computation_id": {"type": ["string", "null"]},
+        "handler_id": {"type": ["string", "null"]},
+        "pid": {"type": ["integer", "null"], "minimum": 1},
+        "decision_receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "cpu_ns": {"type": "integer", "minimum": 0},
+        "wall_ns": {"type": "integer", "minimum": 0},
+        "traced_memory_bytes": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  }
+}

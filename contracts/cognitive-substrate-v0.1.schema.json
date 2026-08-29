@@ -185,6 +185,7 @@
         },
         "producer": {"type": "string", "minLength": 1},
         "result_hash": {"$ref": "#/$defs/sha256"},
+        "result_value": {},
         "duration_ms": {"type": "number", "minimum": 0},
         "cpu_ms": {"type": "number", "minimum": 0},
         "memory_bytes": {"type": "integer", "minimum": 0},

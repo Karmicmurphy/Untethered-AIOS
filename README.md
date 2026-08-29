@@ -53,6 +53,10 @@ The current candidate contains:
 - one candidate-only, project-scoped Workshop artifact-metadata read adapter;
 - structured hash-linked audit receipts;
 - deterministic fake-model worker backend;
+- one Kernel-owned deterministic REFLEX execution bridge with an exact
+  resource-scoped capability grant;
+- one declared `request-normalizer-v1` cheap handler and proven
+  Computation-Memory reuse/invalidation path;
 - baseline hashing/authentication script;
 - unit tests;
 - Codex operating instructions;
@@ -62,7 +66,7 @@ The current candidate contains:
 
 ## Reproduce the current candidate
 
-1. Check out `successor/workshop-read-adapter-v0.1`.
+1. Check out `successor/reflex-execution-bridge-v0.1`.
 2. Read `AGENTS.md`, `CODEX_START_HERE.md`, and `docs/CODEX_HANDOFF.md`.
 3. Verify `evidence/workshop-baseline.json` against the authoritative local
    Workshop without writing to that Workshop.
@@ -96,6 +100,8 @@ python scripts/demo.py
 
 The included kernel is intentionally small and testable. Workshop Read Adapter
 V0.1 exposes one real, project-scoped metadata read through the authenticated
-Workshop primitive and emits a hash-linked capability receipt. It is a
-candidate-only integration: no live deployment or broader Workshop authority is
-claimed.
+Workshop primitive and emits a hash-linked capability receipt. Cognitive
+Substrate Campaign 2 adds one bounded REFLEX handler path through the existing
+Governor, Kernel capability authority, Computation Memory, and receipt chain.
+It remains candidate-only: no live deployment, real provider, or broader
+Workshop authority is claimed.

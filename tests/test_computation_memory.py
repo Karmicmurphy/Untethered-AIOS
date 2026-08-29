@@ -21,7 +21,7 @@ class ComputationMemoryTests(unittest.TestCase):
         self.memory.close()
         self.temp.cleanup()
 
-    def record(self, identifier, value, dependencies=None):
+    def record(self, identifier, value, dependencies=None, *, store_value=False):
         return self.memory.record(
             computation_id=identifier,
             input_hashes={"input": hash_value(f"{identifier}-input")},
@@ -34,6 +34,7 @@ class ComputationMemoryTests(unittest.TestCase):
             cost_units=0.25,
             invalidation_rule="stale when input or dependency result hash changes",
             proof_reference=f"test:{identifier}:{value}",
+            **({"result_value": value} if store_value else {}),
         )
 
     def test_a_to_b_to_c_invalidation_preserves_unaffected_d(self):
@@ -99,6 +100,73 @@ class ComputationMemoryTests(unittest.TestCase):
             )
         with self.assertRaises(sqlite3.IntegrityError):
             self.record("B", "b1", {"missing": hash_value("missing")})
+
+    def test_result_value_round_trips_and_hash_mismatch_fails_closed(self):
+        result = {"title": "Stable", "tags": ["one", "two"]}
+        self.record("stored", result, store_value=True)
+        self.memory.close()
+        reopened = SQLiteComputationMemory(self.path)
+        try:
+            self.assertEqual(reopened.get("stored").result_value, result)
+            decision = reopened.check_reuse(
+                "stored",
+                input_hashes={"input": hash_value("stored-input")},
+                dependency_hashes={},
+                require_result_value=True,
+            )
+            self.assertTrue(decision.reusable)
+        finally:
+            reopened.close()
+        self.memory = SQLiteComputationMemory(self.path)
+
+        with self.assertRaises(ValueError):
+            self.memory.record(
+                computation_id="mismatch",
+                input_hashes={"input": hash_value("mismatch-input")},
+                dependency_hashes={},
+                producer="test-producer",
+                result_hash=hash_value("expected"),
+                duration_ms=0,
+                cpu_ms=0,
+                memory_bytes=0,
+                cost_units=0,
+                invalidation_rule="hash change",
+                proof_reference="test:mismatch",
+                result_value="different",
+            )
+
+    def test_reuse_requires_exact_producer_rule_proof_and_stored_value(self):
+        self.record("exact", {"value": 1}, store_value=True)
+        expected = {
+            "input_hashes": {"input": hash_value("exact-input")},
+            "dependency_hashes": {},
+            "expected_producer": "test-producer",
+            "expected_invalidation_rule": (
+                "stale when input or dependency result hash changes"
+            ),
+            "require_proof": True,
+            "require_result_value": True,
+        }
+        self.assertTrue(self.memory.check_reuse("exact", **expected).reusable)
+
+        mutations = (
+            {"expected_producer": "other-producer"},
+            {"expected_invalidation_rule": "other-rule"},
+        )
+        for mutation in mutations:
+            arguments = dict(expected)
+            arguments.update(mutation)
+            self.assertFalse(self.memory.check_reuse("exact", **arguments).reusable)
+
+        self.record("legacy", "value")
+        self.assertFalse(
+            self.memory.check_reuse(
+                "legacy",
+                input_hashes={"input": hash_value("legacy-input")},
+                dependency_hashes={},
+                require_result_value=True,
+            ).reusable
+        )
 
 
 if __name__ == "__main__":
