@@ -1,0 +1,20 @@
+{
+  "all_predicates_pass": true,
+  "cpu_ns": 3628606,
+  "integration_verified": false,
+  "peak_traced_bytes": 30490,
+  "predicates": {
+    "association_found": true,
+    "blackboard_proven": true,
+    "continuity_resume": true,
+    "downshift_candidate": true,
+    "metabolism_keep": true,
+    "microforge_steps": true,
+    "model_gateway_fake": true,
+    "rule_read_only": true,
+    "temporal_prediction": true,
+    "truth_exact": true
+  },
+  "prep_only": true,
+  "wall_ns": 3654586
+}
