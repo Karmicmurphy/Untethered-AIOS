@@ -1,0 +1,48 @@
+TWIS CHEAP-EXECUTION BUDGET + RECOVERY V0.1 CANDIDATE MANIFEST
+
+Status: PASS - Campaign 3 candidate verified; not pushed, deployed, or published
+Branch: successor/cheap-execution-budget-recovery-v0.1
+Rollback base: bab64c263e337400e0a7b77bcebb47677cd701da
+Implementation commit: 05e4dc3c08ba5eba7415d2b7c0b5c9d1c214680c
+Implementation tree: 5f39063b2f2ffc8e8648d5135cf0dab016cd0c25
+Authoritative Workshop: C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS (read-only)
+
+SHA-256  PATH
+4360b06d0a79419198178adc7d78fa1214d7119715815f60ea6111ed6a0572c2  README.md
+1c736a1f9f642eeaa00b9af94e1dbfb01607e87c54dea1c2537568ecb4603cef  contracts/cheap-execution-budget-recovery-v0.1.schema.json
+a67af3ef9ced6464380c0813b8cfabb8fcf3790c258b675401812a845754fc20  contracts/reflex-execution-bridge-v0.1.schema.json
+709b7f088d178527265dc856333a26604140c3151419a91dbdc2cbcc01f69bee  docs/ARCHITECTURE.md
+b258945ba858a6edf764e9564c39c9cf7658e36e57498ec8d19948f56e39f496  docs/CHEAP_EXECUTION_BUDGET_RECOVERY_V0_1.md
+a66add9b7bf5d9460c56935175e04d965c65902098add06caf9839d7d81af8bd  evidence/ARTIFACT_COMPASS_CHEAP_EXECUTION_BUDGET_RECOVERY_V0_1.md
+70cca5ae4d31d422684f886e6aa75d9505dd57a166aeabbff579dc914eda6cfa  evidence/cheap-execution-budget-recovery-v0.1-benchmark.json
+39f31be901b04e966de7676afacb04a81f83b8175226c807e2723aff066aece3  evidence/cheap-execution-budget-recovery-v0.1-protected-state.json
+54c54ca15975a15ce4b784599e34232d4eeb30cd4adc5e7cb76f05381e99a4ad  scripts/run_budget_recovery_benchmark.py
+c8e49e74c6047fe29068ca59e7f89dda5634d38812f8fff2437f61e5be659b08  src/untethered_aios/__init__.py
+b432fda1895f78cd3434fad88212842670f11d9fb6e4c8b79d6da0c65300c26c  src/untethered_aios/budget_recovery_benchmark.py
+4498488a7f1ed400b5e8a76f54d10e28e48196356f1265cadfc919f688f00f37  src/untethered_aios/capabilities.py
+9318a621e8b30c8dd1ac1d43de181c8f2341da3fa19ddf2632c4363b91ebc1f5  src/untethered_aios/execution_budget.py
+8875f9a79797261d342f5759b1cddfa0114081b612198aeb97a6740212a3e117  src/untethered_aios/kernel.py
+5cff31eec0202f65177858962f6251627e526cef29df824f2cfd8f1f3f0ca9c5  src/untethered_aios/reflex_execution.py
+4146f70a7e7a9e6ac6261307a061934245b123f5bb92fca7a7d5de4caeabd30f  tests/test_budget_recovery_benchmark.py
+c6771a9ef4962f35e4e62aa7811d7ae00e4a4ef317fb03682d8c3a562978025e  tests/test_budget_recovery_contracts.py
+23797d2f425f439007ca43000fcc03f7ae5d9251fb7fb3f1936cd8be46b373ac  tests/test_execution_budget_recovery.py
+
+FINAL VALIDATION
+- Focused Campaign 2+3: 24/24 PASS
+- Complete Untethered: 89/89 PASS
+- Exact rollback base: 75/75 PASS
+- Benchmark correctness: 14/14 PASS
+- Failed attempts/recovery starts/recovered successes/reuse hits: 4/2/1/2
+- Budget exceeded/FakeModel calls: 4/1
+- Python compileall: PASS
+- JSON contracts: 8/8 PASS
+- Demo: PASS
+- Receipt chain: 73/73 PERSISTED, ALL VALID
+- SQLite integrity/journal: ok/delete
+- New dependencies/providers/network/GPU: NONE
+- Protected code-safe Workshop tree: UNCHANGED
+- Workshop changes/deployment/restart/Music action: NONE
+
+STOP: no Campaign 4, Workshop write/deployment/restart, Music action, new
+Workshop capability, real model/provider, network, permission widening, or
+Campaign 3 push/publishing.

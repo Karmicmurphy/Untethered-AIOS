@@ -1,0 +1,19 @@
+{
+  "authoritative_workshop": "C:\\TWIS_FLASHRIVER_REVIEW_READY\\TWIS",
+  "before": {
+    "created_at": "2026-08-30T02:14:04.632083+00:00",
+    "excluded_file_count": 231,
+    "included_file_count": 293,
+    "manifest_sha256": "1326ab55303ea139402b4fa679a59ca4233a63791c99273503ebd93e34691740",
+    "tree_sha256": "a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27"
+  },
+  "final": {
+    "created_at": "2026-08-30T02:49:32.447093+00:00",
+    "excluded_file_count": 231,
+    "included_file_count": 293,
+    "manifest_sha256": "abe10a0c8d7bd4fdf1719aacf8587c3b9652299aea0fbb38f27dc61404726ba8",
+    "tree_sha256": "a8db4ee742ad0a4c048bc02df0f14a24748d4d609f587a2f345f1fb304652d27"
+  },
+  "stable_manifest_equal_ignoring_created_at": true,
+  "workshop_mutated": false
+}

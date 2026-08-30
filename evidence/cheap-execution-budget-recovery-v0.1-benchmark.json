@@ -1,0 +1,517 @@
+{
+  "campaign_2": {
+    "campaign_1": {
+      "computation_memory": {
+        "final_states": {
+          "A": "VALID",
+          "B": "VALID",
+          "C": "VALID",
+          "D": "VALID"
+        },
+        "integrity_check": "ok",
+        "journal_mode": "delete",
+        "recomputed_dependents": [
+          "B",
+          "C"
+        ],
+        "reuse_before_dependency_change": true,
+        "state_after_a_changed": {
+          "A": "VALID",
+          "B": "STALE",
+          "C": "STALE",
+          "D": "VALID"
+        },
+        "unaffected_d_reused_after_change": true
+      },
+      "correctness": {
+        "all_recomputed_records_valid": true,
+        "dependency_invalidation": true,
+        "routes_match_expected": true,
+        "unaffected_result_reused": true
+      },
+      "measurements": {
+        "cpu_ns": 203125000,
+        "peak_traced_memory_bytes": 60211,
+        "wall_ns": 259422500
+      },
+      "receipts": {
+        "chain_errors": [],
+        "chain_valid": true,
+        "count": 20,
+        "head_sha256": "e0ecb1e95557ba2bf6b3b4162114b4878bb7f0784d3b0b2edb6a91bd5a5e95b5"
+      },
+      "routes": [
+        {
+          "correct": true,
+          "expected_route": "REFLEX",
+          "reason_code": "MAXIMUM_POSITIVE_EXPECTED_NET_VALUE",
+          "receipt_sha256": "67674d8b250f47a3a9719dbf009fe43d786845b36d09a479c33a3388c609ffa8",
+          "route": "REFLEX",
+          "task_class": "cheap",
+          "work_item_id": "cheap-deterministic"
+        },
+        {
+          "correct": true,
+          "expected_route": "RULE",
+          "reason_code": "MAXIMUM_POSITIVE_EXPECTED_NET_VALUE",
+          "receipt_sha256": "b67cdd3f57d963f501f09e366f575240400138991412657ec01fd8e3a8176609",
+          "route": "RULE",
+          "task_class": "repeated",
+          "work_item_id": "repeated-familiar"
+        },
+        {
+          "correct": true,
+          "expected_route": "CENTRAL_AI",
+          "reason_code": "MAXIMUM_POSITIVE_EXPECTED_NET_VALUE",
+          "receipt_sha256": "14c22e6794b6c232ffe00319b0902d0fec3aa6d82f192a18cbdf4274441bb05e",
+          "route": "CENTRAL_AI",
+          "task_class": "novel",
+          "work_item_id": "novel-ambiguous"
+        },
+        {
+          "correct": true,
+          "expected_route": "OWNER_GATE",
+          "reason_code": "OWNER_AUTHORITY_REQUIRED",
+          "receipt_sha256": "5fe0c8d0a07d58c5f711101deed90943868a41c6024eba594c6e0d398b599f2b",
+          "route": "OWNER_GATE",
+          "task_class": "protected",
+          "work_item_id": "protected-operation"
+        },
+        {
+          "correct": true,
+          "expected_route": "IGNORE",
+          "reason_code": "BENEFIT_BELOW_FLOOR",
+          "receipt_sha256": "fb2f406ac4455d5c04cb83df88c6884a1b49be94e390817107d1dbce46e5b57e",
+          "route": "IGNORE",
+          "task_class": "low-value",
+          "work_item_id": "low-value"
+        },
+        {
+          "correct": true,
+          "expected_route": "CENTRAL_AI",
+          "reason_code": "MAXIMUM_POSITIVE_EXPECTED_NET_VALUE",
+          "receipt_sha256": "6aadc23e767fb3454b48a1b833aada3e8bb48fb3ee52520623298efb4749ea06",
+          "route": "CENTRAL_AI",
+          "task_class": "high-value",
+          "work_item_id": "high-value-uncertain"
+        },
+        {
+          "correct": true,
+          "expected_route": "RULE",
+          "reason_code": "MAXIMUM_POSITIVE_EXPECTED_NET_VALUE",
+          "receipt_sha256": "1cf3a16abbfa8bde89d6a0d2919003c27edf5bcfb174e05adeb6052379417589",
+          "route": "RULE",
+          "task_class": "dependency-reuse",
+          "work_item_id": "dependency-reuse"
+        },
+        {
+          "correct": true,
+          "expected_route": "WORKER",
+          "reason_code": "MAXIMUM_POSITIVE_EXPECTED_NET_VALUE",
+          "receipt_sha256": "ee0928bcfb8c2c0f0d2b7e7e7044b4998645393c31312d4da1a5372c9467dd35",
+          "route": "WORKER",
+          "task_class": "dependency-change",
+          "work_item_id": "changed-dependency"
+        },
+        {
+          "correct": true,
+          "expected_route": "DEFER",
+          "reason_code": "NO_POSITIVE_FEASIBLE_ROUTE",
+          "receipt_sha256": "a467f77fb5b0ee7bbe52bb6fb298f49595388b3e99d60e0f98e2fc0cdd2c4ab7",
+          "route": "DEFER",
+          "task_class": "resource-pressure",
+          "work_item_id": "memory-pressure"
+        }
+      ],
+      "routing_metrics": {
+        "central_ai_calls_avoided": 4,
+        "central_ai_calls_required": 2,
+        "fake_model_calls": [
+          "novel-ambiguous",
+          "high-value-uncertain"
+        ],
+        "work_items": 9,
+        "worker_calls": 1
+      },
+      "runtime": {
+        "dependencies": "Python standard library and embedded SQLite only",
+        "logical_cpu_count": 4,
+        "model_runtime": "deterministic FakeModel only",
+        "network_calls": 0,
+        "platform": "Windows-10-10.0.19045-SP0",
+        "provider_calls": 0,
+        "python": "3.12.10"
+      },
+      "schema": "twis-cognitive-substrate-benchmark-v0.1",
+      "target_profile": {
+        "cpu": "AMD A4-class, 4 logical processors",
+        "gpu_required": false,
+        "ram_bytes": 7447904256
+      }
+    },
+    "correctness": {
+      "affected_work_was_stale": true,
+      "cheap_path_zero_fake_calls": true,
+      "dependency_change_recomputed": true,
+      "first_run_executed": true,
+      "identical_repeat_reused": true,
+      "novel_escalated_to_fake_model": true,
+      "protected_reached_owner_gate": true,
+      "receipt_chain_valid": true,
+      "repeat_skipped_handler": true,
+      "unrelated_computation_reused": true
+    },
+    "databases": {
+      "computation_integrity": "ok",
+      "computation_journal_mode": "delete",
+      "kernel_integrity": "ok",
+      "kernel_journal_mode": "delete"
+    },
+    "economy": {
+      "dependency_recomputations": 1,
+      "fake_calls_after_all_cheap": 0,
+      "fake_calls_after_cheap_repeat": 0,
+      "fake_model_calls": 1,
+      "fake_model_calls_avoided": 4,
+      "handler_executions": 2,
+      "handler_recomputations_avoided": 1,
+      "invalidations": [
+        {
+          "changed_computation_id": "A",
+          "invalidated": [
+            "cheap:request-normalizer-v1:benchmark-dependent"
+          ],
+          "mutation": true
+        }
+      ],
+      "reuse_hits": 1
+    },
+    "execution_cases": {
+      "dependency_changed": {
+        "handler_executed": true,
+        "result_sha256": "5a475f4c03a32f8891739cecdccd5cb2ecbd2af41edd1a1bdaa315b9b207cf38",
+        "route": "REFLEX",
+        "state_before_recompute": "STALE",
+        "status": "EXECUTED"
+      },
+      "first": {
+        "cpu_ns": 78125000,
+        "handler_executed": true,
+        "result_sha256": "5a475f4c03a32f8891739cecdccd5cb2ecbd2af41edd1a1bdaa315b9b207cf38",
+        "route": "REFLEX",
+        "status": "EXECUTED",
+        "traced_memory_bytes": 12846,
+        "wall_ns": 144897300
+      },
+      "identical_repeat": {
+        "cpu_ns": 31250000,
+        "handler_executed": false,
+        "result_sha256": "5a475f4c03a32f8891739cecdccd5cb2ecbd2af41edd1a1bdaa315b9b207cf38",
+        "route": "REFLEX",
+        "status": "REUSED",
+        "traced_memory_bytes": 3712,
+        "wall_ns": 47818600
+      },
+      "novel": {
+        "fake_model_called": true,
+        "route": "CENTRAL_AI",
+        "status": "CENTRAL_AI"
+      },
+      "protected": {
+        "fake_model_called": false,
+        "handler_executed": false,
+        "route": "OWNER_GATE",
+        "status": "OWNER_GATE"
+      },
+      "unrelated": {
+        "computation_id": "U",
+        "reusable": true
+      }
+    },
+    "extends": "twis-cognitive-substrate-benchmark-v0.1",
+    "measurements": {
+      "cpu_ns": 500000000,
+      "peak_traced_memory_bytes": 66819,
+      "wall_ns": 682325100
+    },
+    "receipts": {
+      "chain_errors": [],
+      "chain_valid": true,
+      "cheap_capability_calls": 2,
+      "cheap_capability_target": "handler:request-normalizer-v1",
+      "count": 34,
+      "execution_kinds": [
+        "computation.executed",
+        "computation.reused",
+        "computation.executed",
+        "execution.central_ai",
+        "execution.owner_gate"
+      ],
+      "head_sha256": "928d0e83a3c9a031b08666e3ab7ed7655ac9e5e87f3a6a9cf5ac0e1695931a07",
+      "persisted_count": 34
+    },
+    "runtime": {
+      "dependencies": "Python standard library and embedded SQLite only",
+      "logical_cpu_count": 4,
+      "model_runtime": "deterministic FakeModel only",
+      "network_calls": 0,
+      "platform": "Windows-10-10.0.19045-SP0",
+      "provider_calls": 0,
+      "python": "3.12.10"
+    },
+    "schema": "twis-reflex-execution-benchmark-v0.1"
+  },
+  "correctness": {
+    "all_receipt_chains_valid": true,
+    "bounded_recovery_succeeded": true,
+    "cheap_success_executed": true,
+    "cpu_failure_never_recorded": true,
+    "failed_result_never_recorded": true,
+    "forced_budget_exhaustion": true,
+    "forced_cpu_budget_exhaustion": true,
+    "identical_success_reused": true,
+    "novel_used_fake_model": true,
+    "prior_failure_visible_after_reopen": true,
+    "protected_owner_gated": true,
+    "recovered_result_reused": true,
+    "repeated_failure_terminal": true,
+    "terminal_failure_never_recorded": true
+  },
+  "durability": {
+    "computation_integrity": "ok",
+    "computation_journal_mode": "delete",
+    "failure_receipts_before_reopen": 10,
+    "kernel_integrity": "ok",
+    "kernel_journal_mode": "delete",
+    "prior_failed_pid": 1,
+    "prior_failure_receipt_sha256": "b7e3aee796817a100b2f0f7db323632759d7f7947ae24c66a1cdbac89103ab0f",
+    "prior_failure_visible_after_reopen": true
+  },
+  "economy": {
+    "budget_exceeded_events": 4,
+    "failed_attempts": 4,
+    "fake_model_calls": 1,
+    "handler_executions": 2,
+    "receipts_before_reopen": 10,
+    "recoveries_started": 2,
+    "recoveries_succeeded": 1,
+    "reuse_hits": 2
+  },
+  "execution_cases": {
+    "cpu_failure": {
+      "attempt_count": 1,
+      "failure_kind": "budget_exceeded",
+      "final_state": "FAILED",
+      "pids": [
+        1
+      ],
+      "status": "BUDGET_EXCEEDED"
+    },
+    "forced_failure": {
+      "attempt_count": 1,
+      "failure_kind": "budget_exceeded",
+      "final_state": "FAILED",
+      "pids": [
+        1
+      ],
+      "status": "BUDGET_EXCEEDED"
+    },
+    "identical_reuse": {
+      "attempt_count": 0,
+      "cpu_ns": 15625000,
+      "pids": [],
+      "status": "REUSED",
+      "traced_memory_bytes": 3019,
+      "wall_ns": 37078200
+    },
+    "novel": {
+      "route": "CENTRAL_AI",
+      "status": "CENTRAL_AI"
+    },
+    "protected": {
+      "route": "OWNER_GATE",
+      "status": "OWNER_GATE"
+    },
+    "recovered": {
+      "attempt_count": 2,
+      "cpu_ns": 109375000,
+      "final_states": [
+        "FAILED",
+        "DONE"
+      ],
+      "pids": [
+        1,
+        2
+      ],
+      "status": "RECOVERED",
+      "traced_memory_bytes": 0,
+      "wall_ns": 162093400
+    },
+    "recovered_reuse": {
+      "attempt_count": 0,
+      "pids": [],
+      "status": "REUSED"
+    },
+    "success": {
+      "attempt_count": 1,
+      "cpu_ns": 140625000,
+      "pids": [
+        1
+      ],
+      "route": "REFLEX",
+      "status": "EXECUTED",
+      "traced_memory_bytes": 11867,
+      "wall_ns": 167077000
+    },
+    "terminal_failure": {
+      "attempt_count": 2,
+      "failure_kind": "budget_exceeded",
+      "final_states": [
+        "FAILED",
+        "FAILED"
+      ],
+      "pids": [
+        1,
+        2
+      ],
+      "status": "BUDGET_EXCEEDED"
+    }
+  },
+  "extends": "twis-reflex-execution-benchmark-v0.1",
+  "measurements": {
+    "cpu_ns": 1296875000,
+    "peak_traced_memory_bytes": 187702,
+    "wall_ns": 2128561400
+  },
+  "receipts": {
+    "all_chains_valid": true,
+    "budget_exceeded_events": 4,
+    "chains": {
+      "cpu": {
+        "count": 10,
+        "errors": [],
+        "head_sha256": "bea130f28454a61e6fd671b40bdf3c6f60c9ae396109852c8fa12a5a9717389d",
+        "kinds": [
+          "cognitive.route",
+          "computation.reuse-checked",
+          "process.spawn",
+          "process.transition",
+          "process.transition",
+          "execution.started",
+          "execution.budget_exceeded",
+          "process.transition",
+          "process.failed",
+          "execution.failed"
+        ],
+        "persisted_count": 10,
+        "valid": true
+      },
+      "recovery": {
+        "count": 26,
+        "errors": [],
+        "head_sha256": "08f0e0475b9567d07fab973c5a3a5a786452e48e17f25da3d35a4c3a6e89a0b9",
+        "kinds": [
+          "cognitive.route",
+          "computation.reuse-checked",
+          "process.spawn",
+          "process.transition",
+          "process.transition",
+          "execution.started",
+          "execution.budget_exceeded",
+          "process.transition",
+          "process.failed",
+          "execution.failed",
+          "cognitive.route",
+          "computation.reuse-checked",
+          "execution.recovery_started",
+          "process.spawn",
+          "process.transition",
+          "process.transition",
+          "execution.started",
+          "capability.call",
+          "process.transition",
+          "process.done",
+          "execution.recovered",
+          "computation.recorded",
+          "computation.executed",
+          "cognitive.route",
+          "computation.reuse-checked",
+          "computation.reused"
+        ],
+        "persisted_count": 26,
+        "valid": true
+      },
+      "success": {
+        "count": 18,
+        "errors": [],
+        "head_sha256": "1f6392ac95a05920fd2d4bbddb2c42043b772172af588f81d440f5701072524e",
+        "kinds": [
+          "cognitive.route",
+          "computation.reuse-checked",
+          "process.spawn",
+          "process.transition",
+          "process.transition",
+          "execution.started",
+          "capability.call",
+          "process.transition",
+          "process.done",
+          "computation.recorded",
+          "computation.executed",
+          "cognitive.route",
+          "computation.reuse-checked",
+          "computation.reused",
+          "cognitive.route",
+          "execution.central_ai",
+          "cognitive.route",
+          "execution.owner_gate"
+        ],
+        "persisted_count": 18,
+        "valid": true
+      },
+      "terminal": {
+        "count": 19,
+        "errors": [],
+        "head_sha256": "36624c373b6ac6bf826f8dcfd2b7da50b81bce9133a91fe2b52a78f941a3f2a0",
+        "kinds": [
+          "cognitive.route",
+          "computation.reuse-checked",
+          "process.spawn",
+          "process.transition",
+          "process.transition",
+          "execution.started",
+          "execution.budget_exceeded",
+          "process.transition",
+          "process.failed",
+          "execution.failed",
+          "execution.recovery_started",
+          "process.spawn",
+          "process.transition",
+          "process.transition",
+          "execution.started",
+          "execution.budget_exceeded",
+          "process.transition",
+          "process.failed",
+          "execution.failed"
+        ],
+        "persisted_count": 19,
+        "valid": true
+      }
+    },
+    "failure_events": 4,
+    "recovered_events": 1,
+    "recovery_started_events": 2,
+    "total_count": 73,
+    "total_persisted_count": 73
+  },
+  "runtime": {
+    "dependencies": "Python standard library and embedded SQLite only",
+    "enforcement_boundary": "cooperative trusted Python checkpoints",
+    "logical_cpu_count": 4,
+    "model_runtime": "deterministic FakeModel only",
+    "network_calls": 0,
+    "platform": "Windows-10-10.0.19045-SP0",
+    "provider_calls": 0,
+    "python": "3.12.10"
+  },
+  "schema": "twis-cheap-execution-budget-recovery-benchmark-v0.1"
+}
