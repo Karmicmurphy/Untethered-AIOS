@@ -1,0 +1,37 @@
+name: Credit Gap Prep Tests
+
+on:
+  push:
+    branches:
+      - prep/chatgpt-credit-gap-buildpack-v0.1
+  pull_request:
+    paths:
+      - 'src/untethered_aios/prep/**'
+      - 'tests/test_credit_gap_prep.py'
+      - 'scripts/*credit_gap_prep*'
+      - '.github/workflows/credit-gap-prep.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  prep:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ['3.12']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run prep tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: python -m unittest tests.test_credit_gap_prep -v
+      - name: Run prep benchmark
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+        run: python scripts/run_credit_gap_prep_benchmark.py
