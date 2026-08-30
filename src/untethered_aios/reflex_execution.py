@@ -14,6 +14,7 @@ from .capabilities import CapabilityGrant, CapabilityRequest
 from .cognitive_contracts import Route, RouteDecision, WorkItem
 from .computation_memory import SQLiteComputationMemory
 from .fake_model import FakeModel
+from .execution_budget import ExecutionBudget
 from .kernel import Kernel, Step
 from .process_table import ProcessState
 
@@ -31,6 +32,9 @@ class ExecutionStatus(str, Enum):
     CENTRAL_AI = "CENTRAL_AI"
     OWNER_GATE = "OWNER_GATE"
     NOT_EXECUTED = "NOT_EXECUTED"
+    BUDGET_EXCEEDED = "BUDGET_EXCEEDED"
+    FAILED = "FAILED"
+    RECOVERED = "RECOVERED"
 
 
 @dataclass(frozen=True)
@@ -99,7 +103,8 @@ class CheapHandlerSpec:
         )
 
 
-CheapHandler = Callable[[dict[str, Any]], dict[str, Any]]
+BudgetCheckpoint = Callable[[int], Any]
+CheapHandler = Callable[[dict[str, Any], BudgetCheckpoint], dict[str, Any]]
 
 
 class CheapHandlerRegistry:
@@ -142,6 +147,7 @@ class CheapHandlerRegistry:
         handler_scope: str,
         task_class: str,
         payload: dict[str, Any],
+        budget_checkpoint: BudgetCheckpoint,
     ) -> dict[str, Any]:
         if not handler_scope.startswith("handler:"):
             raise ValueError("canonical handler scope is required")
@@ -150,7 +156,7 @@ class CheapHandlerRegistry:
         if spec.handler_scope != handler_scope:
             raise ValueError("handler scope does not match resolved handler")
         _, handler = self._handlers[handler_id]
-        result = handler(payload)
+        result = handler(payload, budget_checkpoint)
         self._execution_counts[handler_id] += 1
         return result
 
@@ -158,7 +164,11 @@ class CheapHandlerRegistry:
         return self._execution_counts.get(handler_id, 0)
 
 
-def normalize_request(payload: dict[str, Any]) -> dict[str, Any]:
+def normalize_request(
+    payload: dict[str, Any],
+    budget_checkpoint: BudgetCheckpoint,
+) -> dict[str, Any]:
+    budget_checkpoint(1)
     if not isinstance(payload, dict) or set(payload) != {"title", "tags"}:
         raise ValueError("request normalization requires exactly title and tags")
     title = payload["title"]
@@ -169,13 +179,14 @@ def normalize_request(payload: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("tags must be a list with at most 32 entries")
     if any(not isinstance(tag, str) or len(tag) > 64 for tag in tags):
         raise ValueError("each tag must be a string of at most 64 characters")
-    normalized_tags = sorted(
-        {
-            normalized
-            for tag in tags
-            if (normalized := tag.strip().lower())
-        }
-    )
+    normalized_values: set[str] = set()
+    for tag in tags:
+        budget_checkpoint(1)
+        normalized = tag.strip().lower()
+        if normalized:
+            normalized_values.add(normalized)
+    normalized_tags = sorted(normalized_values)
+    budget_checkpoint(1)
     return {"title": title.strip(), "tags": normalized_tags}
 
 
@@ -237,6 +248,10 @@ class ExecutionOutcome:
     cpu_ns: int
     wall_ns: int
     traced_memory_bytes: int
+    attempt_count: int = 0
+    pids: tuple[int, ...] = ()
+    budget_id: str | None = None
+    failure_kind: str | None = None
 
 
 class KernelCheapExecutionBridge:
@@ -264,6 +279,7 @@ class KernelCheapExecutionBridge:
             scope_kind="resource",
             allow_wildcard_scope=False,
             mutation=False,
+            inject_budget_checkpoint=True,
         )
 
     def execute(
@@ -272,6 +288,8 @@ class KernelCheapExecutionBridge:
         payload: dict[str, Any],
         *,
         dependency_hashes: dict[str, str] | None = None,
+        budget: ExecutionBudget | None = None,
+        auto_recover: bool = True,
     ) -> ExecutionOutcome:
         dependencies = dict(dependency_hashes or {})
         decision = self.governor.decide(work_item)
@@ -320,6 +338,8 @@ class KernelCheapExecutionBridge:
             "payload": hash_value(payload),
             "work_item": work_item.input_sha256,
         }
+        current_budget = budget or self._default_budget(work_item)
+        self._validate_budget(current_budget, work_item)
         was_tracing = tracemalloc.is_tracing()
         if not was_tracing:
             tracemalloc.start()
@@ -374,9 +394,18 @@ class KernelCheapExecutionBridge:
                 cpu_ns=reuse_cpu_ns,
                 wall_ns=reuse_wall_ns,
                 traced_memory_bytes=reuse_traced_memory,
+                budget_id=current_budget.budget_id,
             )
         if not was_tracing:
             tracemalloc.stop()
+        history = self._failure_history(
+            current_budget,
+            computation_id,
+            spec,
+            input_hashes,
+        )
+        if history:
+            raise ValueError("prior failed budget requires recover()")
         return self._execute_handler(
             decision,
             work_item,
@@ -386,7 +415,148 @@ class KernelCheapExecutionBridge:
             computation_id,
             input_hashes,
             reuse.receipt_sha256,
+            current_budget,
+            history=(),
+            auto_recover=auto_recover,
         )
+
+    def recover(
+        self,
+        work_item: WorkItem,
+        payload: dict[str, Any],
+        *,
+        budget: ExecutionBudget,
+        dependency_hashes: dict[str, str] | None = None,
+    ) -> ExecutionOutcome:
+        dependencies = dict(dependency_hashes or {})
+        decision = self.governor.decide(work_item)
+        if decision.route is Route.OWNER_GATE:
+            return self._owner_gate(decision)
+        if decision.route not in {Route.REFLEX, Route.RULE}:
+            raise ValueError("only a cheap REFLEX/RULE failure can be recovered")
+        spec = self.registry.resolve(
+            work_item.task_class,
+            decision.selected_handler or "",
+        )
+        if spec.route is not decision.route:
+            raise ValueError("Governor route does not match handler contract")
+        self._validate_budget(budget, work_item)
+        computation_id = f"cheap:{spec.handler_id}:{work_item.work_item_id}"
+        input_hashes = {
+            "handler_contract": spec.contract_sha256,
+            "payload": hash_value(payload),
+            "work_item": work_item.input_sha256,
+        }
+        reuse = self.memory.check_reuse(
+            computation_id,
+            input_hashes=input_hashes,
+            dependency_hashes=dependencies,
+            expected_producer=spec.producer_identity,
+            expected_invalidation_rule=spec.invalidation_rule,
+            require_proof=True,
+            require_result_value=True,
+        )
+        if reuse.reusable:
+            raise ValueError("successful computation does not require recovery")
+        history = self._failure_history(
+            budget,
+            computation_id,
+            spec,
+            input_hashes,
+        )
+        if not history:
+            raise ValueError("no persistent failed attempt exists for this budget")
+        if len(history) >= budget.max_attempts:
+            raise ValueError("recovery attempt limit is already exhausted")
+        return self._execute_handler(
+            decision,
+            work_item,
+            payload,
+            dependencies,
+            spec,
+            computation_id,
+            input_hashes,
+            reuse.receipt_sha256,
+            budget,
+            history=history,
+            auto_recover=True,
+        )
+
+    @staticmethod
+    def _default_budget(work_item: WorkItem) -> ExecutionBudget:
+        identity = hash_value(
+            {"owner": "kernel", "task_id": work_item.work_item_id}
+        )[:24]
+        return ExecutionBudget(
+            budget_id=f"budget-{identity}",
+            owner_id="kernel",
+            task_id=work_item.work_item_id,
+            max_wall_ns=10_000_000_000,
+            max_cpu_ns=10_000_000_000,
+            max_ticks=1,
+            max_work_units=64,
+            max_recovery_attempts=0,
+        )
+
+    @staticmethod
+    def _validate_budget(budget: ExecutionBudget, work_item: WorkItem) -> None:
+        if budget.task_id != work_item.work_item_id:
+            raise ValueError("execution budget task identity does not match WorkItem")
+
+    @staticmethod
+    def _grant_sha256(spec: CheapHandlerSpec) -> str:
+        return hash_value(
+            [
+                {"name": grant.name, "scopes": list(grant.scopes)}
+                for grant in spec.required_capabilities
+            ]
+        )
+
+    def _failure_history(
+        self,
+        budget: ExecutionBudget,
+        computation_id: str,
+        spec: CheapHandlerSpec,
+        input_hashes: dict[str, str],
+    ) -> tuple[Any, ...]:
+        execution_input_sha256 = hash_value(input_hashes)
+        input_history = tuple(
+            receipt
+            for receipt in self.kernel.audit.receipts
+            if receipt.kind == "execution.failed"
+            and receipt.target == computation_id
+            and receipt.detail.get("execution_input_sha256")
+            == execution_input_sha256
+        )
+        if any(
+            receipt.detail.get("budget_id") != budget.budget_id
+            for receipt in input_history
+        ):
+            raise ValueError("budget identity changed for prior failed inputs")
+        history = tuple(
+            receipt
+            for receipt in input_history
+            if receipt.detail.get("budget_id") == budget.budget_id
+        )
+        expected_attempts = list(range(1, len(history) + 1))
+        actual_attempts = [
+            int(receipt.detail.get("attempt_number", 0)) for receipt in history
+        ]
+        if actual_attempts != expected_attempts:
+            raise ValueError("persistent recovery attempt sequence is invalid")
+        for receipt in history:
+            detail = receipt.detail
+            if detail.get("budget_contract_sha256") != budget.contract_sha256:
+                raise ValueError("recovery budget contract changed")
+            if detail.get("handler_id") != spec.handler_id:
+                raise ValueError("recovery handler identity changed")
+            if detail.get("handler_version") != spec.version:
+                raise ValueError("recovery handler version changed")
+            if detail.get("handler_contract_sha256") != spec.contract_sha256:
+                raise ValueError("recovery handler contract changed")
+            if detail.get("grant_sha256") != self._grant_sha256(spec):
+                raise ValueError("recovery capability authority changed")
+        return history
 
     def _execute_handler(
         self,
@@ -398,7 +568,209 @@ class KernelCheapExecutionBridge:
         computation_id: str,
         input_hashes: dict[str, str],
         reuse_receipt_sha256: str,
+        budget: ExecutionBudget,
+        *,
+        history: tuple[Any, ...],
+        auto_recover: bool,
     ) -> ExecutionOutcome:
+        previous_failure_sha256 = history[-1].sha256 if history else None
+        pids = [int(receipt.pid) for receipt in history if receipt.pid is not None]
+        total_cpu_ns = 0
+        total_wall_ns = 0
+        peak_memory = 0
+        starting_attempt = len(history) + 1
+        final_attempt = budget.max_attempts if auto_recover else starting_attempt
+        for attempt_number in range(starting_attempt, final_attempt + 1):
+            attempt_id = "attempt-" + hash_value(
+                {
+                    "budget_id": budget.budget_id,
+                    "execution_input_sha256": hash_value(input_hashes),
+                    "attempt": attempt_number,
+                }
+            )[:24]
+            if attempt_number > 1:
+                self.kernel.audit.emit(
+                    "execution.recovery_started",
+                    "kernel-execution-bridge",
+                    spec.handler_id,
+                    {
+                        "budget_id": budget.budget_id,
+                        "budget_contract_sha256": budget.contract_sha256,
+                        "attempt_id": attempt_id,
+                        "attempt_number": attempt_number,
+                        "previous_failure_receipt_sha256": previous_failure_sha256,
+                        "handler_id": spec.handler_id,
+                        "handler_version": spec.version,
+                        "handler_contract_sha256": spec.contract_sha256,
+                        "grant_sha256": self._grant_sha256(spec),
+                        "execution_input_sha256": hash_value(input_hashes),
+                    },
+                    target=computation_id,
+                )
+            attempt = self._run_attempt(
+                work_item,
+                payload,
+                spec,
+                budget,
+                attempt_id,
+                attempt_number,
+            )
+            pid = attempt["pid"]
+            process = attempt["process"]
+            pids.append(pid)
+            total_cpu_ns += attempt["cpu_ns"]
+            total_wall_ns += attempt["wall_ns"]
+            peak_memory = max(peak_memory, attempt["traced_memory_bytes"])
+            if process.state is ProcessState.DONE:
+                result = process.result
+                result_hash = hash_value(result)
+                capability_receipt = attempt["capability_receipt"]
+                status = ExecutionStatus.EXECUTED
+                proof_reference = capability_receipt.sha256
+                if attempt_number > 1:
+                    recovered = self.kernel.audit.emit(
+                        "execution.recovered",
+                        "kernel-execution-bridge",
+                        spec.handler_id,
+                        {
+                            "budget_id": budget.budget_id,
+                            "budget_contract_sha256": budget.contract_sha256,
+                            "attempt_id": attempt_id,
+                            "attempt_number": attempt_number,
+                            "previous_failure_receipt_sha256": previous_failure_sha256,
+                            "result_sha256": result_hash,
+                            "handler_id": spec.handler_id,
+                            "handler_version": spec.version,
+                            "handler_contract_sha256": spec.contract_sha256,
+                            "grant_sha256": self._grant_sha256(spec),
+                            "execution_input_sha256": hash_value(input_hashes),
+                        },
+                        target=computation_id,
+                        pid=pid,
+                        parent_pid=process.parent_pid,
+                    )
+                    proof_reference = recovered.sha256
+                    status = ExecutionStatus.RECOVERED
+                self.memory.record(
+                    computation_id=computation_id,
+                    input_hashes=input_hashes,
+                    dependency_hashes=dependencies,
+                    producer=spec.producer_identity,
+                    result_hash=result_hash,
+                    result_value=result,
+                    duration_ms=total_wall_ns / 1_000_000,
+                    cpu_ms=total_cpu_ns / 1_000_000,
+                    memory_bytes=peak_memory,
+                    cost_units=spec.expected_cost_units * attempt_number,
+                    invalidation_rule=spec.invalidation_rule,
+                    proof_reference=proof_reference,
+                )
+                receipt = self.kernel.audit.emit(
+                    "computation.executed",
+                    "kernel-execution-bridge",
+                    spec.handler_id,
+                    {
+                        "handler_id": spec.handler_id,
+                        "handler_version": spec.version,
+                        "handler_executed": True,
+                        "fake_model_called": False,
+                        "result_sha256": result_hash,
+                        "decision_receipt_sha256": decision.receipt_sha256,
+                        "reuse_check_receipt_sha256": reuse_receipt_sha256,
+                        "capability_receipt_sha256": capability_receipt.sha256,
+                        "dependency_hashes": dependencies,
+                        "budget_id": budget.budget_id,
+                        "budget_contract_sha256": budget.contract_sha256,
+                        "attempt_count": attempt_number,
+                        "pids": pids,
+                        "cpu_ns": total_cpu_ns,
+                        "wall_ns": total_wall_ns,
+                        "traced_memory_bytes": peak_memory,
+                    },
+                    target=computation_id,
+                    pid=pid,
+                    parent_pid=process.parent_pid,
+                )
+                return ExecutionOutcome(
+                    route=decision.route,
+                    status=status,
+                    result=result,
+                    result_hash=result_hash,
+                    computation_id=computation_id,
+                    handler_id=spec.handler_id,
+                    pid=pid,
+                    decision_receipt_sha256=decision.receipt_sha256,
+                    receipt_sha256=receipt.sha256,
+                    cpu_ns=total_cpu_ns,
+                    wall_ns=total_wall_ns,
+                    traced_memory_bytes=peak_memory,
+                    attempt_count=attempt_number,
+                    pids=tuple(pids),
+                    budget_id=budget.budget_id,
+                )
+            budget_exceeded = any(
+                receipt.kind == "execution.budget_exceeded" and receipt.pid == pid
+                for receipt in self.kernel.audit.receipts
+            )
+            failure_kind = "budget_exceeded" if budget_exceeded else "handler_failed"
+            failed = self.kernel.audit.emit(
+                "execution.failed",
+                "kernel-execution-bridge",
+                spec.handler_id,
+                {
+                    "budget_id": budget.budget_id,
+                    "budget_contract_sha256": budget.contract_sha256,
+                    "attempt_id": attempt_id,
+                    "attempt_number": attempt_number,
+                    "failure_kind": failure_kind,
+                    "process_state": process.state.value,
+                    "error": process.error,
+                    "handler_id": spec.handler_id,
+                    "handler_version": spec.version,
+                    "handler_contract_sha256": spec.contract_sha256,
+                    "grant_sha256": self._grant_sha256(spec),
+                    "execution_input_sha256": hash_value(input_hashes),
+                    "successful_result_published": False,
+                },
+                target=computation_id,
+                pid=pid,
+                parent_pid=process.parent_pid,
+            )
+            previous_failure_sha256 = failed.sha256
+            if attempt_number == final_attempt:
+                return ExecutionOutcome(
+                    route=decision.route,
+                    status=(
+                        ExecutionStatus.BUDGET_EXCEEDED
+                        if budget_exceeded
+                        else ExecutionStatus.FAILED
+                    ),
+                    result=None,
+                    result_hash=None,
+                    computation_id=computation_id,
+                    handler_id=spec.handler_id,
+                    pid=pid,
+                    decision_receipt_sha256=decision.receipt_sha256,
+                    receipt_sha256=failed.sha256,
+                    cpu_ns=total_cpu_ns,
+                    wall_ns=total_wall_ns,
+                    traced_memory_bytes=peak_memory,
+                    attempt_count=attempt_number,
+                    pids=tuple(pids),
+                    budget_id=budget.budget_id,
+                    failure_kind=failure_kind,
+                )
+        raise RuntimeError("execution attempt loop ended without an outcome")
+
+    def _run_attempt(
+        self,
+        work_item: WorkItem,
+        payload: dict[str, Any],
+        spec: CheapHandlerSpec,
+        budget: ExecutionBudget,
+        attempt_id: str,
+        attempt_number: int,
+    ) -> dict[str, Any]:
         was_tracing = tracemalloc.is_tracing()
         if not was_tracing:
             tracemalloc.start()
@@ -407,6 +779,7 @@ class KernelCheapExecutionBridge:
         cpu_start = time.process_time_ns()
 
         def runner(context):
+            context.checkpoint(1)
             result = context.invoke(
                 CapabilityRequest(
                     CHEAP_HANDLER_CAPABILITY,
@@ -417,6 +790,7 @@ class KernelCheapExecutionBridge:
                     },
                 )
             )
+            context.checkpoint(1)
             return Step.done(result)
 
         pid = self.kernel.spawn(
@@ -424,80 +798,35 @@ class KernelCheapExecutionBridge:
             runner,
             grants=spec.required_capabilities,
             runner_id=f"cheap-bridge:{spec.handler_id}@{spec.version}",
+            execution_budget=budget,
+            attempt_id=attempt_id,
+            attempt_number=attempt_number,
         )
         self.kernel.run()
         process = self.kernel.get_process(pid)
-        if process.state is not ProcessState.DONE:
-            raise RuntimeError(
-                f"cheap handler process failed: {process.error or process.state.value}"
-            )
-
         cpu_ns = time.process_time_ns() - cpu_start
         wall_ns = time.perf_counter_ns() - wall_start
         _, peak_after = tracemalloc.get_traced_memory()
         traced_memory = max(0, peak_after - peak_before)
         if not was_tracing:
             tracemalloc.stop()
-
-        result = process.result
-        result_hash = hash_value(result)
-        capability_receipt = next(
-            receipt
-            for receipt in reversed(self.kernel.audit.receipts)
-            if receipt.kind == "capability.call"
-            and receipt.pid == pid
-            and receipt.action == CHEAP_HANDLER_CAPABILITY
-        )
-        self.memory.record(
-            computation_id=computation_id,
-            input_hashes=input_hashes,
-            dependency_hashes=dependencies,
-            producer=spec.producer_identity,
-            result_hash=result_hash,
-            result_value=result,
-            duration_ms=wall_ns / 1_000_000,
-            cpu_ms=cpu_ns / 1_000_000,
-            memory_bytes=traced_memory,
-            cost_units=spec.expected_cost_units,
-            invalidation_rule=spec.invalidation_rule,
-            proof_reference=capability_receipt.sha256,
-        )
-        receipt = self.kernel.audit.emit(
-            "computation.executed",
-            "kernel-execution-bridge",
-            spec.handler_id,
-            {
-                "handler_id": spec.handler_id,
-                "handler_version": spec.version,
-                "handler_executed": True,
-                "fake_model_called": False,
-                "result_sha256": result_hash,
-                "decision_receipt_sha256": decision.receipt_sha256,
-                "reuse_check_receipt_sha256": reuse_receipt_sha256,
-                "capability_receipt_sha256": capability_receipt.sha256,
-                "dependency_hashes": dependencies,
-                "cpu_ns": cpu_ns,
-                "wall_ns": wall_ns,
-                "traced_memory_bytes": traced_memory,
-            },
-            target=computation_id,
-            pid=pid,
-            parent_pid=process.parent_pid,
-        )
-        return ExecutionOutcome(
-            route=decision.route,
-            status=ExecutionStatus.EXECUTED,
-            result=result,
-            result_hash=result_hash,
-            computation_id=computation_id,
-            handler_id=spec.handler_id,
-            pid=pid,
-            decision_receipt_sha256=decision.receipt_sha256,
-            receipt_sha256=receipt.sha256,
-            cpu_ns=cpu_ns,
-            wall_ns=wall_ns,
-            traced_memory_bytes=traced_memory,
-        )
+        capability_receipt = None
+        if process.state is ProcessState.DONE:
+            capability_receipt = next(
+                receipt
+                for receipt in reversed(self.kernel.audit.receipts)
+                if receipt.kind == "capability.call"
+                and receipt.pid == pid
+                and receipt.action == CHEAP_HANDLER_CAPABILITY
+            )
+        return {
+            "pid": pid,
+            "process": process,
+            "cpu_ns": cpu_ns,
+            "wall_ns": wall_ns,
+            "traced_memory_bytes": traced_memory,
+            "capability_receipt": capability_receipt,
+        }
 
     def _central_ai(
         self,

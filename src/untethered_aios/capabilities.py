@@ -48,6 +48,7 @@ class Capability:
     scope_kind: str = "path"
     allow_wildcard_scope: bool = True
     mutation: bool = False
+    inject_budget_checkpoint: bool = False
 
 
 RESOURCE_SCOPE_PATTERN = re.compile(
@@ -173,6 +174,7 @@ class CapabilityRegistry:
         scope_kind: str = "path",
         allow_wildcard_scope: bool = True,
         mutation: bool = False,
+        inject_budget_checkpoint: bool = False,
     ) -> None:
         if name in self._caps:
             raise ValueError(f"capability already registered: {name}")
@@ -187,6 +189,7 @@ class CapabilityRegistry:
             scope_kind=scope_kind,
             allow_wildcard_scope=allow_wildcard_scope,
             mutation=mutation,
+            inject_budget_checkpoint=inject_budget_checkpoint,
         )
 
     def grants_are_subset(
@@ -224,6 +227,8 @@ class CapabilityRegistry:
         self,
         request: CapabilityRequest,
         grants: tuple[CapabilityGrant, ...],
+        *,
+        budget_checkpoint: Callable[[int], Any] | None = None,
     ) -> CapabilityOutcome:
         cap = self._caps.get(request.name)
         if cap is None:
@@ -268,6 +273,14 @@ class CapabilityRegistry:
                 )
 
         handler_arguments = dict(request.arguments)
+        if cap.inject_budget_checkpoint:
+            if "budget_checkpoint" in handler_arguments:
+                raise PermissionDenied(
+                    "budget checkpoint is Kernel-injected and cannot be supplied"
+                )
+            if budget_checkpoint is None:
+                raise PermissionDenied("Kernel budget checkpoint is required")
+            handler_arguments["budget_checkpoint"] = budget_checkpoint
         if cap.scope_arg is not None:
             # The authorization decision and the operation must use the same
             # canonical path. Passing the caller's raw spelling after checking

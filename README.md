@@ -57,6 +57,8 @@ The current candidate contains:
   resource-scoped capability grant;
 - one declared `request-normalizer-v1` cheap handler and proven
   Computation-Memory reuse/invalidation path;
+- Kernel-owned cooperative wall/CPU/tick/work-unit budgets with finite,
+  same-authority recovery and durable failure evidence;
 - baseline hashing/authentication script;
 - unit tests;
 - Codex operating instructions;
@@ -103,5 +105,7 @@ V0.1 exposes one real, project-scoped metadata read through the authenticated
 Workshop primitive and emits a hash-linked capability receipt. Cognitive
 Substrate Campaign 2 adds one bounded REFLEX handler path through the existing
 Governor, Kernel capability authority, Computation Memory, and receipt chain.
-It remains candidate-only: no live deployment, real provider, or broader
-Workshop authority is claimed.
+Campaign 3 makes that exact lane cooperatively bounded and recoverable without
+adding a handler or authority. It remains candidate-only: no hostile-code
+sandbox, live deployment, real provider, or broader Workshop authority is
+claimed.

@@ -83,7 +83,11 @@
         "receipt_sha256",
         "cpu_ns",
         "wall_ns",
-        "traced_memory_bytes"
+        "traced_memory_bytes",
+        "attempt_count",
+        "pids",
+        "budget_id",
+        "failure_kind"
       ],
       "properties": {
         "route": {"$ref": "#/$defs/route"},
@@ -93,7 +97,10 @@
             "REUSED",
             "CENTRAL_AI",
             "OWNER_GATE",
-            "NOT_EXECUTED"
+            "NOT_EXECUTED",
+            "BUDGET_EXCEEDED",
+            "FAILED",
+            "RECOVERED"
           ]
         },
         "result": {},
@@ -110,7 +117,14 @@
         "receipt_sha256": {"$ref": "#/$defs/sha256"},
         "cpu_ns": {"type": "integer", "minimum": 0},
         "wall_ns": {"type": "integer", "minimum": 0},
-        "traced_memory_bytes": {"type": "integer", "minimum": 0}
+        "traced_memory_bytes": {"type": "integer", "minimum": 0},
+        "attempt_count": {"type": "integer", "minimum": 0},
+        "pids": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 1}
+        },
+        "budget_id": {"type": ["string", "null"]},
+        "failure_kind": {"type": ["string", "null"]}
       },
       "additionalProperties": false
     }

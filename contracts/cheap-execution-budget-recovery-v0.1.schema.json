@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Untethered AIOS Cheap Execution Budget and Recovery V0.1",
+  "type": "object",
+  "oneOf": [
+    {"$ref": "#/$defs/executionBudget"},
+    {"$ref": "#/$defs/budgetSnapshot"}
+  ],
+  "$defs": {
+    "identity": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "executionBudget": {
+      "type": "object",
+      "required": [
+        "budget_id",
+        "owner_id",
+        "task_id",
+        "max_wall_ns",
+        "max_cpu_ns",
+        "max_ticks",
+        "max_work_units",
+        "max_recovery_attempts"
+      ],
+      "properties": {
+        "budget_id": {"$ref": "#/$defs/identity"},
+        "owner_id": {"$ref": "#/$defs/identity"},
+        "task_id": {"$ref": "#/$defs/identity"},
+        "max_wall_ns": {"type": "integer", "minimum": 1},
+        "max_cpu_ns": {"type": "integer", "minimum": 1},
+        "max_ticks": {"type": "integer", "minimum": 1},
+        "max_work_units": {"type": "integer", "minimum": 1},
+        "max_recovery_attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
+        }
+      },
+      "additionalProperties": false
+    },
+    "budgetSnapshot": {
+      "type": "object",
+      "required": [
+        "budget_id",
+        "attempt_id",
+        "attempt_number",
+        "pid",
+        "elapsed_wall_ns",
+        "elapsed_cpu_ns",
+        "process_ticks",
+        "work_units"
+      ],
+      "properties": {
+        "budget_id": {"$ref": "#/$defs/identity"},
+        "attempt_id": {"$ref": "#/$defs/identity"},
+        "attempt_number": {"type": "integer", "minimum": 1},
+        "pid": {"type": "integer", "minimum": 1},
+        "elapsed_wall_ns": {"type": "integer"},
+        "elapsed_cpu_ns": {"type": "integer"},
+        "process_ticks": {"type": "integer", "minimum": 0},
+        "work_units": {"type": "integer", "minimum": 0},
+        "budget_contract_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

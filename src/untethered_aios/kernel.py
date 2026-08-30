@@ -4,6 +4,7 @@ from collections import deque
 from copy import deepcopy
 from dataclasses import dataclass
 from datetime import datetime, timezone
+import time
 from typing import Any, Callable
 
 from .audit import AuditLog, hash_value
@@ -16,6 +17,12 @@ from .capabilities import (
     grants_are_subset,
 )
 from .events import Event, EventBus
+from .execution_budget import (
+    BudgetExceeded,
+    BudgetGuard,
+    BudgetSnapshot,
+    ExecutionBudget,
+)
 from .process_table import (
     InMemoryProcessTable,
     ProcessRecord,
@@ -108,6 +115,9 @@ class ProcessContext:
     def set_metadata(self, key: str, value: Any) -> None:
         self.kernel._set_metadata(self.pid, key, value)
 
+    def checkpoint(self, work_units: int = 1) -> BudgetSnapshot:
+        return self.kernel._checkpoint_budget(self.pid, work_units=work_units)
+
     def invoke(self, request: CapabilityRequest) -> Any:
         proc = self.kernel._record(self.pid)
         if proc.state != ProcessState.RUNNING:
@@ -117,7 +127,11 @@ class ProcessContext:
         actor = f"pid:{proc.pid}"
         input_hash = hash_value(request.arguments)
         try:
-            outcome = self.kernel.capabilities.invoke_request(request, proc.grants)
+            outcome = self.kernel.capabilities.invoke_request(
+                request,
+                proc.grants,
+                budget_checkpoint=self.checkpoint,
+            )
         except PermissionDenied as exc:
             self.kernel.audit.emit(
                 "capability.denied",
@@ -206,9 +220,13 @@ class Kernel:
         *,
         process_table: ProcessTable | None = None,
         clock: Callable[[], str] | None = None,
+        wall_clock_ns: Callable[[], int] | None = None,
+        cpu_clock_ns: Callable[[], int] | None = None,
     ) -> None:
         self.process_table = process_table or InMemoryProcessTable()
         self._clock = clock or _utc_now
+        self._wall_clock_ns = wall_clock_ns or time.perf_counter_ns
+        self._cpu_clock_ns = cpu_clock_ns or time.process_time_ns
         self.capabilities = CapabilityRegistry()
         self.events = EventBus()
         self.audit = AuditLog(sink=self.process_table, clock=self._clock)
@@ -216,8 +234,10 @@ class Kernel:
             record.pid: record for record in self.process_table.list()
         }
         self._runners: dict[int, Runner] = {}
+        self._budget_guards: dict[int, BudgetGuard] = {}
         self.ready: deque[int] = deque()
         self.waiting: dict[str, deque[int]] = {}
+        self._restore_budget_guards()
         self._recover_queues()
 
     @property
@@ -270,6 +290,23 @@ class Kernel:
             ):
                 self.waiting.setdefault(proc.waiting_for, deque()).append(proc.pid)
 
+    def _restore_budget_guards(self) -> None:
+        for proc in self._processes.values():
+            value = proc.metadata.get("execution_budget")
+            if not isinstance(value, dict) or proc.state in TERMINAL_STATES:
+                continue
+            budget = ExecutionBudget.from_dict(value)
+            attempt_id = str(proc.metadata.get("attempt_id", ""))
+            attempt_number = int(proc.metadata.get("attempt_number", 0))
+            self._budget_guards[proc.pid] = BudgetGuard(
+                budget,
+                pid=proc.pid,
+                attempt_id=attempt_id,
+                attempt_number=attempt_number,
+                wall_clock_ns=self._wall_clock_ns,
+                cpu_clock_ns=self._cpu_clock_ns,
+            )
+
     @staticmethod
     def _default_runner_id(runner: Runner) -> str:
         return f"{runner.__module__}:{runner.__qualname__}"
@@ -282,6 +319,9 @@ class Kernel:
         parent_pid: int | None = None,
         *,
         runner_id: str | None = None,
+        execution_budget: ExecutionBudget | None = None,
+        attempt_id: str | None = None,
+        attempt_number: int = 1,
     ) -> int:
         if not name.strip():
             raise ValueError("process name is required")
@@ -294,6 +334,18 @@ class Kernel:
 
         pid = self.process_table.allocate_pid()
         now = self._clock()
+        metadata: dict[str, Any] = {}
+        if execution_budget is not None:
+            if attempt_id is None:
+                raise ValueError("budgeted process requires an attempt_id")
+            if not 1 <= attempt_number <= execution_budget.max_attempts:
+                raise ValueError("attempt_number is outside the recovery policy")
+            metadata = {
+                "execution_budget": execution_budget.as_dict(),
+                "budget_contract_sha256": execution_budget.contract_sha256,
+                "attempt_id": attempt_id,
+                "attempt_number": attempt_number,
+            }
         proc = ProcessRecord(
             pid=pid,
             name=name,
@@ -301,12 +353,22 @@ class Kernel:
             grants=tuple(grants),
             parent_pid=parent_pid,
             state=ProcessState.NEW,
+            metadata=metadata,
             created_at=now,
             updated_at=now,
         )
         self._processes[pid] = proc
         self.process_table.put(proc)
         self._runners[pid] = runner
+        if execution_budget is not None:
+            self._budget_guards[pid] = BudgetGuard(
+                execution_budget,
+                pid=pid,
+                attempt_id=attempt_id or "",
+                attempt_number=attempt_number,
+                wall_clock_ns=self._wall_clock_ns,
+                cpu_clock_ns=self._cpu_clock_ns,
+            )
         self.audit.emit(
             "process.spawn",
             actor="kernel",
@@ -321,6 +383,35 @@ class Kernel:
         self._transition(proc, ProcessState.READY)
         self.ready.append(pid)
         return pid
+
+    def _checkpoint_budget(self, pid: int, *, work_units: int = 1) -> BudgetSnapshot:
+        proc = self._record(pid)
+        if proc.state != ProcessState.RUNNING:
+            raise RuntimeError("budget checkpoint requires a RUNNING process")
+        guard = self._budget_guards.get(pid)
+        if guard is None:
+            raise RuntimeError("process has no execution budget")
+        try:
+            return guard.checkpoint(
+                process_ticks=proc.ticks,
+                work_units=work_units,
+            )
+        except BudgetExceeded as exc:
+            self.audit.emit(
+                "execution.budget_exceeded",
+                actor="kernel",
+                action=proc.name,
+                target=guard.budget.task_id,
+                pid=pid,
+                parent_pid=proc.parent_pid,
+                detail={
+                    **exc.snapshot.as_dict(),
+                    "owner_id": guard.budget.owner_id,
+                    "limit": exc.limit,
+                    "budget_contract_sha256": guard.budget.contract_sha256,
+                },
+            )
+            raise
 
     def bind_runner(self, pid: int, runner: Runner, *, runner_id: str | None = None) -> None:
         proc = self._record(pid)
@@ -479,6 +570,23 @@ class Kernel:
                 continue
 
             try:
+                guard = self._budget_guards.get(pid)
+                if guard is not None and not guard.started:
+                    started = guard.start()
+                    self.audit.emit(
+                        "execution.started",
+                        actor="kernel",
+                        action=proc.name,
+                        target=guard.budget.task_id,
+                        pid=pid,
+                        parent_pid=proc.parent_pid,
+                        detail={
+                            **started.as_dict(),
+                            "owner_id": guard.budget.owner_id,
+                            "budget_contract_sha256": guard.budget.contract_sha256,
+                            "max_attempts": guard.budget.max_attempts,
+                        },
+                    )
                 step = runner(ProcessContext(self, pid))
                 if not isinstance(step, Step):
                     raise TypeError("runner must return Step")

@@ -232,3 +232,20 @@ hash-verified result without spawning or executing again.
 
 This does not create a general plugin framework or add filesystem, network,
 process, provider, model, Workshop, or deployment authority.
+
+## Cheap-Execution Budget and Recovery V0.1 candidate
+
+Campaign 3 makes the single cheap lane cooperatively resource-bounded. An
+immutable `ExecutionBudget` binds owner/task/budget identity, monotonic
+wall/CPU limits, process ticks, work units, and finite recovery attempts.
+Kernel owns a per-PID `BudgetGuard`; `ProcessContext.checkpoint()` is injected
+into the already-verified handler only after exact capability authorization.
+
+Budget exhaustion and handler failure transition through the existing FAILED
+state and persist distinct receipts. Failed attempts never publish a successful
+Computation Memory result. Recovery uses a new PID but must retain the exact
+budget contract, handler/version/contract, and grant hash. Reopen recovery is
+derived from the existing persistent process/receipt stores.
+
+This is cooperative enforcement for trusted handlers, not hostile-code
+preemption or native-process isolation.

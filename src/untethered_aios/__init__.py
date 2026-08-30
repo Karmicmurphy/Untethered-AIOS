@@ -32,6 +32,12 @@ from .computation_memory import (
     ReuseDecision,
     SQLiteComputationMemory,
 )
+from .execution_budget import (
+    BudgetExceeded,
+    BudgetGuard,
+    BudgetSnapshot,
+    ExecutionBudget,
+)
 from .reflex_execution import (
     CHEAP_HANDLER_CAPABILITY,
     REQUEST_NORMALIZER_HANDLER_ID,
@@ -69,6 +75,10 @@ __all__ = [
     "ComputationRecord",
     "ReuseDecision",
     "SQLiteComputationMemory",
+    "ExecutionBudget",
+    "BudgetGuard",
+    "BudgetSnapshot",
+    "BudgetExceeded",
     "CHEAP_HANDLER_CAPABILITY",
     "REQUEST_NORMALIZER_HANDLER_ID",
     "REQUEST_NORMALIZER_SCOPE",
