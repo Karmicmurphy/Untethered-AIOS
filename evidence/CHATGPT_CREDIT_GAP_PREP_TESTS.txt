@@ -1,0 +1,28 @@
+TWIS UNTETHERED AIOS — CREDIT-GAP PREP TESTS
+
+Environment: ChatGPT container, Python stdlib + SQLite, no network/provider/model/GPU dependency.
+
+Standalone split-module unit tests: 29/29 PASS
+Synthetic prep benchmark predicates: 10/10 PASS
+Compileall for prep source/tests/scripts: PASS
+
+Scope tested:
+- deterministic native rule resolution and conflict fail-closed
+- exact/fuzzy/temporal memory separation + SQLite reopen
+- blackboard claims/results/events
+- capability-bounded declarative MicroForge recipe
+- repeated-trace Downshift candidate detection
+- capability metabolism advisory logic
+- continuity checkpoint identity separation
+- model gateway paid/network fail-closed gates
+- capability cell exact-capability boundary
+- endogenous evolution authority-expansion denial
+
+NOT VERIFIED HERE:
+- integration against local Campaign 3 head 5c7c9146...
+- authoritative Workshop state
+- full Untethered regression on the user's machine
+- rollback of the real local repository
+- production model/runtime
+
+Status language: PREP ONLY. Not VERIFIED CANDIDATE, not LIVE-VALIDATED, not DEPLOYED.
