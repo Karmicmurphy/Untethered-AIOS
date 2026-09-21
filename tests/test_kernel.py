@@ -41,6 +41,58 @@ class KernelTests(unittest.TestCase):
         self.assertEqual(kernel.processes[pid].state, ProcessState.DONE)
         self.assertEqual(kernel.processes[pid].result, "awake")
 
+    def test_foundry_job_id_flows_through_runtime_audit(self):
+        kernel = Kernel()
+        kernel.capabilities.register("demo", lambda value: value)
+
+        def worker(ctx):
+            self.assertEqual(ctx.process.metadata["foundry_job_id"], "job:abc123")
+            self.assertEqual(ctx.call("demo", value="ok"), "ok")
+            return Step.done("done")
+
+        grant = CapabilityGrant("demo", ())
+        pid = kernel.spawn(
+            "foundry-worker",
+            worker,
+            grants=(grant,),
+            metadata={"foundry_job_id": "job:abc123"},
+        )
+        kernel.run()
+
+        self.assertEqual(kernel.processes[pid].state, ProcessState.DONE)
+        correlated = [
+            receipt for receipt in kernel.audit.as_dicts()
+            if receipt["kind"] in {"process.spawn", "capability.call", "process.done"}
+        ]
+        self.assertEqual(len(correlated), 3)
+        self.assertTrue(all(
+            receipt["detail"].get("foundry_job_id") == "job:abc123"
+            for receipt in correlated
+        ))
+
+    def test_tick_limit_lists_correlated_foundry_job(self):
+        kernel = Kernel()
+
+        def worker(ctx):
+            return Step.yield_cpu()
+
+        kernel.spawn(
+            "bounded-worker",
+            worker,
+            metadata={"foundry_job_id": "job:tick"},
+        )
+        kernel.run(max_ticks=1)
+
+        tick_receipts = [
+            receipt for receipt in kernel.audit.as_dicts()
+            if receipt["kind"] == "kernel.tick_limit"
+        ]
+        self.assertEqual(len(tick_receipts), 1)
+        self.assertEqual(
+            tick_receipts[0]["detail"]["foundry_job_ids"],
+            ["job:tick"],
+        )
+
     def test_child_cannot_escalate_grants(self):
         kernel = Kernel()
         allowed = CapabilityGrant("artifact.read", ("/safe",))
