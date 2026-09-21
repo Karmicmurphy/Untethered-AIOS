@@ -21,6 +21,13 @@ class ProcessState(str, Enum):
 
 TERMINAL = {ProcessState.DONE, ProcessState.FAILED, ProcessState.CANCELLED}
 
+def _process_detail(proc: "ProcessRecord", **extra: Any) -> dict[str, Any]:
+    detail = dict(extra)
+    foundry_job_id = proc.metadata.get("foundry_job_id")
+    if isinstance(foundry_job_id, str) and foundry_job_id:
+        detail["foundry_job_id"] = foundry_job_id
+    return detail
+
 @dataclass
 class Step:
     kind: str
@@ -65,14 +72,14 @@ class ProcessContext:
                 "capability.denied",
                 actor=f"pid:{self.process.pid}",
                 action=capability,
-                detail={"error": str(exc)},
+                detail=_process_detail(self.process, error=str(exc)),
             )
             raise
         self.kernel.audit.emit(
             "capability.call",
             actor=f"pid:{self.process.pid}",
             action=capability,
-            detail={"args": sorted(kwargs.keys())},
+            detail=_process_detail(self.process, args=sorted(kwargs.keys())),
         )
         return result
 
@@ -87,7 +94,17 @@ class ProcessContext:
         requested = set(grants)
         if not requested.issubset(parent):
             raise PermissionDenied("child cannot receive capabilities not held by parent")
-        return self.kernel.spawn(name, runner, grants=grants, parent_pid=self.process.pid)
+        child_metadata: dict[str, Any] = {}
+        foundry_job_id = self.process.metadata.get("foundry_job_id")
+        if isinstance(foundry_job_id, str) and foundry_job_id:
+            child_metadata["foundry_job_id"] = foundry_job_id
+        return self.kernel.spawn(
+            name,
+            runner,
+            grants=grants,
+            parent_pid=self.process.pid,
+            metadata=child_metadata,
+        )
 
 class Kernel:
     def __init__(self) -> None:
@@ -105,6 +122,7 @@ class Kernel:
         runner: Callable[[ProcessContext], Step],
         grants: tuple[CapabilityGrant, ...] = (),
         parent_pid: int | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> int:
         pid = next(self._pids)
         proc = ProcessRecord(
@@ -114,10 +132,16 @@ class Kernel:
             grants=grants,
             parent_pid=parent_pid,
             state=ProcessState.READY,
+            metadata=dict(metadata or {}),
         )
         self.processes[pid] = proc
         self.ready.append(pid)
-        self.audit.emit("process.spawn", actor="kernel", action=name, detail={"pid": pid, "parent_pid": parent_pid})
+        self.audit.emit(
+            "process.spawn",
+            actor="kernel",
+            action=name,
+            detail=_process_detail(proc, pid=pid, parent_pid=parent_pid),
+        )
         return pid
 
     def cancel(self, pid: int) -> None:
@@ -126,7 +150,7 @@ class Kernel:
             return
         proc.state = ProcessState.CANCELLED
         proc.waiting_for = None
-        self.audit.emit("process.cancel", actor="kernel", action=proc.name, detail={"pid": pid})
+        self.audit.emit("process.cancel", actor="kernel", action=proc.name, detail=_process_detail(proc, pid=pid))
 
     def suspend(self, pid: int) -> None:
         proc = self.processes[pid]
@@ -171,7 +195,7 @@ class Kernel:
             except Exception as exc:
                 proc.state = ProcessState.FAILED
                 proc.error = f"{type(exc).__name__}: {exc}"
-                self.audit.emit("process.failed", actor=f"pid:{pid}", action=proc.name, detail={"error": proc.error})
+                self.audit.emit("process.failed", actor=f"pid:{pid}", action=proc.name, detail=_process_detail(proc, error=proc.error))
                 continue
 
             if step.kind == "yield":
@@ -184,11 +208,21 @@ class Kernel:
             elif step.kind == "done":
                 proc.state = ProcessState.DONE
                 proc.result = step.value
-                self.audit.emit("process.done", actor=f"pid:{pid}", action=proc.name, detail={"ticks": proc.ticks})
+                self.audit.emit("process.done", actor=f"pid:{pid}", action=proc.name, detail=_process_detail(proc, ticks=proc.ticks))
             else:
                 proc.state = ProcessState.FAILED
                 proc.error = f"invalid step kind: {step.kind}"
                 self.audit.emit("process.failed", actor=f"pid:{pid}", action=proc.name, detail={"error": proc.error})
 
         if ticks >= max_ticks and self.ready:
-            self.audit.emit("kernel.tick_limit", actor="kernel", action="run", detail={"max_ticks": max_ticks})
+            foundry_job_ids = sorted({
+                str(self.processes[pid].metadata.get("foundry_job_id"))
+                for pid in self.ready
+                if self.processes[pid].metadata.get("foundry_job_id")
+            })
+            self.audit.emit(
+                "kernel.tick_limit",
+                actor="kernel",
+                action="run",
+                detail={"max_ticks": max_ticks, "foundry_job_ids": foundry_job_ids},
+            )
