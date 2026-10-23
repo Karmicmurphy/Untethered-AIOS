@@ -78,7 +78,7 @@ This is the AIOS kernel/runtime component of a *five-repository* Foundation, not
    verifies that private local machine.
 
 For Codex, **start with `CODEX_START_HERE.md`** and the live Harness work order; use `docs/CODEX_HANDOFF.md` for historical context only.
-The newer [Foundry #35 governed integration candidate](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35) has passed a bounded cross-repo CI proof but is **draft/unmerged**, not general FRIDAY autonomy. Do not promote it automatically.
+The bounded [Foundry #35 integration proof](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35) is **merged on `software-builder-v0`**, passed post-merge tests, and remains **test-only**, not a canonical factory repin or general FRIDAY autonomy. The next target is a bounded owner-intent→allowlisted-job→independent-receipt proof. Do not promote authority automatically.
 The existing Foundry FRIDAY native/startup candidate remains **unmerged and not host-proven**;
 inspect rather than automatically promoting it.
 

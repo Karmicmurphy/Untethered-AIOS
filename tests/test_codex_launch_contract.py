@@ -12,7 +12,7 @@ class CodexLaunchContractTests(unittest.TestCase):
         self.assertIn("FRIDAY_GOVERNED_INTEGRATION_PROOF_2026-10-22.md", guide)
         self.assertIn("Foundry", guide)
         self.assertIn("PR #35", guide)
-        self.assertIn("draft", guide.lower())
+        self.assertIn("merged into the existing development branch", guide)
         self.assertIn("read", guide.lower())
         self.assertIn("Stop", guide)
         self.assertIn("parked", guide.lower())
@@ -31,8 +31,8 @@ class CodexLaunchContractTests(unittest.TestCase):
     def test_root_readme_points_to_one_active_codex_entry(self):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("start with `CODEX_START_HERE.md`", readme)
-        self.assertIn("draft/unmerged", readme)
-        self.assertIn("Do not promote it automatically", readme)
+        self.assertIn("merged on `software-builder-v0`", readme)
+        self.assertIn("Do not promote authority automatically", readme)
 
     def test_historical_handoff_renders_as_actual_markdown(self):
         handoff = (ROOT / "docs/CODEX_HANDOFF.md").read_text(encoding="utf-8")

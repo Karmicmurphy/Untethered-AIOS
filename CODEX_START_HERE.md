@@ -16,7 +16,7 @@
 ## What was already proven
 
 - **Harness:** the existing bounded FRIDAY maintenance operator and CI authority checks run with receipts. A general-purpose autonomous FRIDAY is not proven.
-- **Foundry / AIOS:** Foundry's [draft PR #35](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35), built on `software-builder-v0`, has a green bounded, deterministic Foundation Core -> AIOS test with an independently certified repair receipt ([CI proof](https://github.com/Karmicmurphy/temporal-capability-foundry/actions/runs/39879548240)). It remains a **draft, unmerged** candidate. This does not prove free-form task admission, durable exactly-once recovery, live services or local host integration.
+- **Foundry / AIOS:** [Foundry PR #35](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35) was **merged into the existing development branch `software-builder-v0`** at commit `7ceaad7a82dcedc85f8c23cf88bea4bef05ee9ca`. The bounded real Foundation Core → AIOS test and full unit suite both passed again on that merge ([proof CI](https://github.com/Karmicmurphy/temporal-capability-foundry/actions/runs/39885548352), [unit CI](https://github.com/Karmicmurphy/temporal-capability-foundry/actions/runs/39885548353)). This is a test-only addition to the development branch; **the canonical factory SHA was not repinned**. It does not prove free-form task admission, durable exactly-once recovery, live services or local host integration.
 - The Harness-approved executable AIOS kernel SHA at the time of the proof is `8a954439af2b15b00f7c961d83552772b382fd1f`. This repository's later `main` also contains documentation updates. Do not silently repin the canonical runtime to a moving branch.
 
 ## Safe Codex first pass: inspect, compare, report
@@ -25,8 +25,8 @@ This is the *first job*, not a request to build the entire machine.
 
 - Confirm which repository, branch and exact source commit Codex opened.
 - Validate existing `AGENTS.md`, Harness current authority, relevant PRs and latest green tests.
-- Review Foundry [#35](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35), [#34](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/34) and [#31](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/31) **without merging them**. Identify concrete missing integration tests and unsafe engine/subprocess boundaries; do not treat Builder tool write allowlists as a sandbox for a model's separate shell/process.
-- Return an exact, smallest candidate-only next step, current source SHA and tests needed. Do not duplicate salvage registries, bootstrap a second repo, or import a new framework.
+- Confirm the **already merged** bounded #35 evidence on `software-builder-v0`; review **still-unmerged** [#34](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/34) and [#31](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/31) without bulk merges. The next missing bounded proof is translating an owner request into an allowlisted job with fresh authorized admission, restart/retry semantics and an independent correlated receipt. Keep any next implementation in a disposable candidate branch. Never treat Builder tool write allowlists as a sandbox for an independent model shell/process.
+- After the initial inspection, propose **one smallest candidate-only test** for request→allowlisted job→execution→receipt. Do not duplicate salvage registries, bootstrap a second repo, or import a new framework.
 - **Stop** before a merge, canonical pin promotion, live job dispatch, public/production deployment, secrets, paid service, permission widening, system-wide install, or unbounded local-machine changes unless separately authorized through the appropriate owner gate.
 
 ## What stays parked
