@@ -1,215 +1,42 @@
-# CODEX START HERE — TWIS Untethered AIOS
+# CODEX START HERE — FRIDAY / Untethered AIOS
 
-This is the first file a fresh Codex session should read after `AGENTS.md`.
+**Current governing entry: October 2026.** This is the *AIOS component* entry point, not authority to restart the old Workshop bootstrap or to merge/deploy FRIDAY. The earlier Windows-baseline / Kernel V0.2 instructions in this file have been superseded; their historical copy remains in repository Git history and the contextual `docs/CODEX_HANDOFF.md`.
 
-## What this repository is
+## First: current authority, not an old prompt
 
-`Karmicmurphy/Untethered-AIOS` is the experimental operating-system descendant of Twis Holo Workshop.
+1. Read `AGENTS.md`. Its AIOS-local safety requirements remain in force.
+2. Resolve the current *cross-repository* job from:
+   - [Harness Card — active canonical project](https://github.com/Karmicmurphy/Harness-card/blob/main/state/CURRENT_PROJECT.json)
+   - [Harness Card — machine status](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_MACHINE_STATUS.md)
+   - [Harness Card — operator receipt](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_OPERATOR_LAST_RUN.json)
+   - [Harness Card — Codex clearance and repository reconciliation](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_PRE_CODEX_MACHINE_CLEARANCE_2026-10-22.md)
+   - [Harness Card — newest governed integration proof](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_GOVERNED_INTEGRATION_PROOF_2026-10-22.md)
+3. Check live branch HEAD, tests, exact source SHAs and draft/merge status before acting. A README, historical bootstrap document, chat handoff, candidate PR or green test **never overrules the live Harness work order**.
 
-It is NOT the production Workshop repository and must not overwrite the authoritative local Workshop.
+## What was already proven
 
-Authoritative local Workshop:
+- **Harness:** the existing bounded FRIDAY maintenance operator and CI authority checks run with receipts. A general-purpose autonomous FRIDAY is not proven.
+- **Foundry / AIOS:** Foundry's [draft PR #35](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35), built on `software-builder-v0`, has a green bounded, deterministic Foundation Core -> AIOS test with an independently certified repair receipt ([CI proof](https://github.com/Karmicmurphy/temporal-capability-foundry/actions/runs/39879548240)). It remains a **draft, unmerged** candidate. This does not prove free-form task admission, durable exactly-once recovery, live services or local host integration.
+- The Harness-approved executable AIOS kernel SHA at the time of the proof is `8a954439af2b15b00f7c961d83552772b382fd1f`. This repository's later `main` also contains documentation updates. Do not silently repin the canonical runtime to a moving branch.
 
-`C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS`
+## Safe Codex first pass: inspect, compare, report
 
-Recommended local Untethered AIOS checkout:
+This is the *first job*, not a request to build the entire machine.
 
-`C:\TWIS_FLASHRIVER_REVIEW_READY\Untethered-AIOS`
+- Confirm which repository, branch and exact source commit Codex opened.
+- Validate existing `AGENTS.md`, Harness current authority, relevant PRs and latest green tests.
+- Review Foundry [#35](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35), [#34](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/34) and [#31](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/31) **without merging them**. Identify concrete missing integration tests and unsafe engine/subprocess boundaries; do not treat Builder tool write allowlists as a sandbox for a model's separate shell/process.
+- Return an exact, smallest candidate-only next step, current source SHA and tests needed. Do not duplicate salvage registries, bootstrap a second repo, or import a new framework.
+- **Stop** before a merge, canonical pin promotion, live job dispatch, public/production deployment, secrets, paid service, permission widening, system-wide install, or unbounded local-machine changes unless separately authorized through the appropriate owner gate.
 
-Keep them as SIBLING folders. Do not nest the AIOS Git repository inside the Workshop Git repository.
+## What stays parked
 
-```text
-C:\TWIS_FLASHRIVER_REVIEW_READY\
-├── TWIS\                    authoritative Workshop
-└── Untethered-AIOS\         experimental AIOS repo
-```
+Android-to-FRIDAY/phone and Cloudflare Preview are explicitly **parked**, not missing prerequisites. So are local/private Workshop rehydration, Windows host recovery, full music/Pro Rig redevelopment and business/commerce work. A cloud-only Codex session is allowed to perform repository inspection and disposable, credential-free candidate tests without pretending it accessed the physical PC.
 
-## Fresh Codex session objective
+The historic local Workshop path `C:\\TWIS_FLASHRIVER_REVIEW_READY\\TWIS` is context **only**. Never assert it exists now, reconstruct its content or make physical machine access step one.
 
-Do not start by inventing more architecture.
+## Closeout contract
 
-Do this in order:
+Return: **verified source**, **what passed**, **what did not run**, **exact PR/commit**, **one bounded next proof**, and **owner approval needed or none**.
 
-### PHASE 0 — authenticate the real Workshop
-
-1. Inspect this repo and read:
-   - `AGENTS.md`
-   - `CODEX_START_HERE.md`
-   - `docs/AUTHORITY_AND_GATES.md`
-   - `docs/CODEX_HANDOFF.md`
-   - `skills/workshop-baseline/SKILL.md`
-   - `skills/artifact-compass/SKILL.md`
-   - `skills/direct-successor-autopilot/SKILL.md`
-   - `skills/no-drift-build/SKILL.md`
-   - `skills/no-broadening-audit/SKILL.md`
-   - `skills/receipt-trace-certificate/SKILL.md`
-2. Confirm the authoritative Workshop exists at:
-   `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS`
-3. Treat that Workshop path as READ-ONLY during this program.
-4. Create a candidate branch in this AIOS repo from current `main`:
-   `bootstrap/workshop-baseline`
-5. Run:
-
-```powershell
-python scripts\authenticate_workshop.py `
-  --workshop "C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS" `
-  --output "evidence\workshop-baseline.json"
-```
-
-6. Inspect the manifest and exclusions. Do not blindly copy private/runtime state.
-7. Verify the authoritative Workshop health using its own current tests and launch evidence where practical. Do not restart Music Loop Deck V1; it is already deployed/live-verified in the authoritative Workshop.
-8. Import only the authenticated code-safe snapshot into this repo:
-
-```powershell
-python scripts\import_workshop_baseline.py `
-  --manifest "evidence\workshop-baseline.json" `
-  --destination "workshop"
-```
-
-9. Re-hash and verify the imported baseline exactly matches the authenticated code-safe tree.
-10. Run Untethered AIOS bootstrap tests:
-
-```powershell
-scripts\test.ps1
-```
-
-11. Record exact evidence and commit ONLY to the AIOS candidate branch.
-
-### PHASE 0.5 — Artifact Compass reality sweep
-
-Before implementing Kernel V0.2, run a bounded Artifact Compass pass against the authenticated Workshop + current Untethered bootstrap.
-
-Use:
-
-- `skills/artifact-compass/SKILL.md`
-- `skills/deep-salvage/SKILL.md` when more than one pass is justified;
-- `skills/better-question-rewriter/SKILL.md` if the technology question is too broad.
-
-The sweep must:
-
-1. map what the Workshop and bootstrap already provide;
-2. identify the exact missing Kernel V0.2 contracts;
-3. inspect current official/primary sources for relevant scheduler, capability-security, process-lifecycle, isolation, event/wake, model-governor, and evidence mechanisms only where they could change implementation;
-4. stay free-first, local-first, legal/open-source-aware, and hardware-measured;
-5. assign serious candidates `KEEP/CUT/TEST/REJECT/DEFER`;
-6. state every candidate's exact stack position;
-7. salvage mechanisms instead of importing platforms by default;
-8. produce the smallest proof experiment for every `TEST`;
-9. explicitly defer Rust/WASM/vector DB/provider work unless evidence shows it is necessary for this successor;
-10. end with one bounded implementation decision and a No-Broadening statement.
-
-Do NOT let Phase 0.5 become endless research. Stop when another pass is unlikely to change the Kernel V0.2 decision.
-
-### PHASE 1 — KERNEL V0.2
-
-After Phase 0 and Phase 0.5 are verified, continue automatically into the first real AIOS successor.
-
-Target:
-
-`KERNEL V0.2 — REAL PROCESS LIFECYCLE`
-
-Required contracts:
-
-- persistent process table abstraction;
-- explicit PID/parent PID;
-- READY/RUNNING/WAITING/SUSPENDED/DONE/FAILED/CANCELLED;
-- deterministic cooperative scheduler;
-- real yield/requeue;
-- event wait + kernel wake;
-- child spawning through kernel authority;
-- child grants cannot exceed parent grants;
-- structured capability invocation;
-- canonical path/resource scope enforcement;
-- mutation receipts;
-- deterministic fake model/runtime for tests;
-- crash/failure evidence;
-- complete unit tests.
-
-Execute Phase 1 using:
-
-- `skills/direct-successor-autopilot/SKILL.md`
-- `skills/no-drift-build/SKILL.md`
-- `skills/no-broadening-audit/SKILL.md`
-- `skills/receipt-trace-certificate/SKILL.md`
-
-Do NOT begin with:
-
-- Rust rewrite;
-- WASM sandbox migration;
-- vector database;
-- large local model installation;
-- provider integration;
-- cloud authority;
-- full Workshop redesign.
-
-Those are later evidence-based decisions, not Phase 1 goals.
-
-## Workshop integration law
-
-The Workshop is the body. Untethered AIOS becomes the nervous system underneath it.
-
-Do not refactor every room at once.
-
-Prove one bounded capability path at a time:
-
-```text
-existing Workshop function
--> bounded adapter
--> capability registry
--> worker permission
--> kernel scheduling
--> artifact/receipt
--> verification
-```
-
-Existing owner-visible Workshop behavior must remain usable while the AIOS path is introduced.
-
-## Standing autopilot
-
-Proceed automatically through reversible work:
-
-- inspect;
-- Artifact Compass when a technology/successor decision is material;
-- implement;
-- test;
-- fix ordinary candidate defects;
-- rerun tests;
-- create evidence;
-- make manifests;
-- run No-Broadening Audit;
-- simulate rollback;
-- clean candidate state;
-- update restart packet.
-
-Do not stop for routine permission.
-
-STOP before:
-
-- modifying `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS`;
-- deploying AIOS into the live Workshop;
-- destructive data changes;
-- external publishing;
-- paid-service activation;
-- credential/permission widening.
-
-## Honest completion language
-
-Phase 0:
-
-`PASS — WORKSHOP BASELINE authenticated and imported into Untethered AIOS candidate`
-
-Phase 0.5:
-
-`PASS — ARTIFACT COMPASS bounded reality sweep complete; direct Kernel V0.2 implementation selected`
-
-Kernel successor:
-
-`PASS — KERNEL V0.2 candidate verified`
-
-Never say the full AIOS is finished when only one kernel successor is verified.
-
-## First message for a fresh Codex chat
-
-Use this:
-
-> Read `AGENTS.md` and `CODEX_START_HERE.md` completely. This is the new Untethered AIOS repository. The authoritative Workshop is `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS` and must remain read-only. Execute Phase 0 exactly, authenticate/import the current code-safe Workshop baseline into this repo on a candidate branch, then execute the mandatory Phase 0.5 updated Artifact Compass sweep using the repo skills and classify serious technologies KEEP/CUT/TEST/REJECT/DEFER. Continue automatically into KERNEL V0.2 using Direct Successor Autopilot and the No-Drift Build Algorithm. Do not restart already-deployed Music Loop Deck V1. Fix ordinary candidate defects automatically. Stop only at a real protected/live deployment gate.
+For local Windows / historical AIOS bootstrap context only, see `docs/CODEX_HANDOFF.md` and prior Git history. Do not execute Phase 0 / Phase 0.5 / Kernel V0.2 merely because an old document once prescribed it.
