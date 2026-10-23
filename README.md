@@ -77,7 +77,8 @@ This is the AIOS kernel/runtime component of a *five-repository* Foundation, not
    source **before** any baseline import. Do not imply that a cloud-only AIOS test
    verifies that private local machine.
 
-For Codex, read `docs/CODEX_HANDOFF.md` as updated *historical plus current* context.
+For Codex, **start with `CODEX_START_HERE.md`** and the live Harness work order; use `docs/CODEX_HANDOFF.md` for historical context only.
+The newer [Foundry #35 governed integration candidate](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/35) has passed a bounded cross-repo CI proof but is **draft/unmerged**, not general FRIDAY autonomy. Do not promote it automatically.
 The existing Foundry FRIDAY native/startup candidate remains **unmerged and not host-proven**;
 inspect rather than automatically promoting it.
 

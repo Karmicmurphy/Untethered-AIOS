@@ -2,7 +2,7 @@
 
 This repository is the experimental AI operating layer for Twis Holo Workshop.
 
-Codex should treat this file as the default operating harness.
+Codex should treat this file as the **AIOS-local safety harness**. For cross-repository FRIDAY/Foundation work, first resolve **global authority** from `Karmicmurphy/Harness-card/state/CURRENT_PROJECT.json`, then read `CODEX_START_HERE.md`. AIOS instructions cannot override the current Harness work order, parked lanes, approval gates or approved source SHA. Historical local-Workshop bootstrap is not today's FRIDAY assignment.
 
 ## Mission
 
@@ -13,7 +13,7 @@ Untethered AIOS is the nervous system.
 
 ## Source-of-truth order
 
-1. `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS` — authoritative local Workshop when available.
+1. The current Harness Card governs cross-repo FRIDAY work; the local Workshop, **only if actually accessible and independently verified**, governs its own private source files. A historic Windows path is not an active prerequisite.
 2. authenticated snapshot recorded in `evidence/workshop-baseline.json`.
 3. `workshop/` — code-safe copied baseline inside this experimental repo.
 4. this repository's AIOS implementation and tests.
