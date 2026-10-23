@@ -1,6 +1,6 @@
-# Codex Handoff — Bootstrap Untethered AIOS
+# Codex Handoff — Historical Untethered AIOS bootstrap
 
-## Context
+> **CURRENT GOVERNING CORRECTION (2026-10-22):** This document originated as a *bootstrap* instruction before the current five-repo Foundation existed. Do not restart that milestone, create a new repo, require Windows, or reconstruct unavailable private files. Current cross-repo authority is [Harness-card/current project](https://github.com/Karmicmurphy/Harness-card/blob/main/state/CURRENT_PROJECT.json); current machine truth is [FRIDAY_MACHINE_STATUS.md](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_MACHINE_STATUS.md), and the bounded operator receipt is [FRIDAY_OPERATOR_LAST_RUN.json](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_OPERATOR_LAST_RUN.json). Use latest provider evidence before claims. Phone/Cloudflare Preview is parked. General FRIDAY runtime and local machine integration remain unproven. Read unmerged Foundry candidate [PR #34](https://github.com/Karmicmurphy/temporal-capability-foundry/pull/34) as candidate only; do not silently merge, promote or deploy. No paid service or new framework is a prerequisite.\n\n## Context
 
 This is a NEW experimental repository derived from Twis Holo Workshop.
 
@@ -12,7 +12,7 @@ Authoritative local Workshop:
 
 At the time this bootstrap was created, the Workshop had advanced locally beyond the older GitHub snapshot. Music Loop Deck V1 had already been deployed and live-verified locally. Do not restart that successor.
 
-## First action
+## Historical first action (local-host-only; NOT the current cloud entry)
 
 Authenticate the authoritative local Workshop before importing a baseline.
 
@@ -28,7 +28,7 @@ Inspect the generated exclusions and manifest.
 
 Do not copy databases, secrets, personal artifacts, browser state, generated media dumps, model weights, or other private runtime state.
 
-## Then
+## Historical local-host continuation (deferred until real host access)
 
 1. establish exact local git/file status if available;
 2. verify the current local Workshop tests/health applicable to the snapshot;
@@ -66,7 +66,7 @@ Salvage mechanisms instead of cloning/importing entire platforms by default.
 
 The sweep ends when another pass is unlikely to change the bounded successor decision. It must not become endless research.
 
-## First AIOS successor
+## Historical first AIOS successor (not the current Foundation work order)
 
 Target:
 

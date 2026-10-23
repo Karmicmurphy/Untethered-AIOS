@@ -58,16 +58,28 @@ This bootstrap contains:
 - architecture and release gates;
 - a placeholder for the authenticated Workshop baseline.
 
-## First use
+## Current cloud-first use — October 2026
 
-1. Create the GitHub repository `TWIS-Untethered-AIOS`.
-2. Upload this package.
-3. Open the repository in Codex.
-4. Tell Codex to read `AGENTS.md` and `docs/CODEX_HANDOFF.md`.
-5. Give Codex access to the authoritative local Workshop path:
-   `C:\TWIS_FLASHRIVER_REVIEW_READY\TWIS`
-6. Codex must authenticate the current Workshop **before** copying any baseline into `workshop/`.
-7. Do not merge AIOS work back into the production Workshop automatically.
+This repository already exists at `Karmicmurphy/Untethered-AIOS`. **Do not create a replacement repository.**
+This is the AIOS kernel/runtime component of a *five-repository* Foundation, not the complete FRIDAY machine.
+
+1. Read `AGENTS.md`, then the **current** cross-project authority in
+   [Harness-card/state/CURRENT_PROJECT.json](https://github.com/Karmicmurphy/Harness-card/blob/main/state/CURRENT_PROJECT.json)
+   and [FRIDAY_MACHINE_STATUS.md](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_MACHINE_STATUS.md).
+2. Read [the Harness operator receipt](https://github.com/Karmicmurphy/Harness-card/blob/main/state/FRIDAY_OPERATOR_LAST_RUN.json).
+   A successful scheduled bounded operator is **not** proof of free-form FRIDAY autonomy.
+3. Use the existing repository/cloud CI and bounded branch/test workflows first.
+   The local Workshop/Windows folder is currently **unavailable for inspection**, not missing
+   and not permission to recreate or copy personal data.
+4. Keep the existing phone-to-Workshop / Cloudflare Preview path **parked**.
+   No new remote machine endpoint, provider account, scheduler, secrets or production deployment.
+5. When the real local Workshop host is available again, independently authenticate its
+   source **before** any baseline import. Do not imply that a cloud-only AIOS test
+   verifies that private local machine.
+
+For Codex, read `docs/CODEX_HANDOFF.md` as updated *historical plus current* context.
+The existing Foundry FRIDAY native/startup candidate remains **unmerged and not host-proven**;
+inspect rather than automatically promoting it.
 
 ## Run the current kernel tests
 
@@ -91,6 +103,6 @@ python scripts/demo.py
 
 ## Current status
 
-**BOOTSTRAP / EXPERIMENTAL.**
+**BOOTSTRAP / EXPERIMENTAL (AIOS kernel only).**
 
 The included kernel is intentionally small and testable. It is a foundation to beat on, not a declaration that the final Untethered AIOS is finished.
