@@ -4,6 +4,28 @@ from untethered_aios import Kernel, CapabilityGrant, ProcessState, Event
 from untethered_aios.kernel import Step
 
 class KernelTests(unittest.TestCase):
+    def test_mutating_record_does_not_change_admission(self):
+        kernel = Kernel()
+        kernel.capabilities.register("secret", lambda: "leak")
+        def worker(ctx):
+            self.assertFalse(hasattr(ctx, "kernel"))
+            with self.assertRaises((AttributeError, TypeError)):
+                ctx.process.grants = (CapabilityGrant("secret", ()),)
+            kernel.processes[ctx.process.pid].grants = (CapabilityGrant("secret", ()),)
+            return Step.done(ctx.call("secret"))
+        pid = kernel.spawn("worker", worker)
+        kernel.run()
+        self.assertEqual(kernel.processes[pid].state, ProcessState.FAILED)
+        self.assertIn("PermissionDenied", kernel.processes[pid].error)
+
+    def test_invalid_return_does_not_abort_healthy_worker(self):
+        kernel = Kernel()
+        bad = kernel.spawn("bad", lambda ctx: None)
+        good = kernel.spawn("good", lambda ctx: Step.done("ok"))
+        kernel.run()
+        self.assertEqual(kernel.processes[bad].state, ProcessState.FAILED)
+        self.assertEqual(kernel.processes[good].result, "ok")
+
     def test_worker_yields_then_finishes(self):
         kernel = Kernel()
         state = {"n": 0}
