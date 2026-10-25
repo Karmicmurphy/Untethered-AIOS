@@ -4,6 +4,7 @@ from enum import Enum
 from collections import deque
 from typing import Callable, Any
 import itertools
+from types import MappingProxyType
 
 from .audit import AuditLog
 from .capabilities import CapabilityGrant, CapabilityRegistry, PermissionDenied
@@ -59,56 +60,32 @@ class ProcessRecord:
     ticks: int = 0
     metadata: dict[str, Any] = field(default_factory=dict)
 
-@dataclass
+@dataclass(frozen=True)
+class ProcessView:
+    pid: int
+    name: str
+    grants: tuple[CapabilityGrant, ...]
+    metadata: Any
+
+
+@dataclass(frozen=True, slots=True)
 class ProcessContext:
-    kernel: "Kernel"
-    process: ProcessRecord
+    """Restricted cooperative API; Python reflection is NOT a security sandbox."""
+    process: ProcessView
+    _invoke: Callable
+    _spawn: Callable
 
     def call(self, capability: str, **kwargs: Any) -> Any:
-        try:
-            result = self.kernel.capabilities.invoke(capability, kwargs, self.process.grants)
-        except PermissionDenied as exc:
-            self.kernel.audit.emit(
-                "capability.denied",
-                actor=f"pid:{self.process.pid}",
-                action=capability,
-                detail=_process_detail(self.process, error=str(exc)),
-            )
-            raise
-        self.kernel.audit.emit(
-            "capability.call",
-            actor=f"pid:{self.process.pid}",
-            action=capability,
-            detail=_process_detail(self.process, args=sorted(kwargs.keys())),
-        )
-        return result
+        return self._invoke(capability, kwargs)
 
-    def spawn(
-        self,
-        name: str,
-        runner: Callable[["ProcessContext"], Step],
-        grants: tuple[CapabilityGrant, ...] = (),
-    ) -> int:
-        # Child grants must be a subset of the parent's exact grants.
-        parent = set(self.process.grants)
-        requested = set(grants)
-        if not requested.issubset(parent):
-            raise PermissionDenied("child cannot receive capabilities not held by parent")
-        child_metadata: dict[str, Any] = {}
-        foundry_job_id = self.process.metadata.get("foundry_job_id")
-        if isinstance(foundry_job_id, str) and foundry_job_id:
-            child_metadata["foundry_job_id"] = foundry_job_id
-        return self.kernel.spawn(
-            name,
-            runner,
-            grants=grants,
-            parent_pid=self.process.pid,
-            metadata=child_metadata,
-        )
+    def spawn(self, name, runner, grants=()):
+        return self._spawn(name, runner, tuple(grants))
+
 
 class Kernel:
     def __init__(self) -> None:
         self._pids = itertools.count(1)
+        self._admissions = {}
         self.processes: dict[int, ProcessRecord] = {}
         self.ready: deque[int] = deque()
         self.waiting: dict[str, set[int]] = {}
@@ -134,6 +111,7 @@ class Kernel:
             state=ProcessState.READY,
             metadata=dict(metadata or {}),
         )
+        self._admissions[pid] = tuple(grants)
         self.processes[pid] = proc
         self.ready.append(pid)
         self.audit.emit(
@@ -143,6 +121,26 @@ class Kernel:
             detail=_process_detail(proc, pid=pid, parent_pid=parent_pid),
         )
         return pid
+
+    def _context(self, proc):
+        grants = self._admissions[proc.pid]
+        def invoke(name, kwargs):
+            try:
+                result = self.capabilities.invoke(name, kwargs, grants)
+            except PermissionDenied as exc:
+                self.audit.emit("capability.denied", actor=f"pid:{proc.pid}", action=name,
+                                detail=_process_detail(proc, error=str(exc)))
+                raise
+            self.audit.emit("capability.call", actor=f"pid:{proc.pid}", action=name,
+                            detail=_process_detail(proc, args=sorted(kwargs)))
+            return result
+        def spawn(name, runner, requested):
+            if not set(requested).issubset(set(grants)):
+                raise PermissionDenied("child cannot receive capabilities not held by parent")
+            return self.spawn(name, runner, grants=requested, parent_pid=proc.pid,
+                              metadata=dict(proc.metadata))
+        view = ProcessView(proc.pid, proc.name, grants, MappingProxyType(dict(proc.metadata)))
+        return ProcessContext(view, invoke, spawn)
 
     def cancel(self, pid: int) -> None:
         proc = self.processes[pid]
@@ -157,7 +155,7 @@ class Kernel:
         if proc.state in TERMINAL:
             return
         proc.state = ProcessState.SUSPENDED
-        self.audit.emit("process.suspend", actor="kernel", action=proc.name, detail={"pid": pid})
+        self.audit.emit("process.suspend", actor="kernel", action=proc.name, detail=_process_detail(proc, pid=pid))
 
     def resume(self, pid: int) -> None:
         proc = self.processes[pid]
@@ -165,7 +163,7 @@ class Kernel:
             return
         proc.state = ProcessState.READY
         self.ready.append(pid)
-        self.audit.emit("process.resume", actor="kernel", action=proc.name, detail={"pid": pid})
+        self.audit.emit("process.resume", actor="kernel", action=proc.name, detail=_process_detail(proc, pid=pid))
 
     def publish(self, event: Event) -> None:
         self.events.publish(event)
@@ -191,7 +189,9 @@ class Kernel:
             ticks += 1
 
             try:
-                step = proc.runner(ProcessContext(self, proc))
+                step = proc.runner(self._context(proc))
+                if not isinstance(step, Step):
+                    raise TypeError("worker must return a Step")
             except Exception as exc:
                 proc.state = ProcessState.FAILED
                 proc.error = f"{type(exc).__name__}: {exc}"
@@ -212,7 +212,7 @@ class Kernel:
             else:
                 proc.state = ProcessState.FAILED
                 proc.error = f"invalid step kind: {step.kind}"
-                self.audit.emit("process.failed", actor=f"pid:{pid}", action=proc.name, detail={"error": proc.error})
+                self.audit.emit("process.failed", actor=f"pid:{pid}", action=proc.name, detail=_process_detail(proc, error=proc.error))
 
         if ticks >= max_ticks and self.ready:
             foundry_job_ids = sorted({

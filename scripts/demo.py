@@ -22,9 +22,9 @@ def main() -> None:
         state["turn"] += 1
         if state["turn"] == 1:
             value = ctx.call("demo.echo", text="Workshop capability reached through kernel.")
-            ctx.process.metadata["echo"] = value
+            state["echo"] = value
             return Step.yield_cpu()
-        return Step.done(ctx.process.metadata["echo"])
+        return Step.done(state["echo"])
 
     pid = kernel.spawn(
         "demo-worker",
