@@ -174,3 +174,19 @@ Do not skip from `discover` directly to `deploy`.
 Artifact Compass must end with a decision, not another pile of links.
 
 Codex owns engineering proof. The owner owns product truth and live/deployment approval.
+
+
+## 2026 frontier monitoring and teaching loop
+
+A new public release is **evidence of change**, not evidence that a tool belongs in FRIDAY. The Digital Scrapyard candidate research is tracked at `Karmicmurphy/digital-scrapyard-autopilot/warehouse/intake/2026-10-25-frontier-salvage/manifest.json` (private; read access must be confirmed from the runner). Its associated scheduled public-metadata watcher is a **candidate until its code is merged and a live run completes**. Treat unavailable / unverified source information as UNKNOWN, never as implied license clearance.
+
+Use the existing ten passes and adaptive saturation rule. For repeated discovery:
+- Start from the current locked Harness job and current existing capabilities, not novelty or release count.
+- Watch exact official source identity, release date/tag, SPDX code license, nested notices, maintenance activity, dependency cost, offline/Windows fit, and proof value.
+- Apply `KEEP/CUT/TEST/REJECT/DEFER`; if rights are unclear, **quarantine code reuse**. No GitHub source downloads or binary execution are needed for a discovery receipt.
+- Eligible mechanisms: AST-aware source match/diff previews (ast-grep), workflow lint/security checks (actionlint/zizmor), fast Python preflight (Ruff), vulnerability metadata (OSV Scanner), and SLSA-style supply-chain traceability. These are **research examples**, not integrated services or upgrades.
+- Ask which tool detects a real known failure that current `unittest`, Node tests and Harness proof do not. Use isolated synthetic fixtures before an optional pinned tool experiment; record runtime cost and false positives.
+- Count two independent low-yield search directions or a clearly superior bounded experiment as **STOP_AND_TEST**, not failure to search exhaustively. Reopen only the affected candidate on meaningful new evidence.
+- Publish a non-sensitive card and precise next test; only the owner/Harness authority can authorize source copying, new repository credentials, canonical ref promotion or deployment.
+
+**Lesson for FRIDAY:** Differentiate discovery, legal review, deterministic test, independently certified improvement, promotion and deployment. Never merge them into one automatic action. Maintain rollback and provenance at every transition.
